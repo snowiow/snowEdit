@@ -10,7 +10,6 @@ from options import Options
 
 
 class MainWindow(QtGui.QMainWindow):
-
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
         self.codeEdits = []
@@ -54,7 +53,7 @@ class MainWindow(QtGui.QMainWindow):
                 f = open(currentEditor.filePath, 'w')
                 f.write(currentEditor.toPlainText())
                 f.close
-                currentIndex  = self.tabWidget.currentIndex()
+                currentIndex = self.tabWidget.currentIndex()
                 if self.tabWidget.tabText(currentIndex).endswith('*'):
                     self.tabWidget.setTabText(currentIndex, self.tabWidget.tabText(currentIndex).rsplit('*', 1)[0])
             except IOError as e:
@@ -64,7 +63,7 @@ class MainWindow(QtGui.QMainWindow):
     def on_saveAs_clicked(self):
         saveLocation = QtGui.QFileDialog.getSaveFileName(self, 'Save file...',
                                                          QtGui.QDesktopServices.storageLocation(
-                                                         QtGui.QDesktopServices.HomeLocation),
+                                                             QtGui.QDesktopServices.HomeLocation),
                                                          'Rush Files (*.rs)')
         if saveLocation[0] != '':
             try:
@@ -75,7 +74,7 @@ class MainWindow(QtGui.QMainWindow):
                 currentEditor.filePath = saveLocation[0]
                 self.tabWidget.setTabText(self.tabWidget.currentIndex(), currentEditor.fileName)
             except IOError as e:
-                    QtGui.QMessageBox.critical(self, 'Error', 'Error, while saving file', QtGui.QMessageBox.Ok)
+                QtGui.QMessageBox.critical(self, 'Error', 'Error, while saving file', QtGui.QMessageBox.Ok)
 
 
     @QtCore.Slot()
@@ -101,6 +100,31 @@ class MainWindow(QtGui.QMainWindow):
     @QtCore.Slot()
     def cut(self):
         self.codeEdits[self.tabWidget.currentIndex()].cut()
+
+    @QtCore.Slot()
+    def copy(self):
+        self.codeEdits[self.tabWidget.currentIndex()].copy()
+
+    @QtCore.Slot()
+    def paste(self):
+        self.codeEdits[self.tabWidget.currentIndex()].paste()
+
+    @QtCore.Slot()
+    def duplicateLine(self):
+        currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
+
+        selection = QtGui.QTextEdit.ExtraSelection()
+        selection.cursor = currentEditor.textCursor()
+        selection.cursor.clearSelection()
+        selection.cursor.select(QtGui.QTextCursor.LineUnderCursor)
+
+        content = selection.cursor.selectedText()
+        selection.cursor.clearSelection()
+        currentEditor.insertPlainText("\n" + content)
+
+    @QtCore.Slot()
+    def commentLine(self):
+        pass
 
     #Misc slots
 
@@ -144,6 +168,19 @@ class MainWindow(QtGui.QMainWindow):
         self.cutAction = QtGui.QAction(QtGui.QIcon(':icons/cut.png'), 'Cut', self)
         self.cutAction.setShortcut(QtGui.QKeySequence.Cut)
 
+        self.copyAction = QtGui.QAction(QtGui.QIcon(':icons/copy.png'), 'Copy', self)
+        self.copyAction.setShortcut(QtGui.QKeySequence.Copy)
+
+        self.pasteAction = QtGui.QAction(QtGui.QIcon(':icons/paste.png'), 'Paste', self)
+        self.pasteAction.setShortcut(QtGui.QKeySequence.Paste)
+
+        self.duplicateLineAction = QtGui.QAction(QtGui.QIcon(':icons/duplicate-line.png'), 'Duplicate current line',
+                                                 self)
+        self.duplicateLineAction.setShortcut('Ctrl+D')
+
+        self.commentLineAction = QtGui.QAction(QtGui.QIcon(':icons/comment.png'), '(De-)comment current line', self)
+        self.commentLineAction.setShortcut('Ctrl+7')
+
         #Creating file Toolbar
         fileToolBar = self.addToolBar('File')
         fileToolBar.setIconSize(QtCore.QSize(16, 16))
@@ -158,10 +195,14 @@ class MainWindow(QtGui.QMainWindow):
         editToolBar.addAction(self.undoAction)
         editToolBar.addAction(self.redoAction)
         editToolBar.addAction(self.cutAction)
+        editToolBar.addAction(self.copyAction)
+        editToolBar.addAction(self.pasteAction)
+        editToolBar.addAction(self.duplicateLineAction)
+        editToolBar.addAction(self.commentLineAction)
 
         menuBar = self.menuBar()
 
-        #Creating ile menu
+        #Creating file menu
         fileMenu = menuBar.addMenu('File')
         fileMenu.addAction(self.newFileAction)
         fileMenu.addAction(self.openFileAction)
@@ -177,7 +218,13 @@ class MainWindow(QtGui.QMainWindow):
         editMenu = menuBar.addMenu('Edit')
         editMenu.addAction(self.undoAction)
         editMenu.addAction(self.redoAction)
+        editMenu.addSeparator()
         editMenu.addAction(self.cutAction)
+        editMenu.addAction(self.copyAction)
+        editMenu.addAction(self.pasteAction)
+        editMenu.addSeparator()
+        editMenu.addAction(self.duplicateLineAction)
+        editMenu.addAction(self.commentLineAction)
 
     def createConnects(self):
         #FileMenu Actions
@@ -193,6 +240,10 @@ class MainWindow(QtGui.QMainWindow):
         self.undoAction.triggered.connect(self.undo)
         self.redoAction.triggered.connect(self.redo)
         self.cutAction.triggered.connect(self.cut)
+        self.copyAction.triggered.connect(self.copy)
+        self.pasteAction.triggered.connect(self.paste)
+        self.duplicateLineAction.triggered.connect(self.duplicateLine)
+        self.commentLineAction.triggered.connect(self.commentLine)
 
         #Tab driven events
         QtCore.QObject.connect(self.tabWidget, QtCore.SIGNAL('tabCloseRequested(int)'),

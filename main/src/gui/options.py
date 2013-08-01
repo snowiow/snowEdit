@@ -5,7 +5,6 @@ from ..util.iniManager import IniManager
 
 
 class Options(QtGui.QWidget):
-    
     def __init__(self, codeEdits):
         QtGui.QWidget.__init__(self)
 
@@ -46,7 +45,9 @@ class Options(QtGui.QWidget):
             if self.editorOptions[key].isChecked() != self.iniManager.readBoolean('Editor', key):
                 ret = self.createSaveDialog()
                 if ret == QtGui.QMessageBox.Save:
-                    self.saveEditorSettings
+                    self.saveEditorSettings()
+
+                break
         self.close()
 
     def createComponents(self):
@@ -73,7 +74,7 @@ class Options(QtGui.QWidget):
 
         grid = QtGui.QGridLayout()
         grid.addWidget(self.editorLabel, 0, 0)
-        grid.addWidget(self.lineNumbersCB, 1,0)
+        grid.addWidget(self.lineNumbersCB, 1, 0)
         grid.addWidget(self.highlightLineCB, 2, 0)
         grid.addWidget(self.applyButton, 3, 1)
         grid.addWidget(self.abortButton, 3, 2)

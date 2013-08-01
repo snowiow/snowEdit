@@ -10,7 +10,6 @@ from ..util.iniManager import IniManager
 
 
 class CodeEdit(QtGui.QPlainTextEdit):
-    
     def __init__(self, tabWidget, filePath=None):
         QtGui.QPlainTextEdit.__init__(self)
 
@@ -37,6 +36,22 @@ class CodeEdit(QtGui.QPlainTextEdit):
             self.filePath = 'new file'
 
     #Slots
+
+    @QtCore.Slot()
+    def duplicateLine(self):
+
+        selection = QtGui.QTextEdit.ExtraSelection()
+        selection.cursor = self.textCursor()
+        selection.cursor.clearSelection()
+        selection.cursor.select(QtGui.QTextCursor.LineUnderCursor)
+
+        content = selection.cursor.selectedText()
+        selection.cursor.clearSelection()
+        self.insertPlainText("\n" + content)
+
+    @QtCore.Slot()
+    def commentLine(self):
+        pass
 
     @QtCore.Slot(QtCore.QPoint)
     def contextMenu(self, pos):
@@ -92,12 +107,30 @@ class CodeEdit(QtGui.QPlainTextEdit):
         self.cutAction = QtGui.QAction(QtGui.QIcon(':icons/cut.png'), 'Cut', self)
         self.cutAction.setShortcut(QtGui.QKeySequence.Cut)
 
+        self.copyAction = QtGui.QAction(QtGui.QIcon(':icons/copy.png'), 'Copy', self)
+        self.copyAction.setShortcut(QtGui.QKeySequence.Copy)
+
+        self.pasteAction = QtGui.QAction(QtGui.QIcon(':icons/paste.png'), 'Paste', self)
+        self.pasteAction.setShortcut(QtGui.QKeySequence.Paste)
+
+        self.duplicateLineAction = QtGui.QAction(QtGui.QIcon(':icons/duplicate-line.png'), 'Duplicate current line',
+                                                 self)
+        self.duplicateLineAction.setShortcut('Ctrl+D')
+
+        self.commentLineAction = QtGui.QAction(QtGui.QIcon(':icons/comment.png'), '(De-)comment current line', self)
+        self.commentLineAction.setShortcut('Ctrl+7')
+
         #Add actions to menu
         self.menu = QtGui.QMenu()
         self.menu.addAction(self.undoAction)
         self.menu.addAction(self.redoAction)
         self.menu.addSeparator()
         self.menu.addAction(self.cutAction)
+        self.menu.addAction(self.copyAction)
+        self.menu.addAction(self.pasteAction)
+        self.menu.addSeparator()
+        self.menu.addAction(self.duplicateLineAction)
+        self.menu.addAction(self.commentLineAction)
 
     def createConnects(self):
         #Context Menu Events
@@ -107,6 +140,10 @@ class CodeEdit(QtGui.QPlainTextEdit):
         self.undoAction.triggered.connect(self.undo)
         self.redoAction.triggered.connect(self.redo)
         self.cutAction.triggered.connect(self.cut)
+        self.copyAction.triggered.connect(self.copy)
+        self.pasteAction.triggered.connect(self.paste)
+        self.duplicateLineAction.triggered.connect(self.duplicateLine)
+        self.commentLineAction.triggered.connect(self.commentLine)
 
         #Editor behaviour events
         self.connect(self, QtCore.SIGNAL('blockCountChanged(int)'),
@@ -137,38 +174,38 @@ class CodeEdit(QtGui.QPlainTextEdit):
     def lineNumberAreaWidth(self):
         digits = 1
         myMax = max(1, self.blockCount())
-        
+
         while myMax >= 10:
             myMax /= 10
             digits += 1
-            
+
         space = 3 + self.fontMetrics().width('9') * digits
         return space
-            
+
     def resizeEvent(self, qResizeEvent):
         QtGui.QPlainTextEdit.resizeEvent(self, qResizeEvent)
-        
+
         contentsRect = self.contentsRect()
         if IniManager.getInstance().readBoolean('Editor', 'showlinenumbers'):
             self.lineNumberArea.setGeometry(QtCore.QRect(contentsRect.left(), contentsRect.top(),
                                                          self.lineNumberAreaWidth(), contentsRect.height()))
-        
+
     def lineNumberAreaPaintEvent(self, event):
         painter = QtGui.QPainter(self.lineNumberArea)
         painter.fillRect(event.rect(), QtGui.QColor(QtCore.Qt.blue).lighter(170))
-        
+
         qTextBlock = self.firstVisibleBlock()
         blockNumber = qTextBlock.blockNumber()
         top = int(self.blockBoundingGeometry(qTextBlock).translated(self.contentOffset()).top())
         bottom = top + int(self.blockBoundingRect(qTextBlock).height())
-        
+
         while qTextBlock.isValid() and top <= event.rect().bottom():
             if qTextBlock.isVisible() and bottom >= event.rect().top():
                 number = str(blockNumber + 1)
                 painter.setPen(QtCore.Qt.black)
                 painter.drawText(0, top, self.lineNumberArea.width(), self.fontMetrics().height(),
                                  QtCore.Qt.AlignRight, number)
-            
+
             qTextBlock = qTextBlock.next()
             top = bottom
             bottom = top + int(self.blockBoundingRect(qTextBlock).height())
