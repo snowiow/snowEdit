@@ -16,7 +16,7 @@
     <file path="/seTab.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375108604684" ignored="false" />
     <file path="/seTabWidget.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375263454106" ignored="false" />
     <file path="/main.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375354338534" ignored="false" />
-    <file path="/Dummy.txt" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375368043956" ignored="false" />
+    <file path="/Dummy.txt" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375368153592" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -437,15 +437,19 @@
       <created>1375368058653</created>
       <updated>1375368058653</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added some Edit Functionality(Cut, copy, paste, duplicate line)">
+      <created>1375368160370</created>
+      <updated>1375368160370</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
