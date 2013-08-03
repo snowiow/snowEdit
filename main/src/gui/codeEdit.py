@@ -51,7 +51,26 @@ class CodeEdit(QtGui.QPlainTextEdit):
 
     @QtCore.Slot()
     def commentLine(self):
-        pass
+
+        selection = QtGui.QTextEdit.ExtraSelection()
+
+        currentPosition = self.textCursor()
+        selection.cursor = self.textCursor()
+
+        selection.cursor.select(QtGui.QTextCursor.LineUnderCursor)
+        lineText = selection.cursor.selectedText()
+        selection.cursor.clearSelection()
+
+        selection.cursor.movePosition(QtGui.QTextCursor.StartOfLine)
+        self.setTextCursor(selection.cursor)
+
+        if lineText.startswith('//'):
+            selection.cursor.deleteChar()
+            selection.cursor.deleteChar()
+        else:
+            self.insertPlainText('//')
+
+        self.setTextCursor(currentPosition)
 
     @QtCore.Slot(QtCore.QPoint)
     def contextMenu(self, pos):

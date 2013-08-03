@@ -7,6 +7,7 @@ from PySide import QtGui, QtCore
 from seTabWidget import SeTabWidget
 from codeEdit import CodeEdit
 from options import Options
+from about import About
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -85,7 +86,6 @@ class MainWindow(QtGui.QMainWindow):
     @QtCore.Slot()
     def on_options_clicked(self):
         self.options = Options(self.codeEdits)
-        self.options.show()
 
     #Slot for editing
 
@@ -124,7 +124,50 @@ class MainWindow(QtGui.QMainWindow):
 
     @QtCore.Slot()
     def commentLine(self):
-        pass
+        currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
+
+        selection = QtGui.QTextEdit.ExtraSelection()
+
+        currentPosition = currentEditor.textCursor()
+        selection.cursor = currentEditor.textCursor()
+
+        if selection.cursor.selectedText() == '':
+            selection.cursor.select(QtGui.QTextCursor.LineUnderCursor)
+            lineText = selection.cursor.selectedText()
+            selection.cursor.clearSelection()
+
+            selection.cursor.movePosition(QtGui.QTextCursor.StartOfLine)
+            currentEditor.setTextCursor(selection.cursor)
+
+            if lineText.startswith('//'):
+                selection.cursor.deleteChar()
+                selection.cursor.deleteChar()
+            else:
+                currentEditor.insertPlainText('//')
+
+        else:
+            selectionList = selection.cursor.selection().toPlainText().split('\n')
+            selection.cursor.clearSelection()
+
+            for line in selectionList:
+                selection.cursor.movePosition(QtGui.QTextCursor.StartOfLine)
+                currentEditor.setTextCursor(selection.cursor)
+
+                if line.startswith('//'):
+                    selection.cursor.deleteChar()
+                    selection.cursor.deleteChar()
+                else:
+                    currentEditor.insertPlainText('//')
+
+                selection.cursor.movePosition(QtGui.QTextCursor.Down)
+
+        currentEditor.setTextCursor(currentPosition)
+
+
+    #Slots for help menu
+
+    def on_about_clicked(self):
+        self.about = About()
 
     #Misc slots
 
@@ -181,6 +224,9 @@ class MainWindow(QtGui.QMainWindow):
         self.commentLineAction = QtGui.QAction(QtGui.QIcon(':icons/comment.png'), '(De-)comment current line', self)
         self.commentLineAction.setShortcut('Ctrl+7')
 
+        #Help Actions
+        self.aboutAction = QtGui.QAction('About', self)
+
         #Creating file Toolbar
         fileToolBar = self.addToolBar('File')
         fileToolBar.setIconSize(QtCore.QSize(16, 16))
@@ -226,6 +272,10 @@ class MainWindow(QtGui.QMainWindow):
         editMenu.addAction(self.duplicateLineAction)
         editMenu.addAction(self.commentLineAction)
 
+        #creating help menu
+        helpMenu = menuBar.addMenu('Help')
+        helpMenu.addAction(self.aboutAction)
+
     def createConnects(self):
         #FileMenu Actions
         self.newFileAction.triggered.connect(self.on_newFile_clicked)
@@ -244,6 +294,9 @@ class MainWindow(QtGui.QMainWindow):
         self.pasteAction.triggered.connect(self.paste)
         self.duplicateLineAction.triggered.connect(self.duplicateLine)
         self.commentLineAction.triggered.connect(self.commentLine)
+
+        #HelpMenu Actions
+        self.aboutAction.triggered.connect(self.on_about_clicked)
 
         #Tab driven events
         QtCore.QObject.connect(self.tabWidget, QtCore.SIGNAL('tabCloseRequested(int)'),
