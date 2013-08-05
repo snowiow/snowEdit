@@ -10,6 +10,8 @@ class Options(QtGui.QWidget):
 
         self.codeEdits = codeEdits
         self.iniManager = IniManager.getInstance()
+        self.font = self.iniManager.getFont()
+        self.hasFontChanged = False
 
         self.createComponents()
         self.createLayout()
@@ -22,8 +24,9 @@ class Options(QtGui.QWidget):
 
     @QtCore.Slot()
     def saveEditorSettings(self):
-        for key in self.editorOptions:
-            self.iniManager.saveIni('Editor', key, str(self.editorOptions[key].isChecked()))
+        for key in self.editorBoolOptions:
+            self.iniManager.saveIni('Editor', key, str(self.editorBoolOptions[key].isChecked()))
+        self.iniManager.setFont(self.font)
         for editor in self.codeEdits:
             editor.updateOptions()
         self.close()
@@ -41,14 +44,28 @@ class Options(QtGui.QWidget):
 
     @QtCore.Slot()
     def hasSomethingChanged(self):
-        for key in self.editorOptions:
-            if self.editorOptions[key].isChecked() != self.iniManager.readBoolean('Editor', key):
-                ret = self.createSaveDialog()
-                if ret == QtGui.QMessageBox.Save:
-                    self.saveEditorSettings()
-
+        somethingChanged = False
+        for key in self.editorBoolOptions:
+            if self.editorBoolOptions[key].isChecked() != self.iniManager.readBoolean('Editor', key):
+                somethingChanged = True
                 break
+
+        if self.font != self.iniManager.getFont():
+            somethingChanged = True
+
+        if somethingChanged:
+            ret = self.createSaveDialog()
+            if ret == QtGui.QMessageBox.Save:
+                self.saveEditorSettings()
+
         self.close()
+
+    @QtCore.Slot()
+    def showFontDialog(self):
+        font, ok = QtGui.QFontDialog.getFont(self.font)
+        if ok:
+            self.hasFontChanged = True
+            self.font = font
 
     def createComponents(self):
         self.headlineFont = QtGui.QFont('Arial', 18, QtGui.QFont.Bold)
@@ -61,21 +78,28 @@ class Options(QtGui.QWidget):
         self.highlightLineCB = QtGui.QCheckBox('Highlight current line of the cursor', self)
         self.highlightLineCB.setChecked(self.iniManager.readBoolean('Editor', 'highlightcurrentline'))
 
+        self.fontButton = QtGui.QPushButton('Change font settings', self)
+        self.fontButton.setStyleSheet('text-align:left;'
+                                      'text-decoration:underline;')
+        self.fontButton.setFlat(True)
+
         self.applyButton = QtGui.QPushButton('Apply', self)
         self.abortButton = QtGui.QPushButton('Abort', self)
 
     def createConnects(self):
+        self.fontButton.clicked.connect(self.showFontDialog)
         self.applyButton.clicked.connect(self.saveEditorSettings)
         self.abortButton.clicked.connect(self.hasSomethingChanged)
 
     def createLayout(self):
-        self.editorOptions = {'showlinenumbers': self.lineNumbersCB,
-                              'highlightcurrentline': self.highlightLineCB}
+        self.editorBoolOptions = {'showlinenumbers': self.lineNumbersCB,
+                                  'highlightcurrentline': self.highlightLineCB}
 
         grid = QtGui.QGridLayout()
         grid.addWidget(self.editorLabel, 0, 0)
         grid.addWidget(self.lineNumbersCB, 1, 0)
         grid.addWidget(self.highlightLineCB, 2, 0)
-        grid.addWidget(self.applyButton, 3, 1)
-        grid.addWidget(self.abortButton, 3, 2)
+        grid.addWidget(self.fontButton, 4, 0)
+        grid.addWidget(self.applyButton, 5, 1)
+        grid.addWidget(self.abortButton, 5, 2)
         self.setLayout(grid)

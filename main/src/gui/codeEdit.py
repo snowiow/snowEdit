@@ -188,6 +188,9 @@ class CodeEdit(QtGui.QPlainTextEdit):
         else:
             self.highlightCurrentLine(QtGui.QColor(QtCore.Qt.white))
 
+        font = IniManager.getInstance().getFont()
+
+        self.setFont(font)
         self.update()
 
     def lineNumberAreaWidth(self):
