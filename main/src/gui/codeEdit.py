@@ -201,7 +201,7 @@ class CodeEdit(QtGui.QPlainTextEdit):
             myMax /= 10
             digits += 1
 
-        space = 3 + self.fontMetrics().width('9') * digits
+        space = 5 + self.fontMetrics().width('9') * digits
         return space
 
     def resizeEvent(self, qResizeEvent):

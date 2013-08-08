@@ -1,13 +1,12 @@
 #-*- coding: utf-8 -*-
 
-import os
-from ..resources.rc_snowedit import *
 from PySide import QtGui, QtCore
 
 from seTabWidget import SeTabWidget
 from codeEdit import CodeEdit
 from options import Options
 from about import About
+from seFileSystemModel import SeFileSystemModel
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -29,25 +28,42 @@ class MainWindow(QtGui.QMainWindow):
     #Slots for file operations
 
     @QtCore.Slot()
-    def on_newFile_clicked(self):
+    def onNewFileClicked(self):
         self.codeEdits.append(CodeEdit(self.tabWidget))
         self.tabWidget.addTab(self.codeEdits[self.tabWidget.count()], 'new file')
 
     @QtCore.Slot()
-    def on_open_clicked(self):
-        files = QtGui.QFileDialog.getOpenFileNames(self, 'Open files...',
+    def onOpenFilesClicked(self):
+        files = QtGui.QFileDialog.getOpenFileNames(self, 'Open Files...',
                                                    QtGui.QDesktopServices.storageLocation(
-                                                       QtGui.QDesktopServices.HomeLocation),
-                                                   'Rush Files (*.rs)')
+                                                       QtGui.QDesktopServices.HomeLocation))
+
         for file in files[0]:
             self.codeEdits.append(CodeEdit(self.tabWidget, file))
             self.tabWidget.addTab(self.codeEdits[self.tabWidget.count()],
                                   self.codeEdits[self.tabWidget.count()].fileName)
 
     @QtCore.Slot()
-    def on_save_clicked(self):
+    def openFile(self, index):
+        if index.isValid():
+            if self.model.fileInfo(index).isFile():
+                self.codeEdits.append(CodeEdit(self.tabWidget, self.model.filePath(index)))
+                self.tabWidget.addTab(self.codeEdits[self.tabWidget.count()],
+                                      self.codeEdits[self.tabWidget.count()].fileName)
+
+    @QtCore.Slot()
+    def onOpenFolderClicked(self):
+        folder = QtGui.QFileDialog.getExistingDirectory(self, 'Open Folder...',
+                                                        QtGui.QDesktopServices.storageLocation(
+                                                            QtGui.QDesktopServices.HomeLocation))
+        path = self.model.setRootPath(folder)
+        self.folderView.setRootIndex(path)
+
+
+    @QtCore.Slot()
+    def onSaveClicked(self):
         if self.codeEdits[self.tabWidget.currentIndex()].fileName == 'new file':
-            self.on_saveAs_clicked()
+            self.onSaveAsClicked()
         else:
             try:
                 currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
@@ -61,7 +77,7 @@ class MainWindow(QtGui.QMainWindow):
                 QtGui.QMessageBox.critical(self, 'Error', 'Error, while saving file', QtGui.QMessageBox.Ok)
 
     @QtCore.Slot()
-    def on_saveAs_clicked(self):
+    def onSaveAsClicked(self):
         saveLocation = QtGui.QFileDialog.getSaveFileName(self, 'Save file...',
                                                          QtGui.QDesktopServices.storageLocation(
                                                              QtGui.QDesktopServices.HomeLocation),
@@ -77,14 +93,13 @@ class MainWindow(QtGui.QMainWindow):
             except IOError as e:
                 QtGui.QMessageBox.critical(self, 'Error', 'Error, while saving file', QtGui.QMessageBox.Ok)
 
-
     @QtCore.Slot()
-    def on_saveAll_clicked(self):
+    def onSaveAllClicked(self):
         for i in range(len(self.codeEdits)):
-            self.on_save_clicked(i)
+            self.onSaveClicked(i)
 
     @QtCore.Slot()
-    def on_options_clicked(self):
+    def onOptionsClicked(self):
         self.options = Options(self.codeEdits)
 
     #Slot for editing
@@ -163,10 +178,9 @@ class MainWindow(QtGui.QMainWindow):
 
         currentEditor.setTextCursor(currentPosition)
 
-
     #Slots for help menu
-
-    def on_about_clicked(self):
+    @QtCore.Slot()
+    def onAboutClicked(self):
         self.about = About()
 
     #Misc slots
@@ -176,7 +190,14 @@ class MainWindow(QtGui.QMainWindow):
         del self.codeEdits[int]
 
     def createComponents(self):
-        pass
+        self.folderView = QtGui.QTreeView()
+        self.model = SeFileSystemModel()
+        self.folderView.setModel(self.model)
+
+        self.folderView.setHeaderHidden(True)
+
+        for i in range(1, 4):
+            self.folderView.hideColumn(i)
 
     def createMenu(self):
 
@@ -185,7 +206,10 @@ class MainWindow(QtGui.QMainWindow):
         self.newFileAction.setShortcut('Ctrl+Alt+N')
 
         self.openFileAction = QtGui.QAction(QtGui.QIcon(':icons/open.png'), 'Open Files', self)
-        self.openFileAction.setShortcut('Ctrl+Alt+O')
+        self.openFileAction.setShortcut('Ctrl+O')
+
+        self.openFolderAction = QtGui.QAction(QtGui.QIcon(':icons/openFolder.png'), 'Open Folder', self)
+        self.openFolderAction.setShortcut('Ctrl+Alt+O')
 
         self.saveAction = QtGui.QAction(QtGui.QIcon(':icons/save.png'), 'Save', self)
         self.saveAction.setShortcut('Ctrl+S')
@@ -232,6 +256,7 @@ class MainWindow(QtGui.QMainWindow):
         fileToolBar.setIconSize(QtCore.QSize(16, 16))
         fileToolBar.addAction(self.newFileAction)
         fileToolBar.addAction(self.openFileAction)
+        fileToolBar.addAction(self.openFolderAction)
         fileToolBar.addAction(self.saveAction)
         fileToolBar.addAction(self.saveAllAction)
 
@@ -252,6 +277,7 @@ class MainWindow(QtGui.QMainWindow):
         fileMenu = menuBar.addMenu('File')
         fileMenu.addAction(self.newFileAction)
         fileMenu.addAction(self.openFileAction)
+        fileMenu.addAction(self.openFolderAction)
         fileMenu.addSeparator()
         fileMenu.addAction(self.saveAction)
         fileMenu.addAction(self.saveAsAction)
@@ -278,12 +304,13 @@ class MainWindow(QtGui.QMainWindow):
 
     def createConnects(self):
         #FileMenu Actions
-        self.newFileAction.triggered.connect(self.on_newFile_clicked)
-        self.openFileAction.triggered.connect(self.on_open_clicked)
-        self.saveAction.triggered.connect(self.on_save_clicked)
-        self.saveAsAction.triggered.connect(self.on_saveAs_clicked)
-        self.saveAllAction.triggered.connect(self.on_saveAll_clicked)
-        self.optionsAction.triggered.connect(self.on_options_clicked)
+        self.newFileAction.triggered.connect(self.onNewFileClicked)
+        self.openFileAction.triggered.connect(self.onOpenFilesClicked)
+        self.openFolderAction.triggered.connect(self.onOpenFolderClicked)
+        self.saveAction.triggered.connect(self.onSaveClicked)
+        self.saveAsAction.triggered.connect(self.onSaveAsClicked)
+        self.saveAllAction.triggered.connect(self.onSaveAllClicked)
+        self.optionsAction.triggered.connect(self.onOptionsClicked)
         self.exitAction.triggered.connect(self.close)
 
         #EditMenu Actions
@@ -296,7 +323,7 @@ class MainWindow(QtGui.QMainWindow):
         self.commentLineAction.triggered.connect(self.commentLine)
 
         #HelpMenu Actions
-        self.aboutAction.triggered.connect(self.on_about_clicked)
+        self.aboutAction.triggered.connect(self.onAboutClicked)
 
         #Tab driven events
         QtCore.QObject.connect(self.tabWidget, QtCore.SIGNAL('tabCloseRequested(int)'),
@@ -305,8 +332,11 @@ class MainWindow(QtGui.QMainWindow):
         QtCore.QObject.connect(self.tabWidget, QtCore.SIGNAL('tabCloseRequested(int)'),
                                self, QtCore.SLOT('deleteFromCodeEdits(int)'))
 
+        self.connect(self.folderView, QtCore.SIGNAL('doubleClicked(const QModelIndex&)'),
+                     self, QtCore.SLOT('openFile(const QModelIndex&)'))
+
     def createLayout(self):
-        layout = QtGui.QGridLayout()
+        layout = QtGui.QHBoxLayout()
 
         self.tabWidget = SeTabWidget()
         self.tabWidget.setTabsClosable(True)
@@ -314,7 +344,8 @@ class MainWindow(QtGui.QMainWindow):
         self.codeEdits.append(CodeEdit(self.tabWidget))
         self.tabWidget.addTab(self.codeEdits[self.tabWidget.count()], 'new file')
 
-        layout.addWidget(self.tabWidget)
+        layout.addWidget(self.folderView, 1)
+        layout.addWidget(self.tabWidget, 5)
 
         centralWidget = QtGui.QWidget()
         centralWidget.setLayout(layout)
