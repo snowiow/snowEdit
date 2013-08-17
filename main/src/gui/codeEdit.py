@@ -107,14 +107,6 @@ class CodeEdit(QtGui.QPlainTextEdit):
 
         self.setExtraSelections(extraSelections)
 
-    @property
-    def fileName(self):
-        if self.filePath.find(os.sep) != -1:
-            return self.filePath.rsplit(os.sep, 1)[1]
-        elif self.filePath.find('/') != -1:
-            return self.filePath.rsplit('/', 1)[1]
-        return self.filePath
-
     def createMenu(self):
         #Context Menu Actions
         self.undoAction = QtGui.QAction(QtGui.QIcon(':icons/undo.png'), 'Undo', self)

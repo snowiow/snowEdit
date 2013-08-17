@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9079e3ca-dc2d-4d04-8d42-39a824f94b46" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/main/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/main/src/gui/seFileSystemModel.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/main/src/gui/seTreeView.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/gui/codeEdit.py" afterPath="$PROJECT_DIR$/main/src/gui/codeEdit.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/util/helperFunctions.py" afterPath="$PROJECT_DIR$/main/src/util/helperFunctions.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/gui/mainWindow.py" afterPath="$PROJECT_DIR$/main/src/gui/mainWindow.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/gui/options.py" afterPath="$PROJECT_DIR$/main/src/gui/options.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/resources/rc_snowedit.py" afterPath="$PROJECT_DIR$/main/src/resources/rc_snowedit.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/gui/seFileSystemModel.py" afterPath="$PROJECT_DIR$/main/src/gui/seFileSystemModel.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="snowEdit.iws" />
@@ -15,18 +17,20 @@
     <file path="/a.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1374927116913" ignored="false" />
     <file path="/iniManager.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375721972658" ignored="false" />
     <file path="/codeEdit.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375706308138" ignored="false" />
-    <file path="/options.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375796464981" ignored="false" />
-    <file path="/mainWindow.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375967729420" ignored="false" />
+    <file path="/options.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1376230027219" ignored="false" />
+    <file path="/mainWindow.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1376749619635" ignored="false" />
     <file path="/discardSettingsWindow.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375093283558" ignored="false" />
     <file path="/start_script.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1374927136999" ignored="false" />
     <file path="/seTab.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375108604684" ignored="false" />
     <file path="/seTabWidget.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375263454106" ignored="false" />
     <file path="/main.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375354338534" ignored="false" />
-    <file path="/Dummy.txt" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375794249540" ignored="false" />
+    <file path="/Dummy.txt" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1376740959572" ignored="false" />
     <file path="/about.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375537461545" ignored="false" />
     <file path="/SeIconProvider.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375956722002" ignored="false" />
     <file path="/SeFileSystemModel.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375963573146" ignored="false" />
-    <file path="/seFileSystemModel.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1375963380026" ignored="false" />
+    <file path="/seFileSystemModel.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1376746520010" ignored="false" />
+    <file path="/seTreeView.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1376749912414" ignored="false" />
+    <file path="/helperFunctions.py" changelist="9079e3ca-dc2d-4d04-8d42-39a824f94b46" time="1376228426600" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +71,7 @@
       <file leaf-file-name="mainWindow.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/src/gui/mainWindow.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="86" selection-start="1810" selection-end="1810" vertical-scroll-proportion="0.0">
+            <state line="418" column="32" selection-start="16953" selection-end="16953" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#24#56#0" expanded="true" />
               </folding>
@@ -75,39 +79,28 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="seTreeView.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/src/gui/seTreeView.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="29" selection-start="597" selection-end="597" vertical-scroll-proportion="0.64646465">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="seFileSystemModel.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/src/gui/seFileSystemModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="55" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#24#48#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="options.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/src/gui/options.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="12" selection-start="4577" selection-end="4577" vertical-scroll-proportion="0.0">
+            <state line="10" column="45" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="codeEdit.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="codeEdit.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/src/gui/codeEdit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="183" column="38" selection-start="6618" selection-end="6618" vertical-scroll-proportion="0.7322835">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="seTabWidget.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/src/gui/seTabWidget.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="29" selection-start="406" selection-end="406" vertical-scroll-proportion="0.0">
+            <state line="36" column="0" selection-start="1079" selection-end="1079" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -136,29 +129,29 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/main/src/gui/discardSettingsWindow.py" />
-        <option value="$PROJECT_DIR$/main/src/gui/seTab.py" />
         <option value="$PROJECT_DIR$/main/src/gui/seTabWidget.py" />
         <option value="$PROJECT_DIR$/main/main.py" />
-        <option value="$PROJECT_DIR$/main/src/util/helperFunctions.py" />
         <option value="$PROJECT_DIR$/main/src/gui/about.py" />
         <option value="$PROJECT_DIR$/main/src/util/iniManager.py" />
-        <option value="$PROJECT_DIR$/main/src/gui/codeEdit.py" />
-        <option value="$PROJECT_DIR$/main/src/gui/options.py" />
         <option value="$PROJECT_DIR$/main/src/resources/SeIconProvider.py" />
         <option value="$PROJECT_DIR$/main/src/resources/seIconProvider.py" />
         <option value="$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/PySide/QtGui.py" />
         <option value="$PROJECT_DIR$/main/src/resources/SeFileSystemModel.py" />
         <option value="$PROJECT_DIR$/main/src/resources/seFileSystemModel.py" />
+        <option value="$PROJECT_DIR$/main/src/gui/renameDialog.py" />
+        <option value="$PROJECT_DIR$/main/src/gui/codeEdit.py" />
+        <option value="$PROJECT_DIR$/main/src/util/helperFunctions.py" />
+        <option value="$PROJECT_DIR$/main/src/gui/options.py" />
         <option value="$PROJECT_DIR$/main/src/gui/seFileSystemModel.py" />
         <option value="$PROJECT_DIR$/main/src/gui/mainWindow.py" />
+        <option value="$PROJECT_DIR$/main/src/gui/seTreeView.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="54" />
+    <option name="x" value="66" />
     <option name="y" value="-8" />
-    <option name="width" value="1320" />
+    <option name="width" value="1308" />
     <option name="height" value="784" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -255,6 +248,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="snowEdit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="snowEdit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="gui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -273,22 +288,22 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="139" />
-    <property name="options.lastSelected" value="editor" />
+    <property name="options.lastSelected" value="com.jetbrains.python.templateLanguages.TemplateLanguageModulesConfigurable" />
     <property name="recentsLimit" value="5" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="146" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="821" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="813" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="821" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="139" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="137" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -436,28 +451,32 @@
       <created>1375722637960</created>
       <updated>1375722637960</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="A Folder view is added, where you can open files from">
+      <created>1375968719067</created>
+      <updated>1375968719067</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
+    <frame x="66" y="-8" width="1308" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32695374" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2782194" sideWeight="0.6698565" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12760834" sideWeight="0.67304623" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18780096" sideWeight="0.67304623" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39872408" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33014354" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32695374" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32695374" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -505,7 +524,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added modifiable Font for the Editor. Font can be adjusted in it's own&#10;dialog, which is reached through the options." />
+    <option name="LAST_COMMIT_MESSAGE" value="A Folder view is added, where you can open files from" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -522,23 +541,17 @@
     <MESSAGE value="Added some Edit Functionality(Cut, copy, paste, duplicate line)" />
     <MESSAGE value="Added About window and line comment/ multi-line comment" />
     <MESSAGE value="Added modifiable Font for the Editor. Font can be adjusted in it's own&#10;dialog, which is reached through the options." />
+    <MESSAGE value="A Folder view is added, where you can open files from" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="37" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main/main.py">
+    <entry file="file://$PROJECT_DIR$/main/src/gui/codeEdit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/util/iniManager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="4" selection-start="1436" selection-end="1436" vertical-scroll-proportion="0.0">
+        <state line="33" column="107" selection-start="934" selection-end="1025" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -554,7 +567,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/src/gui/options.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="146" selection-end="146" vertical-scroll-proportion="0.0">
+        <state line="5" column="0" selection-start="146" selection-end="146" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/PySide/QtGui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8342" column="0" selection-start="257971" selection-end="257971" vertical-scroll-proportion="0.33248731">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="37" selection-start="365" selection-end="365" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -569,16 +594,24 @@
         <state line="4" column="3" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/main.py">
+    <entry file="file://$PROJECT_DIR$/main/src/gui/seTabWidget.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="37" selection-start="365" selection-end="365" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="16" column="29" selection-start="406" selection-end="406" vertical-scroll-proportion="0.73315364" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/src/resources/rc_snowedit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/src/gui/options.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="35" selection-start="1025" selection-end="1025" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/src/util/helperFunctions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="93" selection-end="93" vertical-scroll-proportion="0.40431267" />
+        <state line="24" column="49" selection-start="493" selection-end="493" vertical-scroll-proportion="0.62229615" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/src/util/iniManager.py">
@@ -588,48 +621,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/PySide/QtGui.py">
+    <entry file="file://$PROJECT_DIR$/main/src/gui/codeEdit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8342" column="0" selection-start="257971" selection-end="257971" vertical-scroll-proportion="0.33248731">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/gui/options.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="12" selection-start="4577" selection-end="4577" vertical-scroll-proportion="0.0">
+        <state line="36" column="0" selection-start="1079" selection-end="1079" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/src/gui/seFileSystemModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="55" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#24#48#0" expanded="true" />
-          </folding>
+        <state line="10" column="45" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/src/gui/mainWindow.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="86" selection-start="1810" selection-end="1810" vertical-scroll-proportion="0.0">
+        <state line="418" column="32" selection-start="16953" selection-end="16953" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#24#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/gui/seTabWidget.py">
+    <entry file="file://$PROJECT_DIR$/main/src/gui/seTreeView.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="29" selection-start="406" selection-end="406" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/gui/codeEdit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="183" column="38" selection-start="6618" selection-end="6618" vertical-scroll-proportion="0.7322835">
+        <state line="19" column="29" selection-start="597" selection-end="597" vertical-scroll-proportion="0.64646465">
           <folding />
         </state>
       </provider>

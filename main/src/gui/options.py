@@ -31,6 +31,7 @@ class Options(QtGui.QWidget):
 
     def createSaveDialog(self):
         msgBox = QtGui.QMessageBox()
+        msgBox.setWindowTitle('Save')
         msgBox.setIconPixmap(':icons/warning.png')
         msgBox.setWindowIcon(QtGui.QIcon(':icons/warning.png'))
         msgBox.setText('There are unsaved changes!')

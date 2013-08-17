@@ -6,7 +6,11 @@ from seTabWidget import SeTabWidget
 from codeEdit import CodeEdit
 from options import Options
 from about import About
+from seTreeView import SeTreeView
+from ..util.helperFunctions import *
 from seFileSystemModel import SeFileSystemModel
+
+import os, shutil
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -14,8 +18,8 @@ class MainWindow(QtGui.QMainWindow):
         QtGui.QMainWindow.__init__(self)
         self.codeEdits = []
 
-        self.createMenu()
         self.createComponents()
+        self.createMenu()
         self.createLayout()
         self.createConnects()
 
@@ -41,28 +45,21 @@ class MainWindow(QtGui.QMainWindow):
         for file in files[0]:
             self.codeEdits.append(CodeEdit(self.tabWidget, file))
             self.tabWidget.addTab(self.codeEdits[self.tabWidget.count()],
-                                  self.codeEdits[self.tabWidget.count()].fileName)
-
-    @QtCore.Slot()
-    def openFile(self, index):
-        if index.isValid():
-            if self.model.fileInfo(index).isFile():
-                self.codeEdits.append(CodeEdit(self.tabWidget, self.model.filePath(index)))
-                self.tabWidget.addTab(self.codeEdits[self.tabWidget.count()],
-                                      self.codeEdits[self.tabWidget.count()].fileName)
+                                  getFileName(self.codeEdits[self.tabWidget.count()].filePath))
 
     @QtCore.Slot()
     def onOpenFolderClicked(self):
         folder = QtGui.QFileDialog.getExistingDirectory(self, 'Open Folder...',
                                                         QtGui.QDesktopServices.storageLocation(
                                                             QtGui.QDesktopServices.HomeLocation))
-        path = self.model.setRootPath(folder)
-        self.folderView.setRootIndex(path)
-
+        if folder != '':
+            path = self.folderView.model.setRootPath(folder)
+            self.folderView.setRootIndex(path)
+            self.folderView.folderOpened = True
 
     @QtCore.Slot()
     def onSaveClicked(self):
-        if self.codeEdits[self.tabWidget.currentIndex()].fileName == 'new file':
+        if getFileName(self.codeEdits[self.tabWidget.currentIndex()].filePath) == 'new file':
             self.onSaveAsClicked()
         else:
             try:
@@ -89,7 +86,7 @@ class MainWindow(QtGui.QMainWindow):
                 f.write(currentEditor.toPlainText())
                 f.close()
                 currentEditor.filePath = saveLocation[0]
-                self.tabWidget.setTabText(self.tabWidget.currentIndex(), currentEditor.fileName)
+                self.tabWidget.setTabText(self.tabWidget.currentIndex(), getFileName(currentEditor.filePath))
             except IOError as e:
                 QtGui.QMessageBox.critical(self, 'Error', 'Error, while saving file', QtGui.QMessageBox.Ok)
 
@@ -183,21 +180,84 @@ class MainWindow(QtGui.QMainWindow):
     def onAboutClicked(self):
         self.about = About()
 
+    #Slots for folderView
+    @QtCore.Slot(QtCore.QModelIndex)
+    def openFile(self, index):
+        if index.isValid():
+            if self.folderView.model.fileInfo(index).isFile():
+                self.codeEdits.append(CodeEdit(self.tabWidget, self.folderView.model.filePath(index)))
+                self.tabWidget.addTab(self.codeEdits[self.tabWidget.count()],
+                                      getFileName(self.codeEdits[self.tabWidget.count()].filePath))
+
+    @QtCore.Slot(QtCore.QModelIndex)
+    def rename(self, index):
+        if index.isValid():
+            input, ok = QtGui.QInputDialog.getText(self, 'rename', 'New filename:')
+
+            if ok:
+                if self.folderView.model.fileInfo(index).isFile():
+                    if not input.endswith('.rs'):
+                        input += ".rs"
+
+                oldName = self.folderView.model.filePath(index)
+                newName = getPathOnly(oldName) + input
+                try:
+                    os.rename(oldName, newName)
+                except OSError as e:
+                    QtGui.QMessageBox.critical(self, 'Error', 'Error, while renaming file', QtGui.QMessageBox.Ok)
+
+                for i in range(len(self.codeEdits)):
+                    if self.codeEdits[i].filePath == oldName:
+                        self.codeEdits[i].filePath = newName
+                        self.tabWidget.setTabText(i, getFileName(newName))
+
+    @QtCore.Slot(QtCore.QModelIndex)
+    def delete(self, index):
+        ret = self.createDeleteDialog()
+        if ret == QtGui.QMessageBox.Yes:
+            self.folderView.model.remove(index)
+
+    @QtCore.Slot(QtCore.QModelIndex)
+    def addFile(self, index):
+        input, ok = QtGui.QInputDialog.getText(self, 'Filename', 'Type in filename:')
+        if ok:
+            if not input.endswith('.rs'):
+                input += '.rs'
+            if self.folderView.rootFolderClicked:
+                file = open(self.folderView.model.rootPath() + '/' + input, 'w')
+                file.close()
+            else:
+                file = open(self.folderView.model.filePath(index) + '/' + input, 'w')
+                file.close()
+
+    @QtCore.Slot(QtCore.QModelIndex)
+    def addFolder(self, index):
+        input, ok = QtGui.QInputDialog.getText(self, 'Foldername', 'Type in foldername:')
+        if ok:
+            if self.folderView.rootFolderClicked:
+                os.mkdir(self.folderView.model.rootPath() + '/' + input)
+            else:
+                os.mkdir(self.folderView.model.filePath(index) + '/' + input)
+
     #Misc slots
 
     @QtCore.Slot()
     def deleteFromCodeEdits(self, int):
         del self.codeEdits[int]
 
+    def createDeleteDialog(self):
+        msgBox = QtGui.QMessageBox()
+        msgBox.setWindowTitle('Delete')
+        msgBox.setIconPixmap(':icons/delete.png')
+        msgBox.setWindowIcon(QtGui.QIcon(':icons/delete.png'))
+        msgBox.setText('Sure you want to delete the file or folder with all it\'s contents?')
+        msgBox.setStandardButtons(QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
+        msgBox.setDefaultButton(QtGui.QMessageBox.No)
+        ret = msgBox.exec_()
+        return ret
+
     def createComponents(self):
-        self.folderView = QtGui.QTreeView()
-        self.model = SeFileSystemModel()
-        self.folderView.setModel(self.model)
-
-        self.folderView.setHeaderHidden(True)
-
-        for i in range(1, 4):
-            self.folderView.hideColumn(i)
+        self.folderView = SeTreeView()
 
     def createMenu(self):
 
@@ -334,6 +394,14 @@ class MainWindow(QtGui.QMainWindow):
 
         self.connect(self.folderView, QtCore.SIGNAL('doubleClicked(const QModelIndex&)'),
                      self, QtCore.SLOT('openFile(const QModelIndex&)'))
+
+        #Folder View Events
+
+        self.folderView.openFileAction.triggered.connect(lambda: self.openFile(self.folderView.currentIndex()))
+        self.folderView.renameAction.triggered.connect(lambda: self.rename(self.folderView.currentIndex()))
+        self.folderView.deleteAction.triggered.connect(lambda: self.delete(self.folderView.currentIndex()))
+        self.folderView.addFileAction.triggered.connect(lambda: self.addFile(self.folderView.currentIndex()))
+        self.folderView.addFolderAction.triggered.connect(lambda: self.addFolder(self.folderView.currentIndex()))
 
     def createLayout(self):
         layout = QtGui.QHBoxLayout()
