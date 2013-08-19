@@ -43,9 +43,17 @@ class MainWindow(QtGui.QMainWindow):
                                                        QtGui.QDesktopServices.HomeLocation))
 
         for file in files[0]:
-            self.codeEdits.append(CodeEdit(self.tabWidget, file))
-            self.tabWidget.addTab(self.codeEdits[self.tabWidget.count()],
-                                  getFileName(self.codeEdits[self.tabWidget.count()].filePath))
+            alreadyOpen = False
+            for i in range(len(self.codeEdits)):
+                if file == self.codeEdits[i].filePath:
+                    self.tabWidget.setCurrentIndex(i)
+                    alreadyOpen = True
+                    continue;
+            if not alreadyOpen:
+                self.codeEdits.append(CodeEdit(self.tabWidget, file))
+                self.tabWidget.addTab(self.codeEdits[self.tabWidget.count()],
+                                      getFileName(self.codeEdits[self.tabWidget.count()].filePath))
+                self.tabWidget.setCurrentIndex(len(self.codeEdits) - 1)
 
     @QtCore.Slot()
     def onOpenFolderClicked(self):
@@ -185,9 +193,17 @@ class MainWindow(QtGui.QMainWindow):
     def openFile(self, index):
         if index.isValid():
             if self.folderView.model.fileInfo(index).isFile():
-                self.codeEdits.append(CodeEdit(self.tabWidget, self.folderView.model.filePath(index)))
-                self.tabWidget.addTab(self.codeEdits[self.tabWidget.count()],
-                                      getFileName(self.codeEdits[self.tabWidget.count()].filePath))
+                alreadyOpened = False
+                for i in range(len(self.codeEdits)):
+                    if self.folderView.model.filePath(index) == self.codeEdits[i].filePath:
+                        self.tabWidget.setCurrentIndex(i)
+                        alreadyOpened = True
+                        break;
+                if not alreadyOpened:
+                    self.codeEdits.append(CodeEdit(self.tabWidget, self.folderView.model.filePath(index)))
+                    self.tabWidget.addTab(self.codeEdits[self.tabWidget.count()],
+                                          getFileName(self.codeEdits[self.tabWidget.count()].filePath))
+                    self.tabWidget.setCurrentIndex(len(self.codeEdits) - 1)
 
     @QtCore.Slot(QtCore.QModelIndex)
     def rename(self, index):
