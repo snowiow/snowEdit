@@ -7,9 +7,8 @@ from codeEdit import CodeEdit
 from options import Options
 from about import About
 from seTreeView import SeTreeView
-from .highlighter.pythonHighlighter import PythonHighlighter
+from .highlighter import *
 from ..util.helperFunctions import *
-from .highlighter.highlighter import *
 
 import os
 
@@ -260,12 +259,17 @@ class MainWindow(QtGui.QMainWindow):
     @QtCore.Slot()
     def python(self):
         currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
-        currentEditor.highlighter = PythonHighlighter(currentEditor.document())
+        currentEditor.highlighter = highlighter.PythonHighlighter(currentEditor.document())
 
     @QtCore.Slot()
     def none(self):
         currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
-        currentEditor.highlighter = NoneHighlighter(currentEditor.document())
+        currentEditor.highlighter = highlighter.NoneHighlighter(currentEditor.document())
+
+    @QtCore.Slot()
+    def rasch(self):
+        currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
+        currentEditor.highlighter = highlighter.RaschHighlighter(currentEditor.document())
 
     #Misc slots
     @QtCore.Slot()
@@ -343,6 +347,8 @@ class MainWindow(QtGui.QMainWindow):
         self.noneAction.setChecked(True)
         self.pythonAction = QtGui.QAction('Python', highlightActionGroup)
         self.pythonAction.setCheckable(True)
+        self.raschAction = QtGui.QAction('Rasch', highlightActionGroup)
+        self.raschAction.setCheckable(True)
 
         #Help Actions
         self.aboutAction = QtGui.QAction('About', self)
@@ -398,6 +404,7 @@ class MainWindow(QtGui.QMainWindow):
         highlightMenu = menuBar.addMenu('Highlighting')
         highlightMenu.addAction(self.noneAction)
         highlightMenu.addAction(self.pythonAction)
+        highlightMenu.addAction(self.raschAction)
 
         #creating help menu
         helpMenu = menuBar.addMenu('Help')
@@ -447,6 +454,7 @@ class MainWindow(QtGui.QMainWindow):
         #HighlightingEvents
         self.pythonAction.triggered.connect(self.python)
         self.noneAction.triggered.connect(self.none)
+        self.raschAction.triggered.connect(self.rasch)
 
     def createLayout(self):
         layout = QtGui.QHBoxLayout()
@@ -467,5 +475,7 @@ class MainWindow(QtGui.QMainWindow):
     def setHighlighterMenu(self, editor):
         if editor.filePath.endswith('py'):
             self.pythonAction.setChecked(True)
+        elif editor.filePath.endswith('rs'):
+            self.raschAction.setChecked(True)
         else:
             self.noneAction.setChecked(True)

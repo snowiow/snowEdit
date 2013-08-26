@@ -24,18 +24,18 @@ class PythonHighlighter(QtGui.QSyntaxHighlighter):
                     '\\bexec\\b', '\\bFalse\\b', '\\bfinally\\b', '\\bfrom\\b', '\\bglobal\\b', '\\bif\\b',
                     '\\bimport\\b', '\\bin\\b', '\\bis\\b', '\\blambda\\b', '\\bNone\\b', '\\bnonlocal\\b',
                     '\\bnot\\b', '\bor\b', '\\bpass\\b', '\\bprint\\b', '\\braise\\b', '\\breturn\\b',
-                    '\\bTrue\\b', '\\btry\\b', '\\bwhile\\b', '\\bwith\\b', '\\byield\\b', '\\b<\\b',
-                    '\\b<=\\b', '\\b>\\b', r'\\b>=\\b', u'\\b==\\b', '\\b!=\\b']
+                    '\\bTrue\\b', '\\btry\\b', '\\bwhile\\b', '\\bwith\\b', '\\byield\\b', '<',
+                    '<=', '>', '>=', '==', '!=']
 
         self.highlightingRules = [(QtCore.QRegExp(pattern), keywordFormat) for pattern in keywords]
 
     def createOperators(self):
-        keywordFormat = QtGui.QTextCharFormat()
-        keywordFormat.setForeground(QtCore.Qt.blue)
+        operatorFormat = QtGui.QTextCharFormat()
+        operatorFormat.setForeground(QtCore.Qt.blue)
 
-        keywords = ['+', '-', '/', '*', '(', ')', '[', ']', '{', '}']
+        operators = ['\\+', '-', '/', '\\*', '(', ')', '[', ']', '{', '}']
 
-        self.highlightingRules.extend([(QtCore.QRegExp(pattern), keywordFormat) for pattern in keywords])
+        self.highlightingRules.extend([(QtCore.QRegExp(pattern), operatorFormat) for pattern in operators])
 
     def createClassVariables(self):
         keywordFormat = QtGui.QTextCharFormat()
