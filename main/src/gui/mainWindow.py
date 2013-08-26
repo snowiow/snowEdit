@@ -7,10 +7,11 @@ from codeEdit import CodeEdit
 from options import Options
 from about import About
 from seTreeView import SeTreeView
+from .highlighter.pythonHighlighter import PythonHighlighter
 from ..util.helperFunctions import *
-from seFileSystemModel import SeFileSystemModel
+from .highlighter.highlighter import *
 
-import os, shutil
+import os
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -26,7 +27,6 @@ class MainWindow(QtGui.QMainWindow):
         self.setWindowTitle('snowEdit')
         self.setWindowIcon(QtGui.QIcon(':icons/snow_logo.png'))
         self.move(100, 100)
-
         self.show()
 
     #Slots for file operations
@@ -48,12 +48,14 @@ class MainWindow(QtGui.QMainWindow):
                 if file == self.codeEdits[i].filePath:
                     self.tabWidget.setCurrentIndex(i)
                     alreadyOpen = True
-                    continue;
+                    continue
             if not alreadyOpen:
                 self.codeEdits.append(CodeEdit(self.tabWidget, file))
                 self.tabWidget.addTab(self.codeEdits[self.tabWidget.count()],
                                       getFileName(self.codeEdits[self.tabWidget.count()].filePath))
+
                 self.tabWidget.setCurrentIndex(len(self.codeEdits) - 1)
+                self.setHighlighterMenu(self.codeEdits[self.tabWidget.count() - 1])
 
     @QtCore.Slot()
     def onOpenFolderClicked(self):
@@ -255,8 +257,17 @@ class MainWindow(QtGui.QMainWindow):
             else:
                 os.mkdir(self.folderView.model.filePath(index) + '/' + input)
 
-    #Misc slots
+    @QtCore.Slot()
+    def python(self):
+        currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
+        currentEditor.highlighter = PythonHighlighter(currentEditor.document())
 
+    @QtCore.Slot()
+    def none(self):
+        currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
+        currentEditor.highlighter = NoneHighlighter(currentEditor.document())
+
+    #Misc slots
     @QtCore.Slot()
     def deleteFromCodeEdits(self, int):
         del self.codeEdits[int]
@@ -324,6 +335,15 @@ class MainWindow(QtGui.QMainWindow):
         self.commentLineAction = QtGui.QAction(QtGui.QIcon(':icons/comment.png'), '(De-)comment current line', self)
         self.commentLineAction.setShortcut('Ctrl+7')
 
+        #Highlightingactions
+        highlightActionGroup = QtGui.QActionGroup(self)
+        highlightActionGroup.setExclusive(True)
+        self.noneAction = QtGui.QAction('None', highlightActionGroup)
+        self.noneAction.setCheckable(True)
+        self.noneAction.setChecked(True)
+        self.pythonAction = QtGui.QAction('Python', highlightActionGroup)
+        self.pythonAction.setCheckable(True)
+
         #Help Actions
         self.aboutAction = QtGui.QAction('About', self)
 
@@ -374,6 +394,11 @@ class MainWindow(QtGui.QMainWindow):
         editMenu.addAction(self.duplicateLineAction)
         editMenu.addAction(self.commentLineAction)
 
+        #Creating highlight menu
+        highlightMenu = menuBar.addMenu('Highlighting')
+        highlightMenu.addAction(self.noneAction)
+        highlightMenu.addAction(self.pythonAction)
+
         #creating help menu
         helpMenu = menuBar.addMenu('Help')
         helpMenu.addAction(self.aboutAction)
@@ -419,6 +444,10 @@ class MainWindow(QtGui.QMainWindow):
         self.folderView.addFileAction.triggered.connect(lambda: self.addFile(self.folderView.currentIndex()))
         self.folderView.addFolderAction.triggered.connect(lambda: self.addFolder(self.folderView.currentIndex()))
 
+        #HighlightingEvents
+        self.pythonAction.triggered.connect(self.python)
+        self.noneAction.triggered.connect(self.none)
+
     def createLayout(self):
         layout = QtGui.QHBoxLayout()
 
@@ -434,3 +463,9 @@ class MainWindow(QtGui.QMainWindow):
         centralWidget = QtGui.QWidget()
         centralWidget.setLayout(layout)
         self.setCentralWidget(centralWidget)
+
+    def setHighlighterMenu(self, editor):
+        if editor.filePath.endswith('py'):
+            self.pythonAction.setChecked(True)
+        else:
+            self.noneAction.setChecked(True)

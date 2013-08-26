@@ -1,12 +1,10 @@
 #-*- coding: utf-8 -*-
 
-import os
-
 from PySide import QtGui, QtCore
 from lineNumberArea import LineNumberArea
-from seTabWidget import SeTabWidget
 from ..resources.rc_snowedit import *
 from ..util.iniManager import IniManager
+from .highlighter.highlighter import *
 
 
 class CodeEdit(QtGui.QPlainTextEdit):
@@ -32,8 +30,12 @@ class CodeEdit(QtGui.QPlainTextEdit):
                 file.close()
             except IOError as e:
                 QtGui.QMessageBox.critical(self, 'Error', 'Error, while saving file', QtGui.QMessageBox.Ok)
+
+            self.highlighter = chooseHighlighter(self.document(), self.filePath)
+
         else:
             self.filePath = 'new file'
+            self.highlighter = chooseHighlighter(self.document(), self.filePath)
 
     #Slots
 
