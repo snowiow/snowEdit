@@ -3,11 +3,13 @@
 from PySide import QtGui, QtCore
 
 from seTabWidget import SeTabWidget
+from highlighter.noneHighlighter import NoneHighlighter
+from highlighter.pythonHighlighter import PythonHighlighter
+from highlighter.raschHighlighter import RaschHighlighter
 from codeEdit import CodeEdit
 from options import Options
 from about import About
 from seTreeView import SeTreeView
-from .highlighter import *
 from ..util.helperFunctions import *
 
 import os
@@ -44,10 +46,10 @@ class MainWindow(QtGui.QMainWindow):
         for file in files[0]:
             alreadyOpen = False
             for i in range(len(self.codeEdits)):
-                if file == self.codeEdits[i].filePath:
+                if normalizeSeps(file) == self.codeEdits[i].filePath:
                     self.tabWidget.setCurrentIndex(i)
                     alreadyOpen = True
-                    continue
+                    break
             if not alreadyOpen:
                 self.codeEdits.append(CodeEdit(self.tabWidget, file))
                 self.tabWidget.addTab(self.codeEdits[self.tabWidget.count()],
@@ -196,15 +198,18 @@ class MainWindow(QtGui.QMainWindow):
             if self.folderView.model.fileInfo(index).isFile():
                 alreadyOpened = False
                 for i in range(len(self.codeEdits)):
+                    print self.folderView.model.filePath(index)
+                    print self.codeEdits[i].filePath
                     if self.folderView.model.filePath(index) == self.codeEdits[i].filePath:
                         self.tabWidget.setCurrentIndex(i)
                         alreadyOpened = True
-                        break;
+                        break
                 if not alreadyOpened:
                     self.codeEdits.append(CodeEdit(self.tabWidget, self.folderView.model.filePath(index)))
                     self.tabWidget.addTab(self.codeEdits[self.tabWidget.count()],
                                           getFileName(self.codeEdits[self.tabWidget.count()].filePath))
                     self.tabWidget.setCurrentIndex(len(self.codeEdits) - 1)
+                    self.setHighlighterMenu(self.codeEdits[self.tabWidget.count() - 1])
 
     @QtCore.Slot(QtCore.QModelIndex)
     def rename(self, index):
@@ -259,17 +264,17 @@ class MainWindow(QtGui.QMainWindow):
     @QtCore.Slot()
     def python(self):
         currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
-        currentEditor.highlighter = highlighter.PythonHighlighter(currentEditor.document())
+        currentEditor.highlighter = PythonHighlighter(currentEditor.document())
 
     @QtCore.Slot()
     def none(self):
         currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
-        currentEditor.highlighter = highlighter.NoneHighlighter(currentEditor.document())
+        currentEditor.highlighter = NoneHighlighter(currentEditor.document())
 
     @QtCore.Slot()
     def rasch(self):
         currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
-        currentEditor.highlighter = highlighter.RaschHighlighter(currentEditor.document())
+        currentEditor.highlighter = RaschHighlighter(currentEditor.document())
 
     #Misc slots
     @QtCore.Slot()

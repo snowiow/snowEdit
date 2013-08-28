@@ -84,7 +84,6 @@ class RaschHighlighter(QtGui.QSyntaxHighlighter):
                 length = expression.matchedLength()
                 self.setFormat(index, length, format)
                 index = expression.indexIn(text, index + length)
-                print index
 
         self.setCurrentBlockState(0)
 

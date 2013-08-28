@@ -2,9 +2,10 @@
 
 from PySide import QtGui, QtCore
 from lineNumberArea import LineNumberArea
+from ..util.helperFunctions import normalizeSeps
 from ..resources.rc_snowedit import *
 from ..util.iniManager import IniManager
-from .highlighter.highlighter import *
+from .highlighter.highlighterHelpFunction import *
 
 
 class CodeEdit(QtGui.QPlainTextEdit):
@@ -22,7 +23,7 @@ class CodeEdit(QtGui.QPlainTextEdit):
         self.updateOptions()
 
         if filePath is not None:
-            self.filePath = filePath
+            self.filePath = normalizeSeps(filePath)
             try:
                 file = open(str(filePath), 'r')
                 fileData = file.read()

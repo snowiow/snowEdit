@@ -30,3 +30,7 @@ def getPathOnly(path):
 
 def fileIsEmpty(path):
     return os.stat(path).st_size == 0
+
+
+def normalizeSeps(path):
+    return path.replace('\\', '/')
