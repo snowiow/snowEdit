@@ -5,7 +5,7 @@ from lineNumberArea import LineNumberArea
 from ..util.helperFunctions import normalizeSeps
 from ..resources.rc_snowedit import *
 from ..util.iniManager import IniManager
-from .highlighter.highlighterHelpFunction import *
+from highlighter.highlighterHelpFunction import *
 
 
 class CodeEdit(QtGui.QPlainTextEdit):

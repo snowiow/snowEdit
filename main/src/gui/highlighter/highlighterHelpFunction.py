@@ -1,6 +1,6 @@
 from pythonHighlighter import PythonHighlighter
 from raschHighlighter import RaschHighlighter
-from noneHighlighter import NoneHighlighter
+from NoneHighlighter import NoneHighlighter
 
 
 def chooseHighlighter(editor, filePath):

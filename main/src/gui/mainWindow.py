@@ -3,7 +3,7 @@
 from PySide import QtGui, QtCore
 
 from seTabWidget import SeTabWidget
-from highlighter.noneHighlighter import NoneHighlighter
+from highlighter.NoneHighlighter import NoneHighlighter
 from highlighter.pythonHighlighter import PythonHighlighter
 from highlighter.raschHighlighter import RaschHighlighter
 from codeEdit import CodeEdit
@@ -11,7 +11,6 @@ from options import Options
 from about import About
 from seTreeView import SeTreeView
 from ..util.helperFunctions import *
-
 import os
 
 
