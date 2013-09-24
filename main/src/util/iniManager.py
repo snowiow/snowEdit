@@ -12,10 +12,9 @@ from PySide import QtGui
 from helperFunctions import getApplicationPath, fileIsEmpty
 
 
-#Ini Manager is singleton
+# Ini Manager is singleton
 class IniManager(SafeConfigParser):
     INSTANCE = None
-    PATH = None
 
     def __init__(self):
         if self.INSTANCE is not None:
@@ -47,6 +46,10 @@ class IniManager(SafeConfigParser):
         self.set('Editor', 'fontItalic', 'False')
         self.set('Editor', 'fontUnderline', 'False')
         self.set('Editor', 'fontStrikeOut', 'False')
+
+        self.add_section('Compiler')
+        self.set('Compiler', 'path', '')
+        self.set('Compiler', 'flags', '')
 
         iniFile = open(self.PATH, 'w')
         self.write(iniFile)

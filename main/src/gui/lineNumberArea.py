@@ -16,6 +16,6 @@ class LineNumberArea(QtGui.QWidget):
 
     def sizeHint(self):
         return QtCore.QSize(self.codeEdit.lineNumberAreaWidth(), 0)
-    
+
     def paintEvent(self, event):
         self.codeEdit.lineNumberAreaPaintEvent(event)

@@ -5,6 +5,7 @@ from ..util.helperFunctions import *
 
 
 class SeTreeView(QtGui.QTreeView):
+
     def __init__(self):
         QtGui.QTreeView.__init__(self)
         self.folderOpened = False
@@ -32,11 +33,18 @@ class SeTreeView(QtGui.QTreeView):
                 self.rootContextMenu.exec_(self.mapToGlobal(pos))
 
     def createActions(self):
-        self.renameAction = QtGui.QAction(QtGui.QIcon(':icons/rename.png'), 'Rename', self)
-        self.addFileAction = QtGui.QAction(QtGui.QIcon(':icons/addFile.png'), 'Create new file', self)
-        self.addFolderAction = QtGui.QAction(QtGui.QIcon(':icons/addFolder.png'), 'Create new folder', self)
-        self.deleteAction = QtGui.QAction(QtGui.QIcon(':icons/delete.png'), 'Delete', self)
-        self.openFileAction = QtGui.QAction(QtGui.QIcon(':icons/newfile.png'), 'Open file', self)
+        self.renameAction = QtGui.QAction(QtGui.QIcon(':icons/rename.png'),
+                                          'Rename', self)
+        self.addFileAction = QtGui.QAction(QtGui.QIcon(':icons/addFile.png'),
+                                           'Create new file', self)
+        self.addFolderAction = QtGui.QAction(QtGui.QIcon(
+                                             ':icons/addFolder.png'),
+                                             'Create new folder', self)
+        self.deleteAction = QtGui.QAction(QtGui.QIcon(':icons/delete.png'),
+                                          'Delete', self)
+        self.openFileAction = QtGui.QAction(QtGui.QIcon(
+                                            ':icons/newfile.png'),
+                                            'Open file', self)
 
     def createRootContextMenu(self):
         self.rootContextMenu = QtGui.QMenu()
@@ -67,8 +75,7 @@ class SeTreeView(QtGui.QTreeView):
             self.hideColumn(i)
 
     def createConnects(self):
-        self.connect(self, QtCore.SIGNAL('customContextMenuRequested(const QPoint&)'),
-                     self, QtCore.SLOT('onCustomContextMenuClicked(const QPoint&)'))
-
-
-
+        self.connect(self, QtCore.SIGNAL(
+                     'customContextMenuRequested(const QPoint&)'),
+                     self,
+                     QtCore.SLOT('onCustomContextMenuClicked(const QPoint &)'))

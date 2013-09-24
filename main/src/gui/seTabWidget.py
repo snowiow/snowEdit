@@ -11,7 +11,8 @@ class SeTabWidget(QtGui.QTabWidget):
     @QtCore.Slot()
     def starTab(self):
         if not self.tabText(self.currentIndex()).endswith('*'):
-            self.setTabText(self.currentIndex(), self.tabText(self.currentIndex()) + '*')
+            self.setTabText(self.currentIndex(),
+                            self.tabText(self.currentIndex()) + '*')
 
     @QtCore.Slot()
     def deleteTab(self, int):

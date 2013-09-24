@@ -4,6 +4,7 @@ from PySide import QtGui, QtCore
 
 
 class About(QtGui.QWidget):
+
     def __init__(self):
         QtGui.QWidget.__init__(self)
 
@@ -22,11 +23,16 @@ class About(QtGui.QWidget):
         self.textLabel.setOpenExternalLinks(True)
         self.textLabel.setTextFormat(QtCore.Qt.RichText)
         self.textLabel.setText("snowEdit Version 0.1 <br />" +
-                               "(c) Copyright Marcel Patzwahl, 2013. All rights reserved.<br />" +
-                               "This Software is developed by Marcel Patzwahl. <br />" +
-                               "Also big thanks to <a href=\"http://www.fatcow.com\" >Fatcow</a>" +
-                               " for providing such a big and nice icon pack. <br />" +
-                               "This Software is based on Python 2.7.5 and Pyside 1.2.")
+                               "(c) Copyright Marcel Patzwahl, 2013." +
+                               "All rights reserved.<br />" +
+                               "This Software is developed by Marcel " +
+                               "Patzwahl. <br />" +
+                               "Also big thanks to " +
+                               "<a href=\"http://www.fatcow.com\" >" +
+                               "Fatcow</a> for providing such a big " +
+                               "and nice icon pack. <br />" +
+                               "This Software is based on Python 2.7.5" +
+                               "and Pyside 1.2.")
         self.closeButton = QtGui.QPushButton('Close', self)
 
     def createConnects(self):

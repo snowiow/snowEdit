@@ -3,10 +3,10 @@
 from PySide import QtGui
 from ..resources.rc_snowedit import *
 from ..util.helperFunctions import *
-import re
 
 
 class SeFileSystemModel(QtGui.QFileSystemModel):
+
     def __init__(self):
         QtGui.QFileSystemModel.__init__(self)
 

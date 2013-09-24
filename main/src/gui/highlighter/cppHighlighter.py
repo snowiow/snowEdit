@@ -1,9 +1,9 @@
 #-*- coding: utf-8 -*-
 
-from PySide import QtCore, QtGui
+from PySide import QtGui, QtCore
 
 
-class RaschHighlighter(QtGui.QSyntaxHighlighter):
+class CppHighlighter(QtGui.QSyntaxHighlighter):
 
     def __init__(self, parent):
         QtGui.QSyntaxHighlighter.__init__(self, parent)
@@ -18,7 +18,6 @@ class RaschHighlighter(QtGui.QSyntaxHighlighter):
         self.createOperators()
         self.createNumbers()
         self.createStrings()
-        self.createPrefixes()
         self.createArrows()
         self.createComments()
 
@@ -27,15 +26,15 @@ class RaschHighlighter(QtGui.QSyntaxHighlighter):
         keywordFormat.setForeground(QtGui.QColor(64, 155, 11))
 
         keywords = [
-            '\\balias\\b', '\\bas\\b', '\\bconst\\b', '\\bdelete\\b',
-            '\\bdo\\b', '\\belse\\b', '\\benum\\b', '\\bfalse\\b',
-            '\\bfor\\b', '\\bfunction\\b', '\\bif\\b', '\\bimport\\b',
-            '\\bin\\b', '\\bis\\b', '\\bnew\\b', '\\bnull\\b',
-            '\\bpackage\\b', '\\bprivate\\b', '\\bprotected\\b',
-            '\\bpublic\\b', '\\bref\\b', '\\breturn\\b', '\\bshared\\b',
-            '\\bstatic\\b', '\\btemplate\\b', '\\btype\\b', '\\bthis\\b',
-            '\\bthrow\\b', '\\btrue\\b', '\\btry\\b', '\\bunion\\b',
-            '\\bunique\\b', '\\bwhile\\b', '\\bwith\\b']
+            '\\bchar\\b', '\\bclass\\b', '\\bconst\\b', '\\bdouble\\b',
+            '\\benum\\b', '\\bexplicit\\b', '\\bfriend\\b', '\\binline\\b',
+            '\\bint\\b', '\\blong\\b', '\\bnamespace\\b', '\\boperator\\b',
+            '\\bprivate\\b', '\\bprotected\\b', '\\bpublic\\b', '\\bshort\\b',
+            '\\bsignals\\b', '\\bsigned\\b', '\\bslots\\b', '\\bstatic\\b',
+            '\\bstruct\\b', '\\btemplate\\b', '\\btypedef\\b',
+            '\\btypename\\b', '\\bunion\\b', '\\bunsigned\\b', '\\bvirtual\\b',
+            '\\bvoid\\b', '\\bvolatile\\b'
+        ]
 
         self.highlightingRules = [(QtCore.QRegExp(pattern), keywordFormat)
                                   for pattern in keywords]
@@ -52,31 +51,16 @@ class RaschHighlighter(QtGui.QSyntaxHighlighter):
             [(QtCore.QRegExp(pattern), operatorFormat) for
              pattern in operators])
 
+    def createNumbers(self):
+        numberFormat = QtGui.QTextCharFormat()
+        numberFormat.setForeground(QtCore.Qt.red)
+        self.highlightingRules.append((QtCore.QRegExp('\\d+'), numberFormat))
+
     def createStrings(self):
         stringFormat = QtGui.QTextCharFormat()
         stringFormat.setForeground(QtCore.Qt.lightGray)
         self.highlightingRules.append((QtCore.QRegExp('\".*\"'), stringFormat))
         self.highlightingRules.append((QtCore.QRegExp('\'.*\''), stringFormat))
-
-    def createComments(self):
-        singleLineCommentFormat = QtGui.QTextCharFormat()
-        singleLineCommentFormat.setForeground(QtCore.Qt.gray)
-        self.highlightingRules.append(
-            (QtCore.QRegExp('//[^\n]*'), singleLineCommentFormat))
-
-    def createPrefixes(self):
-        prefixFormat = QtGui.QTextCharFormat()
-        prefixFormat.setForeground(QtCore.Qt.darkBlue)
-
-        prefixes = ['\\$[_a-zA-Z0-9]+', '@[_a-zA-Z0-9]+']
-
-        self.highlightingRules.extend(
-            [(QtCore.QRegExp(pattern), prefixFormat) for pattern in prefixes])
-
-    def createNumbers(self):
-        numberFormat = QtGui.QTextCharFormat()
-        numberFormat.setForeground(QtCore.Qt.red)
-        self.highlightingRules.append((QtCore.QRegExp('\\d+'), numberFormat))
 
     def createArrows(self):
         arrowFormat = QtGui.QTextCharFormat()
@@ -84,6 +68,12 @@ class RaschHighlighter(QtGui.QSyntaxHighlighter):
         arrows = ['<-', '->']
         self.highlightingRules.extend(
             [(QtCore.QRegExp(pattern), arrowFormat) for pattern in arrows])
+
+    def createComments(self):
+        singleLineCommentFormat = QtGui.QTextCharFormat()
+        singleLineCommentFormat.setForeground(QtCore.Qt.gray)
+        self.highlightingRules.append(
+            (QtCore.QRegExp('//[^\n]*'), singleLineCommentFormat))
 
     def highlightBlock(self, text):
         for pattern, format in self.highlightingRules:

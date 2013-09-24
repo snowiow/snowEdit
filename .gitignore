@@ -46,6 +46,18 @@ build/
 *.log
 *.scc
 
+#Pictures
+*.png
+
+#Python
+*.pyc
+
+#Qt stuff
+*.qrc
+
+#Inis
+*.ini
+
 # Visual C++ cache files
 ipch/
 *.aps

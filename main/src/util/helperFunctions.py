@@ -3,7 +3,7 @@ import sys
 import os
 import re
 
-fileEndPattern = re.compile("^.*\.(\w{2,4})$")
+fileEndPattern = re.compile('^.*\.(\w{1,4})$l')
 
 
 def getApplicationPath():

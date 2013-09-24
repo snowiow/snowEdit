@@ -1,13 +1,17 @@
 from pythonHighlighter import PythonHighlighter
 from raschHighlighter import RaschHighlighter
-from NoneHighlighter import NoneHighlighter
+from noneHighlighter import NoneHighlighter
+from cppHighlighter import CppHighlighter
 
 
 def chooseHighlighter(editor, filePath):
     if filePath.find('.') > -1:
-        if filePath.rsplit('.', 1)[1] == 'py':
+        fileEnding = filePath.rsplit('.', 1)[1]
+        if fileEnding == 'py':
             return PythonHighlighter(editor)
-        elif filePath.rsplit('.', 1)[1] == 'rs':
+        elif fileEnding == 'rs':
             return RaschHighlighter(editor)
+        elif fileEnding == 'cpp' or fileEnding == 'h':
+            return CppHighlighter(editor)
         return NoneHighlighter(editor)
     return NoneHighlighter(editor)
