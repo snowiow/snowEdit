@@ -1,11 +1,10 @@
 #!/usr/bin/env
 #-*- coding: utf-8 -*-
 
-from PySide import QtGui
+from PySide import QtGui, QtCore
 
 
 class SeConsole(QtGui.QWidget):
-
     def __init__(self):
         QtGui.QWidget.__init__(self)
 
@@ -15,16 +14,21 @@ class SeConsole(QtGui.QWidget):
 
         self.show()
 
-    def writeToConsole(self, string):
+    def writeToConsole(self, string, error=False):
         selection = QtGui.QTextEdit.ExtraSelection()
         selection.cursor = self.content.textCursor()
         selection.cursor.select(QtGui.QTextCursor.Document)
         selection.cursor.deleteChar()
         selection.cursor.clearSelection()
-        self.content.insertPlainText(str(string))
+        if error:
+            self.content.setTextColor(QtGui.QColor(QtCore.Qt.red))
+        else:
+            self.content.setTextColor(QtGui.QColor(QtCore.Qt.black))
+        self.content.insertPlainText(string)
+
 
     def createComponents(self):
-        self.content = QtGui.QPlainTextEdit(self)
+        self.content = QtGui.QTextEdit(self)
         self.content.setReadOnly(True)
         self.contentScrollbar = QtGui.QScrollBar(self)
         self.content.setVerticalScrollBar(self.contentScrollbar)

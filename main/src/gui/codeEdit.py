@@ -1,5 +1,7 @@
 #-*- coding: utf-8 -*-
 
+import re
+
 from PySide import QtGui, QtCore
 from lineNumberArea import LineNumberArea
 from ..util.helperFunctions import normalizeSeps
@@ -16,6 +18,8 @@ class CodeEdit(QtGui.QPlainTextEdit):
         self.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.lineNumberArea = LineNumberArea(self)
         self.tabWidget = tabWidget
+
+        self.errorRegEx = re.compile('(\(\d+\))')
 
         self.createMenu()
         self.createConnects()
@@ -98,14 +102,14 @@ class CodeEdit(QtGui.QPlainTextEdit):
             self.updateLineNumberAreaWidth()
 
     @QtCore.Slot()
-    def highlightCurrentLine(self):
+    def highlightCurrentLine(self,
+                             color=QtGui.QColor(QtCore.Qt.yellow).lighter(160)):
         extraSelections = []
 
         if not self.isReadOnly():
             selection = QtGui.QTextEdit.ExtraSelection()
 
-            selection.format.setBackground(
-                QtGui.QColor(QtCore.Qt.yellow).lighter(160))
+            selection.format.setBackground(color)
             selection.format.setProperty(
                 QtGui.QTextFormat.FullWidthSelection, True)
             selection.cursor = self.textCursor()
@@ -113,6 +117,17 @@ class CodeEdit(QtGui.QPlainTextEdit):
             extraSelections.append(selection)
 
         self.setExtraSelections(extraSelections)
+
+    def highlightErrorLine(self, lineNumber):
+
+        textBlock = QtGui.QTextCursor(self.document().findBlockByLineNumber(
+            lineNumber - 1))
+        textCursor = QtGui.QTextCursor(self.textCursor())
+        textCursor.setPosition(textBlock.position())
+        self.setTextCursor(textCursor)
+
+        self.highlightCurrentLine(color=QtGui.QColor(QtCore.Qt.red))
+
 
     def createMenu(self):
         # Context Menu Actions
@@ -247,3 +262,15 @@ class CodeEdit(QtGui.QPlainTextEdit):
             top = bottom
             bottom = top + int(self.blockBoundingRect(qTextBlock).height())
             blockNumber += 1
+
+    def generateError(self, output):
+        result = re.search(self.errorRegEx, output)
+        if result is not None:
+            results = result.groups()
+            for line in results:
+                number = line.split('(')[1].split(')')[0]
+                self.highlightErrorLine(int(number))
+
+
+
+

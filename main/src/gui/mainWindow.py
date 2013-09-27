@@ -9,6 +9,7 @@ from seTabWidget import SeTabWidget
 from highlighter.noneHighlighter import NoneHighlighter
 from highlighter.pythonHighlighter import PythonHighlighter
 from highlighter.raschHighlighter import RaschHighlighter
+from highlighter.cppHighlighter import CppHighlighter
 from seConsole import SeConsole
 from codeEdit import CodeEdit
 from options import Options
@@ -19,7 +20,6 @@ from ..util.iniManager import IniManager
 
 
 class MainWindow(QtGui.QMainWindow):
-
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
         self.codeEdits = []
@@ -195,10 +195,16 @@ class MainWindow(QtGui.QMainWindow):
     @QtCore.Slot()
     def onRunClicked(self):
         compilerPath = self.iniManager.readString('Compiler', 'path')
-        output = subprocess.check_output([compilerPath], shell=True)
-        self.seConsole.writeToConsole(output)
-        self.checkIfFileOpen(
-            compilerPath.rsplit('/', 1)[0] + '/' + 'output.cpp')
+        output = subprocess.Popen(compilerPath, stdout=subprocess.PIPE)
+        out, err = output.communicate()
+        if output.returncode == 0:
+            self.seConsole.writeToConsole(out)
+            self.checkIfFileOpen(
+                compilerPath.rsplit(os.sep, 1)[0] + os.sep + 'output.cpp')
+        elif output.returncode > 0:
+            self.seConsole.writeToConsole(out, error=True)
+            self.codeEdits[self.tabWidget.currentIndex()].generateError(out)
+
 
     @QtCore.Slot()
     def onCompilerOptionsClicked(self):
