@@ -40,6 +40,7 @@ class IniManager(SafeConfigParser):
         self.add_section('Editor')
         self.set('Editor', 'showLineNumbers', 'True')
         self.set('Editor', 'highlightCurrentLine', 'True')
+        self.set('Editor', 'tabSize', '4')
         self.set('Editor', 'fontFamily', 'Courier')
         self.set('Editor', 'fontSize', '10')
         self.set('Editor', 'fontBold', 'False')
@@ -56,7 +57,7 @@ class IniManager(SafeConfigParser):
         iniFile.close()
 
     def saveIni(self, section, option, value):
-        self.set(section, option, value)
+        self.set(section, option, str(value))
         iniFile = open(self.PATH, 'w')
         self.write(iniFile)
         iniFile.close()

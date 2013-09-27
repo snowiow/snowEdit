@@ -49,7 +49,11 @@ class Options(QtGui.QWidget):
         for key in self.editorOptions.editorBoolOptions:
             self.iniManager.saveIni(
                 'Editor', key,
-                str(self.editorOptions.editorBoolOptions[key].isChecked()))
+                self.editorOptions.editorBoolOptions[key].isChecked())
+
+        self.iniManager.saveIni('Editor', 'tabsize',
+                                self.editorOptions.tabSpinBox.value())
+
         self.iniManager.setFont(self.editorOptions.font)
         for editor in self.codeEdits:
             editor.updateOptions()
@@ -84,6 +88,10 @@ class Options(QtGui.QWidget):
             if isChecked != self.iniManager.readBoolean('Editor', key):
                 somethingChanged = True
                 break
+
+        if self.editorOptions.tabSpinBox.value() != self.iniManager.readInt(
+                'Editor', 'tabSize'):
+            somethingChanged = True
 
         if self.editorOptions.font != self.iniManager.getFont():
             somethingChanged = True
@@ -190,6 +198,13 @@ class Options(QtGui.QWidget):
             self.highlightLineCB.setChecked(
                 self.iniManager.readBoolean('Editor', 'highlightcurrentline'))
 
+            self.tabLabel = QtGui.QLabel('Current tab size', self)
+            self.tabSpinBox = QtGui.QSpinBox(self)
+            self.tabSpinBox.setMinimum(1)
+            self.tabSpinBox.setMaximum(12)
+            self.tabSpinBox.setValue(self.iniManager.readInt('Editor',
+                                                             'tabSize'))
+
             self.fontButton = QtGui.QPushButton('Change font settings', self)
             self.fontButton.setStyleSheet(
                 'text-align:left;' 'text-decoration:underline;')
@@ -203,7 +218,9 @@ class Options(QtGui.QWidget):
             grid = QtGui.QGridLayout()
             grid.addWidget(self.lineNumbersCB, 0, 0)
             grid.addWidget(self.highlightLineCB, 1, 0)
-            grid.addWidget(self.fontButton, 2, 0)
+            grid.addWidget(self.tabLabel, 2, 0)
+            grid.addWidget(self.tabSpinBox, 2, 1)
+            grid.addWidget(self.fontButton, 3, 0)
             self.setLayout(grid)
 
         def createConnects(self):

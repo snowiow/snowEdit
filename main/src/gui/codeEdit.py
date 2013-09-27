@@ -215,6 +215,11 @@ class CodeEdit(QtGui.QPlainTextEdit):
         font = IniManager.getInstance().getFont()
 
         self.setFont(font)
+
+        tabSize = IniManager.getInstance().readInt('Editor', 'tabSize')
+        metrics = QtGui.QFontMetrics(font)
+        self.setTabStopWidth(tabSize * metrics.width(' '))
+
         self.update()
 
     def lineNumberAreaWidth(self):
