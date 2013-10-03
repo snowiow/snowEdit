@@ -34,3 +34,8 @@ def fileIsEmpty(path):
 
 def normalizeSeps(path):
     return path.replace('\\', '/')
+
+
+def right(string, count):
+    return string[count:]
+

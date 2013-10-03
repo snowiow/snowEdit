@@ -589,3 +589,5 @@ class MainWindow(QtGui.QMainWindow):
             self.tabWidget.setCurrentIndex(len(self.codeEdits) - 1)
             self.setHighlighterMenu(
                 self.codeEdits[self.tabWidget.count() - 1])
+
+            currentEditor.updateCompleter()
