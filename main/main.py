@@ -1,9 +1,15 @@
-'''
-Created on 14.07.2013
+#encoding: utf-8 -*-
 
-@author: marcel
-'''
-#-*- coding: utf-8 -*-
+"""
+Code Conventions of this project for a better reading:
+files: camelCase
+classes: CamelCase
+methods: camelCase
+variables: camelCase
+private variables: __camelCase
+protected variables: _camelCase
+constants: NAME
+"""
 
 import sys
 
@@ -27,5 +33,4 @@ wid.resize(width - 150, height - 150)
 
 sys.exit(app.exec_())
 
-if __name__ == '__main__':
-    pass
+

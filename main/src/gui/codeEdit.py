@@ -18,22 +18,37 @@ from ..util.RaschLexer import RaschLexer
 class CodeEdit(QtGui.QPlainTextEdit):
 
     def __init__(self, tabWidget, filePath=None):
+        """
+        Code Edit is a advanced QPlaintextEdit with IDE features, like line
+        numbers, line highlighting, tabs interpreted as spaces, completion etc.
+        """
         QtGui.QPlainTextEdit.__init__(self)
 
-        self.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
-        self.lineNumberArea = LineNumberArea(self)
+        #privates
+        self.__updateCounter = 0
+        self.__avgWordLength = 0
+
+        self.__completer = None
+
+        self.__lineNumberArea = LineNumberArea(self)
+        self.__lexer = RaschLexer()
+        self.__errorRegEx = re.compile('(\(\d+\))')
+
+        #publics
         self.tabWidget = tabWidget
-        self.completion = None
-        self.lexer = RaschLexer()
 
-        self.errorRegEx = re.compile('(\(\d+\))')
+        #Set Custom ContextMenu
+        self.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
 
+        #Create the code editor
         self.createMenu()
         self.createComponents()
         self.createConnects()
 
-        self.updateLineNumberAreaWidth()
         self.updateOptions()
+
+        #if a filePath parameter is given, paste the content into lineEdit
+        #and save the path into a variable
         if filePath is not None:
             self.filePath = normalizeSeps(filePath)
             try:
@@ -56,8 +71,33 @@ class CodeEdit(QtGui.QPlainTextEdit):
 
     # Slots
     @QtCore.Slot()
-    def duplicateLine(self):
+    def updateCompleter(self):
+        """
+        If the codeEdit isn't empty, the text will be parsed and the
+        completer will be updated with the current set variables in the file
+        """
+        variables = []
+        if self.toPlainText() is not '':
+            variables = self.__lexer.getVariables(self.toPlainText())
 
+        self.__completer.updateWords(variables)
+
+    @QtCore.Slot()
+    def checkCompleteUpdate(self):
+        """
+        Checks if the average word length is reached. If true it calls the
+        updateCompleter method and resets the counter and a new average word
+        length
+        """
+        self.__updateCounter += 1
+        if self.__updateCounter >= self.__avgWordLength:
+            self.updateCompleter()
+            self.__updateCounter = 0
+            self.__avgWordLength = self.__completer.avgWordLength()
+
+    @QtCore.Slot()
+    def duplicateLine(self):
+        """Edit Feature to duplicate the current line"""
         selection = QtGui.QTextEdit.ExtraSelection()
         selection.cursor = self.textCursor()
         selection.cursor.clearSelection()
@@ -69,7 +109,7 @@ class CodeEdit(QtGui.QPlainTextEdit):
 
     @QtCore.Slot()
     def commentLine(self):
-
+        """Edit Feature to comment current line or the whole selection"""
         selection = QtGui.QTextEdit.ExtraSelection()
 
         currentPosition = self.textCursor()
@@ -92,19 +132,22 @@ class CodeEdit(QtGui.QPlainTextEdit):
 
     @QtCore.Slot(QtCore.QPoint)
     def contextMenu(self, pos):
+        """Open the ContextMenu at current mouse position"""
         self.menu.exec_(self.mapToGlobal(pos))
 
     @QtCore.Slot()
     def updateLineNumberAreaWidth(self):
+        """ Updates the area of the line Number Area"""
         self.setViewportMargins(self.lineNumberAreaWidth(), 0, 0, 0)
 
     @QtCore.Slot()
     def updateLineNumberArea(self, qRect, dy):
+        """updates the area of the line numbers"""
         if dy:
-            self.lineNumberArea.scroll(0, dy)
+            self.__lineNumberArea.scroll(0, dy)
         else:
-            self.lineNumberArea.update(
-                0, qRect.y(), self.lineNumberArea.width(), qRect.height())
+            self.__lineNumberArea.update(
+                0, qRect.y(), self.__lineNumberArea.width(), qRect.height())
 
         if qRect.contains(self.viewport().rect()):
             self.updateLineNumberAreaWidth()
@@ -112,6 +155,8 @@ class CodeEdit(QtGui.QPlainTextEdit):
     @QtCore.Slot()
     def highlightCurrentLine(self,
                              color=QtGui.QColor(QtCore.Qt.yellow).lighter(160)):
+
+        """highlight line where the cursor is placed"""
         extraSelections = []
 
         if not self.isReadOnly():
@@ -128,16 +173,22 @@ class CodeEdit(QtGui.QPlainTextEdit):
 
     @QtCore.Slot()
     def insertCompletion(self, completion):
+        """
+        calculates the word prefix and appends the rest of the chosen word from
+        completion
+        """
         cursor = self.textCursor()
         extra = (len(completion) -
-                 len(self.completion.completionPrefix()))
+                 len(self.__completer.completionPrefix()))
 
         #cursor.movePosition(QtGui.QTextCursor.Left)
         cursor.movePosition(QtGui.QTextCursor.EndOfWord)
         cursor.insertText(completion[len(completion) - extra:])
-        self.setTextCursor(cursor)
 
     def textUnderCursor(self):
+        """
+        Returns the word under the cursor + the prefix ($ or @) if there is one
+        """
         prefix = ''
 
         cursor = self.textCursor()
@@ -153,14 +204,21 @@ class CodeEdit(QtGui.QPlainTextEdit):
         cursor.select(QtGui.QTextCursor.WordUnderCursor)
         return prefix + cursor.selectedText()
 
-
     def focusInEvent(self, event):
-        if self.completion:
-            self.completion.setWidget(self)
+        """
+        Overwrite of focusInEvent, that the completer directly
+        gets the focus if popping up
+        """
+        if self.__completer:
+            self.__completer.setWidget(self)
         QtGui.QPlainTextEdit.focusInEvent(self, event)
 
     def keyPressEvent(self, event):
-        if self.completion and self.completion.popup().isVisible():
+        """
+        Ignore cases of wrong keys and modifiers. Afterwards prepare correct
+        completion popup
+        """
+        if self.__completer and self.__completer.popup().isVisible():
             if event.key() in (
                 QtCore.Qt.Key_Enter,
                 QtCore.Qt.Key_Return,
@@ -173,7 +231,7 @@ class CodeEdit(QtGui.QPlainTextEdit):
         isShortCut = (event.modifiers() == QtCore.Qt.ControlModifier and
                       event.key() == QtCore.Qt.Key_Space)
 
-        if not self.completion or not isShortCut:
+        if not self.__completer or not isShortCut:
             QtGui.QPlainTextEdit.keyPressEvent(self, event)
 
         ctrlOrShift = event.modifiers() in (QtCore.Qt.ControlModifier,
@@ -191,23 +249,26 @@ class CodeEdit(QtGui.QPlainTextEdit):
 
         if not isShortCut and (hasModifiers or event.text() == '' or len(
                 completionPrefix) < 3 or eow.find(event.text()[:1]) != -1):
-            self.completion.popup().hide()
+            self.__completer.popup().hide()
             return
 
-        if completionPrefix != self.completion.completionPrefix():
-            self.completion.setCompletionPrefix(completionPrefix)
-            popup = self.completion.popup()
+        if completionPrefix != self.__completer.completionPrefix():
+            self.__completer.setCompletionPrefix(completionPrefix)
+            popup = self.__completer.popup()
             popup.setCurrentIndex(
-                self.completion.completionModel().index(0, 0))
+                self.__completer.completionModel().index(0, 0))
 
         cr = self.cursorRect()
-        cr.setWidth(self.completion.popup().sizeHintForColumn(0)
-                    + self.completion.popup().verticalScrollBar().
+        cr.setWidth(self.__completer.popup().sizeHintForColumn(0)
+                    + self.__completer.popup().verticalScrollBar().
         sizeHint().width())
-        self.completion.complete(cr)
+        self.__completer.complete(cr)
 
     def highlightErrorLine(self, lineNumber):
-
+        """
+        Color the line in red where an error occurred and place the
+        cursor in that line
+        """
         textBlock = QtGui.QTextCursor(self.document().findBlockByLineNumber(
             lineNumber - 1))
         textCursor = QtGui.QTextCursor(self.textCursor())
@@ -217,6 +278,7 @@ class CodeEdit(QtGui.QPlainTextEdit):
         self.highlightCurrentLine(color=QtGui.QColor(QtCore.Qt.red))
 
     def createMenu(self):
+        """Create the context menu options"""
         # Context Menu Actions
         self.undoAction = QtGui.QAction(
             QtGui.QIcon(':icons/undo.png'), 'Undo', self)
@@ -261,11 +323,15 @@ class CodeEdit(QtGui.QPlainTextEdit):
         self.menu.addAction(self.commentLineAction)
 
     def createComponents(self):
+        """
+        Create the components of the editor
+        """
         completer = SeCompletion()
         completer.setWidget(self)
-        self.completion = completer
+        self.__completer = completer
 
     def createConnects(self):
+        """ Create all necessary connects of the codeEditor"""
         # Context Menu Events
         self.connect(self, QtCore.SIGNAL('customContextMenuRequested(QPoint)'),
                      self, QtCore.SLOT('contextMenu(QPoint)'))
@@ -291,16 +357,21 @@ class CodeEdit(QtGui.QPlainTextEdit):
         self.connect(self, QtCore.SIGNAL('textChanged()'),
                      self.tabWidget, QtCore.SLOT('starTab()'))
 
-        self.connect(self.completion,
-                     QtCore.SIGNAL("activated(const QString&)"),
+        self.connect(self.__completer,
+                     QtCore.SIGNAL('activated(const QString&)'),
                      self.insertCompletion)
 
-    # Update Editor behaviour after modifieing settings
+        self.connect(self, QtCore.SIGNAL('textChanged()'),
+                     self.checkCompleteUpdate)
+
     def updateOptions(self):
+        """adjust the editor to the settings of the config file"""
+        self.updateLineNumberAreaWidth()
+
         if IniManager.getInstance().readBoolean('Editor', 'showlinenumbers'):
-            self.lineNumberArea.show()
+            self.__lineNumberArea.show()
         else:
-            self.lineNumberArea.hide()
+            self.__lineNumberArea.hide()
 
         if IniManager.getInstance().readBoolean('Editor',
                                                 'highlightcurrentline'):
@@ -318,7 +389,24 @@ class CodeEdit(QtGui.QPlainTextEdit):
 
         self.update()
 
+    def resizeEvent(self, qResizeEvent):
+        """
+        overwrite the resizeEvent to resize the lineNumberArea appropriate to
+        the editor itself
+        """
+        QtGui.QPlainTextEdit.resizeEvent(self, qResizeEvent)
+
+        contentsRect = self.contentsRect()
+        if IniManager.getInstance().readBoolean('Editor', 'showlinenumbers'):
+            self.__lineNumberArea.setGeometry(
+                QtCore.QRect(contentsRect.left(), contentsRect.top(),
+                             self.lineNumberAreaWidth(),
+                             contentsRect.height()))
+
     def lineNumberAreaWidth(self):
+        """
+        calculates the width of the line number area
+        """
         digits = 1
         myMax = max(1, self.blockCount())
 
@@ -329,18 +417,12 @@ class CodeEdit(QtGui.QPlainTextEdit):
         space = 5 + self.fontMetrics().width('9') * digits
         return space
 
-    def resizeEvent(self, qResizeEvent):
-        QtGui.QPlainTextEdit.resizeEvent(self, qResizeEvent)
-
-        contentsRect = self.contentsRect()
-        if IniManager.getInstance().readBoolean('Editor', 'showlinenumbers'):
-            self.lineNumberArea.setGeometry(
-                QtCore.QRect(contentsRect.left(), contentsRect.top(),
-                             self.lineNumberAreaWidth(),
-                             contentsRect.height()))
-
     def lineNumberAreaPaintEvent(self, event):
-        painter = QtGui.QPainter(self.lineNumberArea)
+        """
+        Create the line number area, set its color and draw the needed line
+        numbers
+        """
+        painter = QtGui.QPainter(self.__lineNumberArea)
         painter.fillRect(
             event.rect(), QtGui.QColor(QtCore.Qt.blue).lighter(170))
 
@@ -355,7 +437,7 @@ class CodeEdit(QtGui.QPlainTextEdit):
                 number = str(blockNumber + 1)
                 painter.setPen(QtCore.Qt.black)
                 painter.drawText(
-                    0, top, self.lineNumberArea.width(
+                    0, top, self.__lineNumberArea.width(
                     ), self.fontMetrics().height(),
                     QtCore.Qt.AlignRight, number)
 
@@ -365,18 +447,14 @@ class CodeEdit(QtGui.QPlainTextEdit):
             blockNumber += 1
 
     def generateError(self, output):
-        result = re.search(self.errorRegEx, output)
+        """search for the error lines and call the highlightErrorLine method"""
+        result = re.search(self.__errorRegEx, output)
         if result is not None:
             results = result.groups()
             for line in results:
                 number = line.split('(')[1].split(')')[0]
                 self.highlightErrorLine(int(number))
 
-    def updateCompleter(self):
-        variables = []
-        if self.toPlainText() is not '':
-            variables = self.lexer.getVariables(self.toPlainText())
 
-        self.completion.addWords(variables)
 
 

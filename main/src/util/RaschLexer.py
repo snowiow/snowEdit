@@ -71,9 +71,11 @@ class RaschLexer():
         result = set([])
         for entry in array:
             if entry.startswith('$') or entry.startswith('@'):
-                result.update([entry])
-        print result
+                if len(entry) > 1:
+                    result.update([entry])
         return result
+
+
 
 
 
