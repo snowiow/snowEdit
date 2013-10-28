@@ -8,11 +8,11 @@ class CppHighlighter(QtGui.QSyntaxHighlighter):
     def __init__(self, parent):
         QtGui.QSyntaxHighlighter.__init__(self, parent)
 
-        self.multiLineCommentFormat = QtGui.QTextCharFormat()
-        self.multiLineCommentFormat.setForeground(QtCore.Qt.lightGray)
+        self._multiLineCommentFormat = QtGui.QTextCharFormat()
+        self._multiLineCommentFormat.setForeground(QtCore.Qt.lightGray)
 
-        self.commentStartExpression = QtCore.QRegExp("/\\*")
-        self.commentEndExpression = QtCore.QRegExp("\\*/")
+        self._commentStartExpression = QtCore.QRegExp("/\\*")
+        self._commentEndExpression = QtCore.QRegExp("\\*/")
 
         self.createKeywords()
         self.createOperators()
@@ -90,19 +90,19 @@ class CppHighlighter(QtGui.QSyntaxHighlighter):
         startIndex = 0
 
         if self.previousBlockState() != 1:
-            startIndex = self.commentStartExpression.indexIn(text)
+            startIndex = self._commentStartExpression.indexIn(text)
 
         while startIndex >= 0:
-            endIndex = self.commentEndExpression.indexIn(text, startIndex)
+            endIndex = self._commentEndExpression.indexIn(text, startIndex)
 
             if endIndex == -1:
                 self.setCurrentBlockState(1)
                 commentLength = len(text) - startIndex
             else:
                 commentLength = endIndex - startIndex + \
-                    self.commentEndExpression.matchedLength()
+                    self._commentEndExpression.matchedLength()
 
             self.setFormat(
-                startIndex, commentLength, self.multiLineCommentFormat)
-            startIndex = self.commentStartExpression.indexIn(
+                startIndex, commentLength, self._multiLineCommentFormat)
+            startIndex = self._commentStartExpression.indexIn(
                 text, startIndex + commentLength)

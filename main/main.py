@@ -6,7 +6,7 @@ files: camelCase
 classes: CamelCase
 methods: camelCase
 variables: camelCase
-private variables: __camelCase
+private variables: _camelCase
 protected variables: _camelCase
 constants: NAME
 """
@@ -32,5 +32,3 @@ wid = MainWindow()
 wid.resize(width - 150, height - 150)
 
 sys.exit(app.exec_())
-
-
