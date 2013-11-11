@@ -30,7 +30,8 @@ class IniManager(SafeConfigParser):
             return cls.INSTANCE
 
     def checkExistingIniFile(self):
-        self.PATH = getApplicationPath().rsplit("/", 2)[0] + '/cfg/options.ini'
+        print getApplicationPath()
+        self.PATH = getApplicationPath() + '/cfg/options.ini'
         if not os.path.isfile(self.PATH):
             self.createNewIni()
         elif fileIsEmpty(self.PATH):

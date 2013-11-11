@@ -13,7 +13,14 @@ class SeCompletion(QtGui.QCompleter):
             instead of
             a list, because of avoiding duplicates
             """
-        self._BUILTINS = set([u'null', u'true', u'false'])
+        self._BUILTINS = set(['null', 'true', 'false', 'alias', 'as',
+                              'const', 'delete', 'do', 'else', 'enum', 'for',
+                              'function', 'if', 'import', 'in', 'is', 'new',
+                              'package', 'private', 'protected', 'public',
+                              'ref', 'return', 'shared', 'static', 'template',
+                              'type', 'this', 'throw', 'try', 'union',
+                              'unique', 'while', 'with'])
+
         self.words = self._BUILTINS | s
         QtGui.QCompleter.__init__(self, list(self.words))
 
@@ -36,6 +43,3 @@ class SeCompletion(QtGui.QCompleter):
             totalLength += len(word)
 
         return round(totalLength / len(self.words))
-
-
-

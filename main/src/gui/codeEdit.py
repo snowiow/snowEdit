@@ -89,11 +89,7 @@ class CodeEdit(QtGui.QPlainTextEdit):
         updateCompleter method and resets the counter and a new average word
         length
         """
-        self._updateCounter += 1
-        if self._updateCounter >= self._avgWordLength:
-            self.updateCompleter()
-            self._updateCounter = 0
-            self._avgWordLength = self._completer.avgWordLength()
+        self.updateCompleter()
 
     @QtCore.Slot()
     def duplicateLine(self):
