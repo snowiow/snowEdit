@@ -10,7 +10,6 @@ private variables: _camelCase
 protected variables: _camelCase
 constants: NAME
 """
-
 import sys
 
 from PySide import QtGui

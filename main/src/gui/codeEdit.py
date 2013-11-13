@@ -12,7 +12,7 @@ from ..resources.rc_snowedit import *
 
 from ..util.helperFunctions import normalizeSeps
 from ..util.iniManager import IniManager
-from ..util.RaschLexer import RaschLexer
+from ..util.RaschLexer import *
 
 
 class CodeEdit(QtGui.QPlainTextEdit):
@@ -31,7 +31,6 @@ class CodeEdit(QtGui.QPlainTextEdit):
         self._completer = None
 
         self._lineNumberArea = LineNumberArea(self)
-        self._lexer = RaschLexer()
         self._errorRegEx = re.compile('(\(\d+\))')
 
         #publics
@@ -78,7 +77,7 @@ class CodeEdit(QtGui.QPlainTextEdit):
         """
         variables = []
         if self.toPlainText() is not '':
-            variables = self._lexer.getVariables(self.toPlainText())
+            variables = getVariables(self.toPlainText())
 
         self._completer.updateWords(variables)
 
