@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/main/src/util/RaschLexer.py" line="4" mnemonic="8" />
+    <bookmark url="file://$PROJECT_DIR$/main/src/util/RaschLexer.py" line="2" mnemonic="8" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9079e3ca-dc2d-4d04-8d42-39a824f94b46" name="Default" comment="editable tab size implemented.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/util/RaschLexer.py" afterPath="$PROJECT_DIR$/main/src/util/RaschLexer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/util/helperFunctions.py" afterPath="$PROJECT_DIR$/main/src/util/helperFunctions.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/snowEdit.iml" afterPath="$PROJECT_DIR$/.idea/snowEdit.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="snowEdit.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,30 +35,11 @@
       <file leaf-file-name="RaschLexer.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/src/util/RaschLexer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="23" selection-start="479" selection-end="479" vertical-scroll-proportion="0.14893617" vertical-offset="207" max-vertical-offset="690">
+            <state line="14" column="16" selection-start="344" selection-end="365" vertical-scroll-proportion="0.48870638" vertical-offset="0" max-vertical-offset="918">
               <folding>
-                <element signature="e#265#454#1" expanded="true" />
-                <element signature="e#488#757#0" expanded="true" />
-                <element signature="e#802#1050#0" expanded="true" />
+                <element signature="e#23#69#0" expanded="true" />
+                <element signature="e#965#1274#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lineNumberArea.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/src/gui/lineNumberArea.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="0" selection-start="442" selection-end="442" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="405">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="options.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/src/gui/options.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="23" selection-start="183" selection-end="183" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="4395">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -62,16 +47,7 @@
       <file leaf-file-name="helperFunctions.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/src/util/helperFunctions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="44" selection-start="99" selection-end="99" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="705">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="codeEdit.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/src/gui/codeEdit.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="30" selection-start="2774" selection-end="2774" vertical-scroll-proportion="0.0" vertical-offset="1365" max-vertical-offset="6930">
+            <state line="9" column="22" selection-start="152" selection-end="152" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
               <folding />
             </state>
           </provider>
@@ -111,19 +87,19 @@
         <option value="$PROJECT_DIR$/main/main.py" />
         <option value="$PROJECT_DIR$/main/src/gui/customContextMenuWidget.py" />
         <option value="$PROJECT_DIR$/main/src/gui/highlighter/cppHighlighter.py" />
-        <option value="$PROJECT_DIR$/main/src/util/helperFunctions.py" />
         <option value="$PROJECT_DIR$/main/src/gui/highlighter/raschHighlighter.py" />
         <option value="$PROJECT_DIR$/main/src/gui/lineNumberArea.py" />
         <option value="$PROJECT_DIR$/main/src/gui/codeEdit.py" />
+        <option value="$PROJECT_DIR$/main/src/util/helperFunctions.py" />
         <option value="$PROJECT_DIR$/main/src/util/RaschLexer.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="56" />
-    <option name="y" value="-4" />
-    <option name="width" value="1311" />
-    <option name="height" value="773" />
+    <option name="x" value="66" />
+    <option name="y" value="-8" />
+    <option name="width" value="1308" />
+    <option name="height" value="784" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -242,33 +218,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snowEdit" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="snowEdit" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="highlighter" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -284,7 +234,7 @@
     <property name="recentsLimit" value="5" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/main/main.py" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="146" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="821" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="813" />
@@ -299,7 +249,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="options.searchVisible" value="true" />
   </component>
@@ -316,7 +266,7 @@
       <recent name="C:\Users\marcel\Documents\GitHub\snowEdit\main\src\gui" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.runSnowEdit">
+  <component name="RunManager" selected="Python.snowEdit">
     <configuration default="true" type="tests" factoryName="py.test">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -369,14 +319,14 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="SDK_HOME" value="C:/Python27/python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="snowEdit" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/main.py" />
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
@@ -441,13 +391,13 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="runSnowEdit" type="PythonConfigurationType" factoryName="Python">
+    <configuration default="false" name="snowEdit" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="/usr/bin/python" />
+      <option name="SDK_HOME" value="C:/Python27/python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -456,14 +406,12 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/main.py" />
       <option name="PARAMETERS" value="" />
-      <RunnerSettings RunnerId="PyDebugRunner" />
       <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
     <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Python.runSnowEdit" />
+      <item index="0" class="java.lang.String" itemvalue="Python.snowEdit" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -567,18 +515,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="56" y="-4" width="1311" height="773" extended-state="6" />
+    <frame x="66" y="-8" width="1308" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32668713" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11764706" sideWeight="0.69753087" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2169595" sideWeight="0.69753087" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30246913" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14396285" sideWeight="0.7868098" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21671827" sideWeight="0.7868098" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30214724" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21450618" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21319018" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -616,31 +564,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/main/src/util/RaschLexer.py</url>
-          <option name="timeStamp" value="78" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/main/src/util/RaschLexer.py</url>
-          <line>4</line>
-          <option name="timeStamp" value="79" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/main/src/util/RaschLexer.py</url>
-          <line>2</line>
-          <option name="timeStamp" value="80" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="82" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cfg/options.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="467" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="24" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="756" />
@@ -688,30 +615,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/src/gui/codeEdit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="30" selection-start="2774" selection-end="2774" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="1935">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/util/helperFunctions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="44" selection-start="99" selection-end="99" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
-          <folding />
-        </state>
+        <state line="91" column="30" selection-start="2774" selection-end="2774" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="1935" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/src/gui/options.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="23" selection-start="183" selection-end="183" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="2805">
-          <folding />
-        </state>
+        <state line="10" column="23" selection-start="183" selection-end="183" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="2805" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/src/gui/lineNumberArea.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="442" selection-end="442" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="405">
-          <folding />
-        </state>
+        <state line="21" column="0" selection-start="442" selection-end="442" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="405" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/src/gui/highlighter/raschHighlighter.py">
@@ -719,13 +633,28 @@
         <state line="24" column="29" selection-start="695" selection-end="695" vertical-scroll-proportion="0.29605263" vertical-offset="0" max-vertical-offset="1140" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main/src/util/iniManager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+          <folding>
+            <element signature="e#0#46#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/src/util/helperFunctions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="22" selection-start="152" selection-end="152" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main/src/util/RaschLexer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="23" selection-start="479" selection-end="479" vertical-scroll-proportion="0.14893617" vertical-offset="207" max-vertical-offset="690">
+        <state line="14" column="16" selection-start="344" selection-end="365" vertical-scroll-proportion="0.48870638" vertical-offset="0" max-vertical-offset="918">
           <folding>
-            <element signature="e#265#454#1" expanded="true" />
-            <element signature="e#488#757#0" expanded="true" />
-            <element signature="e#802#1050#0" expanded="true" />
+            <element signature="e#23#69#0" expanded="true" />
+            <element signature="e#965#1274#0" expanded="true" />
           </folding>
         </state>
       </provider>

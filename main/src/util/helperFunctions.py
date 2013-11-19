@@ -8,7 +8,7 @@ fileEndPattern = re.compile('^.*\.(\w{1,4})$')
 
 def getApplicationPath():
     path = sys.argv[0]
-    path = path.rsplit(os.sep, 2)[0]
+    path = path.rsplit('/', 2)[0]
     return path
 
 

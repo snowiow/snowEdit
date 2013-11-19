@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 from helperFunctions import getApplicationPath
 from ctypes import *
+from platform import system
 
 
 class MemPool(Structure):
@@ -15,8 +16,14 @@ class DArray(Structure):
                 ("elems", POINTER(c_char_p)),
                 ("m", POINTER(MemPool))]
 
-lib = CDLL(getApplicationPath() +
-           "/main/src/resources/lib/linux/libSnowEdit.so")
+
+libPath = getApplicationPath() + "/main/src/resources/lib/"
+
+if system() == "Windows":
+    print(libPath + "win/libSnowEdit.dll")
+    lib = CDLL(libPath + "win/libSnowEdit.dll")
+elif system() == "Linux":
+    lib = CDLL(libPath + "linux/libSnowEdit.so")
 
 lib.tokenize.argtypes = [c_char_p]
 lib.tokenize.restype = POINTER(DArray)
