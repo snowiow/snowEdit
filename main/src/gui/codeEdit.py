@@ -16,7 +16,6 @@ from ..util.RaschLexer import *
 
 
 class CodeEdit(QtGui.QPlainTextEdit):
-
     def __init__(self, tabWidget, filePath=None):
         """
         Code Edit is a advanced QPlaintextEdit with IDE features, like line
@@ -149,7 +148,8 @@ class CodeEdit(QtGui.QPlainTextEdit):
 
     @QtCore.Slot()
     def highlightCurrentLine(self,
-                             color=QtGui.QColor(QtCore.Qt.yellow).lighter(160)):
+                             color=
+                             QtGui.QColor(QtCore.Qt.yellow).lighter(160)):
 
         """highlight line where the cursor is placed"""
         extraSelections = []
@@ -246,6 +246,8 @@ class CodeEdit(QtGui.QPlainTextEdit):
                 completionPrefix) < 3 or eow.find(event.text()[:1]) != -1):
             self._completer.popup().hide()
             return
+        else:
+            self.checkCompleteUpdate()
 
         if completionPrefix != self._completer.completionPrefix():
             self._completer.setCompletionPrefix(completionPrefix)
@@ -356,8 +358,8 @@ class CodeEdit(QtGui.QPlainTextEdit):
                      QtCore.SIGNAL('activated(const QString&)'),
                      self.insertCompletion)
 
-        self.connect(self, QtCore.SIGNAL('textChanged()'),
-                     self.checkCompleteUpdate)
+        # self.connect(self, QtCore.SIGNAL('textChanged()'),
+        #              self.checkCompleteUpdate)
 
     def updateOptions(self):
         """adjust the editor to the settings of the config file"""
@@ -424,7 +426,7 @@ class CodeEdit(QtGui.QPlainTextEdit):
         qTextBlock = self.firstVisibleBlock()
         blockNumber = qTextBlock.blockNumber()
         top = int(self.blockBoundingGeometry(qTextBlock)
-                  .translated(self.contentOffset()).top())
+        .translated(self.contentOffset()).top())
         bottom = top + int(self.blockBoundingRect(qTextBlock).height())
 
         while qTextBlock.isValid() and top <= event.rect().bottom():
