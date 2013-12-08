@@ -39,3 +39,7 @@ def normalizeSeps(path):
 def right(string, count):
     return string[count:]
 
+
+def insertStringIntoString(original, new, pos):
+    return original[:pos] + new + original[pos:]
+

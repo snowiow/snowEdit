@@ -10,7 +10,7 @@ from highlighter.highlighterHelpFunction import *
 
 from ..resources.rc_snowedit import *
 
-from ..util.helperFunctions import normalizeSeps
+from ..util.helperFunctions import normalizeSeps, insertStringIntoString
 from ..util.iniManager import IniManager
 from ..util.RaschLexer import *
 
@@ -76,18 +76,13 @@ class CodeEdit(QtGui.QPlainTextEdit):
         """
         variables = []
         if self.toPlainText() is not '':
-            variables = getVariables(self.toPlainText())
+            cursorSymbol = "__c"
+            content = insertStringIntoString(self.toPlainText(), cursorSymbol,
+                                             self.textCursor().position())
+
+            variables = getVariables(content)
 
         self._completer.updateWords(variables)
-
-    @QtCore.Slot()
-    def checkCompleteUpdate(self):
-        """
-        Checks if the average word length is reached. If true it calls the
-        updateCompleter method and resets the counter and a new average word
-        length
-        """
-        self.updateCompleter()
 
     @QtCore.Slot()
     def duplicateLine(self):
@@ -247,7 +242,7 @@ class CodeEdit(QtGui.QPlainTextEdit):
             self._completer.popup().hide()
             return
         else:
-            self.checkCompleteUpdate()
+            self.updateCompleter()
 
         if completionPrefix != self._completer.completionPrefix():
             self._completer.setCompletionPrefix(completionPrefix)

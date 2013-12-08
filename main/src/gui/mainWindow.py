@@ -118,6 +118,7 @@ class MainWindow(QtGui.QMainWindow):
 
     @QtCore.Slot()
     def undo(self):
+        QtGui.QUndoStack
         self.codeEdits[self.tabWidget.currentIndex()].undo()
 
     @QtCore.Slot()

@@ -8,9 +8,8 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/main/src/resources/util.cpp" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/resources/lib/linux/libSnowEdit.so" afterPath="$PROJECT_DIR$/main/src/resources/lib/linux/libSnowEdit.so" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/gui/codeEdit.py" afterPath="$PROJECT_DIR$/main/src/gui/codeEdit.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/gui/seCompletion.py" afterPath="$PROJECT_DIR$/main/src/gui/seCompletion.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/snowEdit.iml" afterPath="$PROJECT_DIR$/.idea/snowEdit.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/util/helperFunctions.py" afterPath="$PROJECT_DIR$/main/src/util/helperFunctions.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/gui/mainWindow.py" afterPath="$PROJECT_DIR$/main/src/gui/mainWindow.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="snowEdit.iws" />
@@ -34,13 +33,62 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="seCompletion.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="seCompletion.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/src/gui/seCompletion.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="41" selection-start="2177" selection-end="2177" vertical-scroll-proportion="0.53311795" vertical-offset="401" max-vertical-offset="1071">
+            <state line="74" column="30" selection-start="2449" selection-end="2449" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1105">
               <folding>
-                <element signature="e#141#1304#0" expanded="true" />
-                <element signature="e#2186#2421#0" expanded="true" />
+                <element signature="e#1367#1593#0" expanded="true" />
+                <element signature="e#1640#1822#0" expanded="true" />
+                <element signature="e#1874#2130#0" expanded="true" />
+                <element signature="e#2182#2417#0" expanded="true" />
+                <element signature="e#2458#2740#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="codeEdit.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/src/gui/codeEdit.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="82" column="45" selection-start="2304" selection-end="2593" vertical-scroll-proportion="0.5259875" vertical-offset="308" max-vertical-offset="1921">
+              <folding>
+                <element signature="e#24#33#0" expanded="true" />
+                <element signature="e#3148#3853#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RaschLexer.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/src/util/RaschLexer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="282" max-vertical-offset="901">
+              <folding>
+                <element signature="e#966#1275#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="helperFunctions.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/src/util/helperFunctions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="0" selection-start="764" selection-end="764" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+              <folding>
+                <element signature="e#817#861#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mainWindow.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/src/gui/mainWindow.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="120" column="24" selection-start="4375" selection-end="4375" vertical-scroll-proportion="0.0" vertical-offset="1693" max-vertical-offset="2312">
+              <folding>
+                <element signature="e#648#1034#0" expanded="true" />
+                <element signature="e#1122#1264#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,16 +123,16 @@
         <option value="$PROJECT_DIR$/main/src/gui/options.py" />
         <option value="$PROJECT_DIR$/main/src/gui/SeCompletion.py" />
         <option value="$PROJECT_DIR$/main/src/util/raschParser.py" />
-        <option value="$PROJECT_DIR$/main/src/gui/mainWindow.py" />
         <option value="$PROJECT_DIR$/main/main.py" />
         <option value="$PROJECT_DIR$/main/src/gui/customContextMenuWidget.py" />
         <option value="$PROJECT_DIR$/main/src/gui/highlighter/cppHighlighter.py" />
         <option value="$PROJECT_DIR$/main/src/gui/highlighter/raschHighlighter.py" />
         <option value="$PROJECT_DIR$/main/src/gui/lineNumberArea.py" />
-        <option value="$PROJECT_DIR$/main/src/gui/codeEdit.py" />
-        <option value="$PROJECT_DIR$/main/src/util/helperFunctions.py" />
         <option value="$PROJECT_DIR$/main/src/util/RaschLexer.py" />
         <option value="$PROJECT_DIR$/main/src/gui/seCompletion.py" />
+        <option value="$PROJECT_DIR$/main/src/gui/mainWindow.py" />
+        <option value="$PROJECT_DIR$/main/src/util/helperFunctions.py" />
+        <option value="$PROJECT_DIR$/main/src/gui/codeEdit.py" />
       </list>
     </option>
   </component>
@@ -120,7 +168,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -265,6 +312,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -536,7 +584,11 @@
       <created>1384876186578</created>
       <updated>1384876186578</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Completion is now ordered by previous selections of the completion">
+      <created>1385372754677</created>
+      <updated>1385372754677</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -566,12 +618,12 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32668713" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.088617265" sideWeight="0.837963" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1329259" sideWeight="0.837963" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16042781" sideWeight="0.787037" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2131398" sideWeight="0.787037" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30214724" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21296297" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21296297" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -605,7 +657,8 @@
     <MESSAGE value="editable tab size implemented." />
     <MESSAGE value="non dynamic code completion added" />
     <MESSAGE value="dll added. snowEdit works on ubuntu and windows again" />
-    <option name="LAST_COMMIT_MESSAGE" value="dll added. snowEdit works on ubuntu and windows again" />
+    <MESSAGE value="Completion is now ordered by previous selections of the completion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completion is now ordered by previous selections of the completion" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -624,19 +677,9 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/gui/codeEdit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="0" selection-start="2719" selection-end="2719" vertical-scroll-proportion="0.0" vertical-offset="1985" max-vertical-offset="7888" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/src/gui/lineNumberArea.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="0" selection-start="442" selection-end="442" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/gui/mainWindow.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="23" selection-start="639" selection-end="639" vertical-scroll-proportion="0.0" vertical-offset="1557" max-vertical-offset="2023" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/src/gui/options.py">
@@ -646,73 +689,86 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="490">
-          <folding />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="490" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/src/util/iniManager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/src/resources/rc_snowedit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="477" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/src/gui/seTreeView.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/src/gui/seTabWidget.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="490" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/src/gui/seFileSystemModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="490" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/src/gui/seConsole.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="490" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/src/gui/mainWindow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="120" column="24" selection-start="4375" selection-end="4375" vertical-scroll-proportion="0.0" vertical-offset="1693" max-vertical-offset="2312">
+          <folding>
+            <element signature="e#648#1034#0" expanded="true" />
+            <element signature="e#1122#1264#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/src/util/helperFunctions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="0" selection-start="764" selection-end="764" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+          <folding>
+            <element signature="e#817#861#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/src/util/RaschLexer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/util/iniManager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/util/helperFunctions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/resources/rc_snowedit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="477">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/gui/seTreeView.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/gui/seTabWidget.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="490">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/gui/seFileSystemModel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="490">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/gui/seConsole.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="490">
-          <folding />
+          <folding>
+            <element signature="e#966#1275#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/src/gui/seCompletion.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="41" selection-start="2177" selection-end="2177" vertical-scroll-proportion="0.53311795" vertical-offset="401" max-vertical-offset="1071">
+        <state line="74" column="30" selection-start="2449" selection-end="2449" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1105">
           <folding>
-            <element signature="e#141#1304#0" expanded="true" />
-            <element signature="e#2186#2421#0" expanded="true" />
+            <element signature="e#1367#1593#0" expanded="true" />
+            <element signature="e#1640#1822#0" expanded="true" />
+            <element signature="e#1874#2130#0" expanded="true" />
+            <element signature="e#2182#2417#0" expanded="true" />
+            <element signature="e#2458#2740#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/src/gui/codeEdit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="45" selection-start="2304" selection-end="2593" vertical-scroll-proportion="0.5259875" vertical-offset="308" max-vertical-offset="1921">
+          <folding>
+            <element signature="e#24#33#0" expanded="true" />
+            <element signature="e#3148#3853#0" expanded="true" />
           </folding>
         </state>
       </provider>
