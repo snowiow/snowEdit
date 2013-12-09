@@ -94,6 +94,8 @@ class CodeEdit(QtGui.QPlainTextEdit):
 
         content = selection.cursor.selectedText()
         selection.cursor.clearSelection()
+        selection.cursor.movePosition(QtGui.QTextCursor.EndOfLine)
+        self.setTextCursor(selection.cursor)
         self.insertPlainText("\n" + content)
 
     @QtCore.Slot()
@@ -208,6 +210,14 @@ class CodeEdit(QtGui.QPlainTextEdit):
         Ignore cases of wrong keys and modifiers. Afterwards prepare correct
         completion popup
         """
+        if self.autoIndent:
+            if event.key() == QtCore.Qt.Key_Return:
+                level = self.getIndentLevel()
+                self.insertPlainText('\n')
+                for i in range(level):
+                    self.insertPlainText('\t')
+                return
+
         if self._completer and self._completer.popup().isVisible():
             if event.key() in (
                 QtCore.Qt.Key_Enter,
@@ -255,6 +265,25 @@ class CodeEdit(QtGui.QPlainTextEdit):
                     + self._completer.popup().verticalScrollBar().
         sizeHint().width())
         self._completer.complete(cr)
+
+    def getIndentLevel(self):
+        selection = QtGui.QTextEdit.ExtraSelection()
+        selection.cursor = self.textCursor()
+        selection.cursor.clearSelection()
+        selection.cursor.movePosition(QtGui.QTextCursor.Start,
+                                      QtGui.QTextCursor.KeepAnchor)
+
+        content = selection.cursor.selectedText()
+        level = 0
+        for c in content:
+            if c == '{':
+                level += 1
+            if c == '}':
+                level -= 1
+
+        if level > 0:
+            return level
+        return 0
 
     def highlightErrorLine(self, lineNumber):
         """
@@ -380,6 +409,9 @@ class CodeEdit(QtGui.QPlainTextEdit):
         self.setTabStopWidth(tabSize * metrics.width(' '))
 
         self.update()
+
+        self.autoIndent = IniManager.getInstance().readBoolean('Editor',
+                                                               'autoindent')
 
     def resizeEvent(self, qResizeEvent):
         """

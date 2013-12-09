@@ -40,6 +40,7 @@ class IniManager(SafeConfigParser):
         self.add_section('Editor')
         self.set('Editor', 'showLineNumbers', 'True')
         self.set('Editor', 'highlightCurrentLine', 'True')
+        self.set('Editor', 'autoindent', 'True')
         self.set('Editor', 'tabSize', '4')
         self.set('Editor', 'fontFamily', 'Courier')
         self.set('Editor', 'fontSize', '10')

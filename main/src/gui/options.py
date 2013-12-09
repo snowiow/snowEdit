@@ -194,11 +194,15 @@ class Options(QtGui.QWidget):
                 self.iniManager.readBoolean('Editor', 'showlinenumbers'))
 
             self.highlightLineCB = QtGui.QCheckBox(
-                'Highlight current line of the cursor', self)
+                'Highlight line of the cursor', self)
             self.highlightLineCB.setChecked(
                 self.iniManager.readBoolean('Editor', 'highlightcurrentline'))
 
-            self.tabLabel = QtGui.QLabel('Current tab size', self)
+            self.autoIndentCB = QtGui.QCheckBox('Automatic indentation', self)
+            self.autoIndentCB.setChecked(
+                self.iniManager.readBoolean('Editor', 'autoindent'))
+
+            self.tabLabel = QtGui.QLabel('Tab size', self)
             self.tabSpinBox = QtGui.QSpinBox(self)
             self.tabSpinBox.setMinimum(1)
             self.tabSpinBox.setMaximum(12)
@@ -213,14 +217,16 @@ class Options(QtGui.QWidget):
         def createLayout(self):
             self.editorBoolOptions = {'showlinenumbers': self.lineNumbersCB,
                                       'highlightcurrentline':
-                                      self.highlightLineCB}
+                                          self.highlightLineCB,
+                                      'autoindent': self.autoIndentCB}
 
             grid = QtGui.QGridLayout()
             grid.addWidget(self.lineNumbersCB, 0, 0)
             grid.addWidget(self.highlightLineCB, 1, 0)
-            grid.addWidget(self.tabLabel, 2, 0)
-            grid.addWidget(self.tabSpinBox, 2, 1)
-            grid.addWidget(self.fontButton, 3, 0)
+            grid.addWidget(self.autoIndentCB, 2, 0)
+            grid.addWidget(self.tabLabel, 3, 0)
+            grid.addWidget(self.tabSpinBox, 3, 1)
+            grid.addWidget(self.fontButton, 4, 0)
             self.setLayout(grid)
 
         def createConnects(self):

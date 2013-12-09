@@ -139,58 +139,12 @@ class MainWindow(QtGui.QMainWindow):
 
     @QtCore.Slot()
     def duplicateLine(self):
-        currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
+        self.codeEdits[self.tabWidget.currentIndex()].duplicateLine()
 
-        selection = QtGui.QTextEdit.ExtraSelection()
-        selection.cursor = currentEditor.textCursor()
-        selection.cursor.clearSelection()
-        selection.cursor.select(QtGui.QTextCursor.LineUnderCursor)
-
-        content = selection.cursor.selectedText()
-        selection.cursor.clearSelection()
-        currentEditor.insertPlainText("\n" + content)
 
     @QtCore.Slot()
     def commentLine(self):
-        currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
-
-        selection = QtGui.QTextEdit.ExtraSelection()
-
-        currentPosition = currentEditor.textCursor()
-        selection.cursor = currentEditor.textCursor()
-
-        if selection.cursor.selectedText() == '':
-            selection.cursor.select(QtGui.QTextCursor.LineUnderCursor)
-            lineText = selection.cursor.selectedText()
-            selection.cursor.clearSelection()
-
-            selection.cursor.movePosition(QtGui.QTextCursor.StartOfLine)
-            currentEditor.setTextCursor(selection.cursor)
-
-            if lineText.startswith('//'):
-                selection.cursor.deleteChar()
-                selection.cursor.deleteChar()
-            else:
-                currentEditor.insertPlainText('//')
-
-        else:
-            selectionList = selection.cursor.selection(
-            ).toPlainText().split('\n')
-            selection.cursor.clearSelection()
-
-            for line in selectionList:
-                selection.cursor.movePosition(QtGui.QTextCursor.StartOfLine)
-                currentEditor.setTextCursor(selection.cursor)
-
-                if line.startswith('//'):
-                    selection.cursor.deleteChar()
-                    selection.cursor.deleteChar()
-                else:
-                    currentEditor.insertPlainText('//')
-
-                selection.cursor.movePosition(QtGui.QTextCursor.Down)
-
-        currentEditor.setTextCursor(currentPosition)
+        self.codeEdits[self.tabWidget.currentIndex()].commentLine()
 
     # Slots for run
     @QtCore.Slot()
