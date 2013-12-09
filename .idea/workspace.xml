@@ -5,14 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9079e3ca-dc2d-4d04-8d42-39a824f94b46" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cfg/options.ini" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/resources/lib/win/libSnowEdit.dll" afterPath="$PROJECT_DIR$/main/src/resources/lib/win/libSnowEdit.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/gui/codeEdit.py" afterPath="$PROJECT_DIR$/main/src/gui/codeEdit.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/util/iniManager.py" afterPath="$PROJECT_DIR$/main/src/util/iniManager.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/gui/mainWindow.py" afterPath="$PROJECT_DIR$/main/src/gui/mainWindow.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/gui/options.py" afterPath="$PROJECT_DIR$/main/src/gui/options.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/snowEdit.iml" afterPath="$PROJECT_DIR$/.idea/snowEdit.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="snowEdit.iws" />
@@ -85,8 +77,8 @@
                 <element signature="e#786#868#0" expanded="true" />
                 <element signature="e#1069#1108#0" expanded="true" />
                 <element signature="e#1171#1614#0" expanded="true" />
-                <element signature="e#7516#8159#0" expanded="true" />
-                <element signature="e#8207#8259#0" expanded="true" />
+                <element signature="e#7516#8158#0" expanded="true" />
+                <element signature="e#8206#8258#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -645,7 +637,11 @@
       <created>1385372754677</created>
       <updated>1385372754677</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Windows dll updated. Duplicate line updated. AutoIndent added">
+      <created>1386598043781</created>
+      <updated>1386598043781</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -672,6 +668,7 @@
     <frame x="66" y="-8" width="1308" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32668713" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -687,7 +684,6 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32668713" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16203703" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -715,7 +711,8 @@
     <MESSAGE value="non dynamic code completion added" />
     <MESSAGE value="dll added. snowEdit works on ubuntu and windows again" />
     <MESSAGE value="Completion is now ordered by previous selections of the completion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completion is now ordered by previous selections of the completion" />
+    <MESSAGE value="Windows dll updated. Duplicate line updated. AutoIndent added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Windows dll updated. Duplicate line updated. AutoIndent added" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -814,8 +811,8 @@
             <element signature="e#786#868#0" expanded="true" />
             <element signature="e#1069#1108#0" expanded="true" />
             <element signature="e#1171#1614#0" expanded="true" />
-            <element signature="e#7516#8159#0" expanded="true" />
-            <element signature="e#8207#8259#0" expanded="true" />
+            <element signature="e#7516#8158#0" expanded="true" />
+            <element signature="e#8206#8258#0" expanded="true" />
           </folding>
         </state>
       </provider>
