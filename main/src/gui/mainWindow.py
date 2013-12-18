@@ -10,6 +10,7 @@ from highlighter.noneHighlighter import NoneHighlighter
 from highlighter.pythonHighlighter import PythonHighlighter
 from highlighter.raschHighlighter import RaschHighlighter
 from highlighter.cppHighlighter import CppHighlighter
+from highlighter.highlighterHelpFunction import chooseHighlighter
 from seConsole import SeConsole
 from codeEdit import CodeEdit
 from options import Options
@@ -100,6 +101,9 @@ class MainWindow(QtGui.QMainWindow):
                 self.tabWidget.setTabText(
                     self.tabWidget.currentIndex(),
                     getFileName(currentEditor.filePath))
+                currentEditor.highlighter = chooseHighlighter(
+                    currentEditor.document(), currentEditor.filePath)
+                self.setHighlighterMenu(currentEditor)
             except IOError:
                 QtGui.QMessageBox.critical(
                     self, 'Error', 'Error, while saving file',
@@ -519,11 +523,11 @@ class MainWindow(QtGui.QMainWindow):
         self.setCentralWidget(centralWidget)
 
     def setHighlighterMenu(self, editor):
-        if editor.filePath.endswith('py'):
+        if editor.filePath.endswith('.py'):
             self.pythonAction.setChecked(True)
-        elif editor.filePath.endswith('rs'):
+        elif editor.filePath.endswith('.rs'):
             self.raschAction.setChecked(True)
-        elif editor.filePath.endswith('cpp') or editor.filePath.endswith('h'):
+        elif editor.filePath.endswith('.cpp') or editor.filePath.endswith('.h'):
             self.cppAction.setChecked(True)
         else:
             self.noneAction.setChecked(True)
