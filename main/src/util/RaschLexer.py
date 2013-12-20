@@ -20,7 +20,6 @@ class DArray(Structure):
 libPath = getApplicationPath() + "/main/src/resources/lib/"
 
 if system() == "Windows":
-    print(libPath + "win/libSnowEdit.dll")
     lib = CDLL(libPath + "win/libSnowEdit.dll")
 elif system() == "Linux":
     lib = CDLL(libPath + "linux/libSnowEdit.so")

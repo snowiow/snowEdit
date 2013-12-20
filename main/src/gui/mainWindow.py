@@ -150,12 +150,25 @@ class MainWindow(QtGui.QMainWindow):
     @QtCore.Slot()
     def onRunClicked(self):
         compilerPath = self.iniManager.readString('Compiler', 'path')
-        output = subprocess.Popen(compilerPath, stdout=subprocess.PIPE)
+        currentFile = self.codeEdits[self.tabWidget.currentIndex()].filePath
+
+        compileString = '-lang=' + self.langCB.currentText()
+
+        outputFile = currentFile.rsplit('.', 1)[0]
+        if self.langCB.currentText() == 'java':
+            outputFile += '.java'
+        elif self.langCB.currentText() == 'd':
+            outputFile += '.d'
+        else:
+            outputFile += '.cpp'
+        print compilerPath + ' ' + compileString + ' ' + currentFile
+        output = subprocess.Popen([compilerPath, compileString, currentFile],
+                                  stdout=subprocess.PIPE,
+                                  stderr=subprocess.PIPE)
         out, err = output.communicate()
         if output.returncode == 0:
             self.seConsole.writeToConsole(out)
-            self.checkIfFileOpen(
-                compilerPath.rsplit(os.sep, 1)[0] + os.sep + 'output.cpp')
+            self.checkIfFileOpen(outputFile)
         elif output.returncode > 0:
             self.seConsole.writeToConsole(out, error=True)
             self.codeEdits[self.tabWidget.currentIndex()].generateError(out)
@@ -361,11 +374,15 @@ class MainWindow(QtGui.QMainWindow):
         self.cppAction = QtGui.QAction('C++', highlightActionGroup)
         self.cppAction.setCheckable(True)
 
-        # run actions
+        # run actions and widgets
         self.runAction = QtGui.QAction(
             QtGui.QIcon(':icons/run.png'), 'Run', self)
         self.runAction.setShortcut('F5')
         self.compilerOptionsAction = QtGui.QAction('Configure Compiler', self)
+        self.langCB = QtGui.QComboBox(self)
+        self.langCB.addItem('cpp')
+        self.langCB.addItem('d')
+        self.langCB.addItem('java')
 
         # Help Actions
         self.aboutAction = QtGui.QAction('About', self)
@@ -394,6 +411,7 @@ class MainWindow(QtGui.QMainWindow):
         runToolBar = self.addToolBar('Run')
         runToolBar.setIconSize(QtCore.QSize(16, 16))
         runToolBar.addAction(self.runAction)
+        runToolBar.addWidget(self.langCB)
 
         menuBar = self.menuBar()
 
