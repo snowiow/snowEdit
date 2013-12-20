@@ -13,13 +13,11 @@ class OptionCategories(QtGui.QWidget):
         self.iniManager = IniManager.getInstance()
 
 
-class Options(QtGui.QWidget):
-
+class Options(OptionCategories):
     def __init__(self, codeEdits):
         QtGui.QWidget.__init__(self)
 
         self.codeEdits = codeEdits
-        self.iniManager = IniManager.getInstance()
 
         self.createComponents()
         self.createLayout()
@@ -168,9 +166,6 @@ class Options(QtGui.QWidget):
 
         def createLayout(self):
             self.setModel(self.model)
-
-        def createConnects(self):
-            pass
 
     class EditorOptions(OptionCategories):
 

@@ -30,13 +30,13 @@ class IniManager(SafeConfigParser):
             return cls.INSTANCE
 
     def checkExistingIniFile(self):
-        self.PATH = getApplicationPath() + '/cfg/options.ini'
-        if not os.path.isfile(self.PATH):
-            self.createNewIni()
-        elif fileIsEmpty(self.PATH):
-            self.createNewIni()
+        self._PATH = getApplicationPath() + '/cfg/options.ini'
+        if not os.path.isfile(self._PATH):
+            self._createNewIni()
+        elif fileIsEmpty(self._PATH):
+            self._createNewIni()
 
-    def createNewIni(self):
+    def _createNewIni(self):
         self.add_section('Editor')
         self.set('Editor', 'showLineNumbers', 'True')
         self.set('Editor', 'highlightCurrentLine', 'True')
@@ -53,26 +53,26 @@ class IniManager(SafeConfigParser):
         self.set('Compiler', 'path', '')
         self.set('Compiler', 'flags', '')
 
-        iniFile = open(self.PATH, 'w')
+        iniFile = open(self._PATH, 'w')
         self.write(iniFile)
         iniFile.close()
 
     def saveIni(self, section, option, value):
         self.set(section, option, str(value))
-        iniFile = open(self.PATH, 'w')
+        iniFile = open(self._PATH, 'w')
         self.write(iniFile)
         iniFile.close()
 
     def readBoolean(self, section, option):
-        self.read(self.PATH)
+        self.read(self._PATH)
         return self.getboolean(section, option)
 
     def readInt(self, section, option):
-        self.read(self.PATH)
+        self.read(self._PATH)
         return self.getint(section, option)
 
     def readString(self, section, option):
-        self.read(self.PATH)
+        self.read(self._PATH)
         return self.get(section, option)
 
     def getFont(self):
