@@ -12,7 +12,7 @@ from highlighter.raschHighlighter import RaschHighlighter
 from highlighter.cppHighlighter import CppHighlighter
 from highlighter.highlighterHelpFunction import chooseHighlighter
 from seConsole import SeConsole
-from codeEdit import CodeEdit
+from codeArea import CodeArea
 from options import Options
 from about import About
 from seTreeView import SeTreeView
@@ -23,7 +23,7 @@ from ..util.iniManager import IniManager
 class MainWindow(QtGui.QMainWindow):
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
-        self.codeEdits = []
+        self.codeAreas = []
         self.iniManager = IniManager.getInstance()
         self.createComponents()
         self.createMenu()
@@ -39,9 +39,10 @@ class MainWindow(QtGui.QMainWindow):
 
     @QtCore.Slot()
     def onNewFileClicked(self):
-        self.codeEdits.append(CodeEdit(self.tabWidget))
+        
+        self.codeAreas.append(CodeArea())
         self.tabWidget.addTab(
-            self.codeEdits[self.tabWidget.count()], 'new file')
+            self.codeAreas[self.tabWidget.count()], 'new file')
 
     @QtCore.Slot()
     def onOpenFilesClicked(self):
@@ -66,7 +67,7 @@ class MainWindow(QtGui.QMainWindow):
 
     @QtCore.Slot()
     def onSaveClicked(self):
-        currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
+        currentEditor = self.codeAreas[self.tabWidget.currentIndex()].codeEdit
         if getFileName(currentEditor.filePath) == 'new file':
             self.onSaveAsClicked()
         else:
@@ -93,7 +94,8 @@ class MainWindow(QtGui.QMainWindow):
                                                          'Rush Files (*.rs)')
         if saveLocation[0] != '':
             try:
-                currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
+                currentEditor = self.codeAreas[self.tabWidget.currentIndex()]\
+                    .codeEdit
                 f = open(saveLocation[0], 'w')
                 f.write(currentEditor.toPlainText())
                 f.close()
@@ -111,52 +113,74 @@ class MainWindow(QtGui.QMainWindow):
 
     @QtCore.Slot()
     def onSaveAllClicked(self):
-        for i in range(len(self.codeEdits)):
+        for i in range(len(self.codeAreas)):
             self.onSaveClicked(i)
 
     @QtCore.Slot()
     def onOptionsClicked(self):
-        self.options = Options(self.codeEdits)
+        self.options = Options(self.codeAreas)
 
     # Slots for editing
 
     @QtCore.Slot()
     def undo(self):
         QtGui.QUndoStack
-        self.codeEdits[self.tabWidget.currentIndex()].undo()
+        self.codeAreas[self.tabWidget.currentIndex()].codeEdit.undo()
 
     @QtCore.Slot()
     def redo(self):
-        self.codeEdits[self.tabWidget.currentIndex()].redo()
+        self.codeAreas[self.tabWidget.currentIndex()].codeEdit.redo()
 
     @QtCore.Slot()
     def cut(self):
-        self.codeEdits[self.tabWidget.currentIndex()].cut()
+        self.codeAreas[self.tabWidget.currentIndex()].codeEdit.cut()
 
     @QtCore.Slot()
     def copy(self):
-        self.codeEdits[self.tabWidget.currentIndex()].copy()
+        self.codeAreas[self.tabWidget.currentIndex()].codeEdit.copy()
 
     @QtCore.Slot()
     def paste(self):
-        self.codeEdits[self.tabWidget.currentIndex()].paste()
+        self.codeAreas[self.tabWidget.currentIndex()].codeEdit.paste()
 
     @QtCore.Slot()
     def duplicateLine(self):
-        self.codeEdits[self.tabWidget.currentIndex()].duplicateLine()
+        self.codeAreas[self.tabWidget.currentIndex()].codeEdit.duplicateLine()
 
 
     @QtCore.Slot()
     def commentLine(self):
-        self.codeEdits[self.tabWidget.currentIndex()].commentLine()
+        self.codeAreas[self.tabWidget.currentIndex()].codeEdit.commentLine()
+
+    @QtCore.Slot()
+    def onFindClicked (self):
+        self.codeAreas[self.tabWidget.currentIndex()].seFind.show()
+        self.codeAreas[self.tabWidget.currentIndex()].seFind._searchLE \
+            .setText('')
+        self.codeAreas[self.tabWidget.currentIndex()].seFind._searchLE\
+            .setFocus()
+
+    def onGotoClicked(self):
+        self.codeAreas[self.tabWidget.currentIndex()].seFind.show()
+        self.codeAreas[self.tabWidget.currentIndex()].seFind._searchLE\
+            .setText('@')
+        self.codeAreas[self.tabWidget.currentIndex()].seFind._searchLE \
+            .setFocus()
 
     # Slots for run
     @QtCore.Slot()
     def onRunClicked(self):
-        compilerPath = self.iniManager.readString('Compiler', 'path')
-        currentFile = self.codeEdits[self.tabWidget.currentIndex()].filePath
+        compileArgs = []
+        compileArgs.append(self.iniManager.readString('Compiler', 'path'))
 
-        compileString = '-lang=' + self.langCB.currentText()
+        compilerFlags = self.iniManager.readString('Compiler', 'flags')
+        compileArgs.extend(compilerFlags.split(" "))
+
+        compileArgs.append('-lang=' + self.langCB.currentText())
+
+        currentFile = self.codeAreas[self.tabWidget.currentIndex()]\
+            .codeEdit.filePath
+        compileArgs.append(currentFile)
 
         outputFile = currentFile.rsplit('.', 1)[0]
         if self.langCB.currentText() == 'java':
@@ -165,8 +189,8 @@ class MainWindow(QtGui.QMainWindow):
             outputFile += '.d'
         else:
             outputFile += '.cpp'
-        print compilerPath + ' ' + compileString + ' ' + currentFile
-        output = subprocess.Popen([compilerPath, compileString, currentFile],
+        print compileArgs
+        output = subprocess.Popen(compileArgs,
                                   stdout=subprocess.PIPE,
                                   stderr=subprocess.PIPE)
         out, err = output.communicate()
@@ -174,13 +198,13 @@ class MainWindow(QtGui.QMainWindow):
             self.seConsole.writeToConsole(out)
             self.checkIfFileOpen(outputFile)
         elif output.returncode > 0:
-            self.seConsole.writeToConsole(out, error=True)
-            self.codeEdits[self.tabWidget.currentIndex()].generateError(out)
+            self.seConsole.writeToConsole(err, error=True)
+            self.codeAreas[self.tabWidget.currentIndex()].generateError(out)
 
 
     @QtCore.Slot()
     def onCompilerOptionsClicked(self):
-        self.options = Options(self.codeEdits)
+        self.options = Options(self.codeAreas)
         self.options.showStackInt(1)
 
     # Slots for help menu
@@ -215,9 +239,9 @@ class MainWindow(QtGui.QMainWindow):
                         self, 'Error', 'Error, while renaming file',
                         QtGui.QMessageBox.Ok)
 
-                for i in range(len(self.codeEdits)):
-                    if self.codeEdits[i].filePath == oldName:
-                        self.codeEdits[i].filePath = newName
+                for i in range(len(self.codeAreas)):
+                    if self.codeAreas[i].codeEdit.filePath == oldName:
+                        self.codeAreas[i].codeEdit.filePath = newName
                         self.tabWidget.setTabText(i, getFileName(newName))
 
     @QtCore.Slot(QtCore.QModelIndex)
@@ -256,28 +280,28 @@ class MainWindow(QtGui.QMainWindow):
 
     @QtCore.Slot()
     def python(self):
-        currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
+        currentEditor = self.codeAreas[self.tabWidget.currentIndex()].codeEdit
         currentEditor.highlighter = PythonHighlighter(currentEditor.document())
 
     @QtCore.Slot()
     def none(self):
-        currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
+        currentEditor = self.codeAreas[self.tabWidget.currentIndex()].codeEdit
         currentEditor.highlighter = NoneHighlighter(currentEditor.document())
 
     @QtCore.Slot()
     def rasch(self):
-        currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
+        currentEditor = self.codeAreas[self.tabWidget.currentIndex()].codeEdit
         currentEditor.highlighter = RaschHighlighter(currentEditor.document())
 
     @QtCore.Slot()
     def cpp(self):
-        currentEditor = self.codeEdits[self.tabWidget.currentIndex()]
+        currentEditor = self.codeAreas[self.tabWidget.currentIndex()].codeEdit
         currentEditor.highlighter = CppHighlighter(currentEditor.document())
 
     # Misc slots
     @QtCore.Slot()
-    def deleteFromCodeEdits(self, int):
-        del self.codeEdits[int]
+    def deleteFromCodeEdits(self, index):
+        del self.codeAreas[index]
 
     def createDeleteDialog(self):
         msgBox = QtGui.QMessageBox()
@@ -296,6 +320,7 @@ class MainWindow(QtGui.QMainWindow):
         self.tabWidget = SeTabWidget()
         self.tabWidget.setTabsClosable(True)
         self.seConsole = SeConsole()
+
 
     def createMenu(self):
 
@@ -361,6 +386,14 @@ class MainWindow(QtGui.QMainWindow):
             '(De-)comment current line', self)
         self.commentLineAction.setShortcut('Ctrl+7')
 
+        #find actions
+        self.findAction = QtGui.QAction(QtGui.QIcon(':icons/find.png'),
+                                        'Find', self)
+        self.findAction.setShortcut('Ctrl+F')
+        self.gotoAction = QtGui.QAction(QtGui.QIcon(':icons/goto.png'),
+                                        'Go to Line', self)
+        self.gotoAction.setShortcut('Ctrl+G')
+
         # Highlightingactions
         highlightActionGroup = QtGui.QActionGroup(self)
         highlightActionGroup.setExclusive(True)
@@ -387,6 +420,9 @@ class MainWindow(QtGui.QMainWindow):
         self.langCB.addItem('cpp')
         self.langCB.addItem('d')
         self.langCB.addItem('java')
+
+        #Optimization Actions
+        self.optimizeAction = QtGui.QAction('Optimize current file', self)
 
         # Help Actions
         self.aboutAction = QtGui.QAction('About', self)
@@ -444,6 +480,11 @@ class MainWindow(QtGui.QMainWindow):
         editMenu.addAction(self.duplicateLineAction)
         editMenu.addAction(self.commentLineAction)
 
+        #creating find menu
+        findMenu = menuBar.addMenu('Find')
+        findMenu.addAction(self.findAction)
+        findMenu.addAction(self.gotoAction)
+
         # Creating highlight menu
         highlightMenu = menuBar.addMenu('Highlighting')
         highlightMenu.addAction(self.noneAction)
@@ -455,6 +496,10 @@ class MainWindow(QtGui.QMainWindow):
         runMenu = menuBar.addMenu('Run')
         runMenu.addAction(self.runAction)
         runMenu.addAction(self.compilerOptionsAction)
+
+        #Creating Optimization Menu
+        optMenu = menuBar.addMenu('Optimization')
+        optMenu.addAction(self.optimizeAction)
 
         # creating help menu
         helpMenu = menuBar.addMenu('Help')
@@ -479,6 +524,10 @@ class MainWindow(QtGui.QMainWindow):
         self.pasteAction.triggered.connect(self.paste)
         self.duplicateLineAction.triggered.connect(self.duplicateLine)
         self.commentLineAction.triggered.connect(self.commentLine)
+
+        #FindEvents
+        self.findAction.triggered.connect(self.onFindClicked)
+        self.gotoAction.triggered.connect(self.onGotoClicked)
 
         # HighlightingEvents
         self.pythonAction.triggered.connect(self.python)
@@ -526,9 +575,9 @@ class MainWindow(QtGui.QMainWindow):
         vlayout = QtGui.QVBoxLayout()
 
         # self.tabWidget.setMovable(True)
-        self.codeEdits.append(CodeEdit(self.tabWidget))
+        self.codeAreas.append(CodeArea())
         self.tabWidget.addTab(
-            self.codeEdits[self.tabWidget.count()], 'new file')
+            self.codeAreas[self.tabWidget.count()], 'new file')
 
         vlayout.addWidget(self.tabWidget, 3)
         vlayout.addWidget(self.seConsole, 1)
@@ -552,19 +601,19 @@ class MainWindow(QtGui.QMainWindow):
 
     def checkIfFileOpen(self, file):
         alreadyOpen = False
-        for i in range(len(self.codeEdits)):
-            if normalizeSeps(file) == self.codeEdits[i].filePath:
+        for i in range(len(self.codeAreas)):
+            if normalizeSeps(file) == self.codeAreas[i].codeEdit.filePath:
                 self.tabWidget.setCurrentIndex(i)
                 alreadyOpen = True
                 return
         if not alreadyOpen:
-            self.codeEdits.append(CodeEdit(self.tabWidget, file))
-            currentEditor = self.codeEdits[self.tabWidget.count()]
-            self.tabWidget.addTab(currentEditor,
-                                  getFileName(currentEditor.filePath))
+            self.codeAreas.append(CodeArea(file))
+            currentArea = self.codeAreas[self.tabWidget.count()]
+            self.tabWidget.addTab(currentArea,
+                                  getFileName(currentArea.codeEdit.filePath))
 
-            self.tabWidget.setCurrentIndex(len(self.codeEdits) - 1)
+            self.tabWidget.setCurrentIndex(len(self.codeAreas) - 1)
             self.setHighlighterMenu(
-                self.codeEdits[self.tabWidget.count() - 1])
+                self.codeAreas[self.tabWidget.count() - 1].codeEdit)
 
-            currentEditor.updateCompleter()
+            currentArea.codeEdit.updateCompleter()

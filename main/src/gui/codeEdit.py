@@ -16,7 +16,7 @@ from ..util.RaschLexer import *
 
 
 class CodeEdit(QtGui.QPlainTextEdit):
-    def __init__(self, tabWidget, filePath=None):
+    def __init__(self, filePath=None):
         """
         Code Edit is a advanced QPlaintextEdit with IDE features, like line
         numbers, line highlighting, tabs interpreted as spaces, completion etc.
@@ -31,9 +31,6 @@ class CodeEdit(QtGui.QPlainTextEdit):
 
         self._lineNumberArea = LineNumberArea(self)
         self._errorRegEx = re.compile('(\(\d+\))')
-
-        #publics
-        self.tabWidget = tabWidget
 
         #Set Custom ContextMenu
         self.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
@@ -146,7 +143,7 @@ class CodeEdit(QtGui.QPlainTextEdit):
     @QtCore.Slot()
     def highlightCurrentLine(self,
                              color=
-                             QtGui.QColor(QtCore.Qt.yellow).lighter(160)):
+                             QtGui.QColor(QtCore.Qt.darkGray).lighter(160)):
 
         """highlight line where the cursor is placed"""
         extraSelections = []
@@ -374,9 +371,6 @@ class CodeEdit(QtGui.QPlainTextEdit):
 
         self.connect(self, QtCore.SIGNAL('cursorPositionChanged()'),
                      self, QtCore.SLOT('highlightCurrentLine()'))
-
-        self.connect(self, QtCore.SIGNAL('textChanged()'),
-                     self.tabWidget, QtCore.SLOT('starTab()'))
 
         self.connect(self._completer,
                      QtCore.SIGNAL('activated(const QString&)'),

@@ -14,10 +14,10 @@ class OptionCategories(QtGui.QWidget):
 
 
 class Options(OptionCategories):
-    def __init__(self, codeEdits):
-        QtGui.QWidget.__init__(self)
+    def __init__(self, codeAreas):
+        OptionCategories.__init__(self)
 
-        self.codeEdits = codeEdits
+        self.codeAreas = codeAreas
 
         self.createComponents()
         self.createLayout()
@@ -53,8 +53,8 @@ class Options(OptionCategories):
                                 self.editorOptions.tabSpinBox.value())
 
         self.iniManager.setFont(self.editorOptions.font)
-        for editor in self.codeEdits:
-            editor.updateOptions()
+        for area in self.codeAreas:
+            area.codeEdit.updateOptions()
 
     @QtCore.Slot()
     def saveCompilerSettings(self):
