@@ -18,6 +18,7 @@ from about import About
 from seTreeView import SeTreeView
 from ..util.helperFunctions import *
 from ..util.iniManager import IniManager
+from ..util.codeOptimization import optimize
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -189,11 +190,12 @@ class MainWindow(QtGui.QMainWindow):
             outputFile += '.d'
         else:
             outputFile += '.cpp'
-        print compileArgs
+
         output = subprocess.Popen(compileArgs,
                                   stdout=subprocess.PIPE,
                                   stderr=subprocess.PIPE)
         out, err = output.communicate()
+
         if output.returncode == 0:
             self.seConsole.writeToConsole(out)
             self.checkIfFileOpen(outputFile)
@@ -201,11 +203,26 @@ class MainWindow(QtGui.QMainWindow):
             self.seConsole.writeToConsole(err, error=True)
             self.codeAreas[self.tabWidget.currentIndex()].generateError(out)
 
+        self.seConsole.tabWidget.setCurrentIndex(0)
 
     @QtCore.Slot()
     def onCompilerOptionsClicked(self):
         self.options = Options(self.codeAreas)
         self.options.showStackInt(1)
+
+    #Slots for Optimization
+    @QtCore.Slot()
+    def onOptimizationClicked(self):
+        flags = self.iniManager.readString('Compiler', 'flags')
+        noteFlag = False
+        if flags.find('-no_tc') >= 0:
+            noteFlag = True
+
+        result = optimize(self.codeAreas[self.tabWidget.currentIndex()].
+                          codeEdit.toPlainText(),
+                          self.langCB.currentText() == 'java', noteFlag)
+        self.seConsole.writeToOptimization(result)
+        self.seConsole.tabWidget.setCurrentIndex(1)
 
     # Slots for help menu
     @QtCore.Slot()
@@ -422,7 +439,9 @@ class MainWindow(QtGui.QMainWindow):
         self.langCB.addItem('java')
 
         #Optimization Actions
-        self.optimizeAction = QtGui.QAction('Optimize current file', self)
+        self.optimizeAction = QtGui.QAction(QtGui.QIcon(':icons/drill.png'),
+                                            'Optimize current file', self)
+        self.optimizeAction.setShortcut('F9')
 
         # Help Actions
         self.aboutAction = QtGui.QAction('About', self)
@@ -539,6 +558,9 @@ class MainWindow(QtGui.QMainWindow):
         self.runAction.triggered.connect(self.onRunClicked)
         self.compilerOptionsAction.triggered.connect(
             self.onCompilerOptionsClicked)
+
+        #Optimization Actions
+        self.optimizeAction.triggered.connect(self.onOptimizationClicked)
 
         # HelpMenu Actions
         self.aboutAction.triggered.connect(self.onAboutClicked)
