@@ -53,10 +53,19 @@ class SeConsole(QtGui.QWidget):
         self.tabWidget.setTabIcon(0, QtGui.QIcon(':icons/compilerOptions.png'))
         self.tabWidget.setTabIcon(1, QtGui.QIcon(':icons/drill.png'))
 
+        self.optProgress = QtGui.QProgressBar()
+        self.optProgress.setMaximum(0)
+        self.optProgress.setMinimum(0)
+        self.optProgress.hide()
+
     def createLayout(self):
-        layout = QtGui.QHBoxLayout()
+        layout = QtGui.QVBoxLayout()
         layout.addWidget(self.tabWidget)
+        layout.addWidget(self.optProgress)
         self.setLayout(layout)
 
     def createConnects(self):
         pass
+
+
+

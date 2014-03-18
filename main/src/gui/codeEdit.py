@@ -30,7 +30,7 @@ class CodeEdit(QtGui.QPlainTextEdit):
         self._completer = None
 
         self._lineNumberArea = LineNumberArea(self)
-        self._errorRegEx = re.compile('(\(\d+\))')
+        self._errorRegEx = re.compile('on line (\d+)')
 
         #Set Custom ContextMenu
         self.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
@@ -466,12 +466,12 @@ class CodeEdit(QtGui.QPlainTextEdit):
 
     def generateError(self, output):
         """search for the error lines and call the highlightErrorLine method"""
-        result = re.search(self._errorRegEx, output)
+        regex = re.search(self._errorRegEx, output)
+        result = regex.group(0)
+
+        line = re.search('\d+', result)
         if result is not None:
-            results = result.groups()
-            for line in results:
-                number = line.split('(')[1].split(')')[0]
-                self.highlightErrorLine(int(number))
+            self.highlightErrorLine(int(line.group(0)))
 
 
 

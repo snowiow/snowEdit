@@ -2,6 +2,7 @@
 
 import os
 import subprocess
+import thread
 
 from PySide import QtGui, QtCore
 
@@ -18,7 +19,7 @@ from about import About
 from seTreeView import SeTreeView
 from ..util.helperFunctions import *
 from ..util.iniManager import IniManager
-from ..util.codeOptimization import optimize
+from ..util.codeOptimization import Optimizer
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -201,7 +202,8 @@ class MainWindow(QtGui.QMainWindow):
             self.checkIfFileOpen(outputFile)
         elif output.returncode > 0:
             self.seConsole.writeToConsole(err, error=True)
-            self.codeAreas[self.tabWidget.currentIndex()].generateError(out)
+            self.codeAreas[self.tabWidget.currentIndex()].codeEdit \
+                .generateError(err)
 
         self.seConsole.tabWidget.setCurrentIndex(0)
 
@@ -218,9 +220,12 @@ class MainWindow(QtGui.QMainWindow):
         if flags.find('-no_tc') >= 0:
             noteFlag = True
 
-        result = optimize(self.codeAreas[self.tabWidget.currentIndex()].
-                          codeEdit.toPlainText(),
-                          self.langCB.currentText() == 'java', noteFlag)
+        self.seConsole.optProgress.show()
+        opt = Optimizer()
+        result = opt.optimize(self.codeAreas[self.tabWidget.currentIndex()].
+                              codeEdit.toPlainText(),
+                              self.langCB.currentText() == 'java', noteFlag,
+                              self.seConsole.optProgress)
         self.seConsole.writeToOptimization(result)
         self.seConsole.tabWidget.setCurrentIndex(1)
 
