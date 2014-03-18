@@ -4,14 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/main/src/gui/mainWindow.py" line="156" mnemonic="8" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9079e3ca-dc2d-4d04-8d42-39a824f94b46" name="Default" comment="workspace.xml updated">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/resources/lib/win/libSnowEdit.dll" afterPath="$PROJECT_DIR$/main/src/resources/lib/win/libSnowEdit.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/gui/codeEdit.py" afterPath="$PROJECT_DIR$/main/src/gui/codeEdit.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/util/codeOptimization.py" afterPath="$PROJECT_DIR$/main/src/util/codeOptimization.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/gui/mainWindow.py" afterPath="$PROJECT_DIR$/main/src/gui/mainWindow.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cfg/options.ini" afterPath="$PROJECT_DIR$/cfg/options.ini" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/gui/seConsole.py" afterPath="$PROJECT_DIR$/main/src/gui/seConsole.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/snowEdit.iml" afterPath="$PROJECT_DIR$/.idea/snowEdit.iml" />
+    <list default="true" id="9079e3ca-dc2d-4d04-8d42-39a824f94b46" name="Default" comment="bugfix for highlighting line error and implemented progressbar">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="snowEdit.iws" />
@@ -116,10 +109,10 @@
       <file leaf-file-name="codeOptimization.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/src/util/codeOptimization.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="81" column="74" selection-start="2836" selection-end="2836" vertical-scroll-proportion="0.0" vertical-offset="1133" max-vertical-offset="1785">
+            <state line="83" column="74" selection-start="2975" selection-end="2975" vertical-scroll-proportion="0.0" vertical-offset="1190" max-vertical-offset="1819">
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
-                <element signature="e#226#230#0" expanded="true" />
+                <element signature="e#225#229#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -650,7 +643,11 @@
       <created>1387537276261</created>
       <updated>1387537276261</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="bugfix for highlighting line error and implemented progressbar">
+      <created>1395153836802</created>
+      <updated>1395153836803</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -675,8 +672,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32668713" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -692,7 +690,6 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32668713" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16203703" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24919268" sideWeight="0.78838176" order="2" side_tool="false" content_ui="combo" />
@@ -727,7 +724,8 @@
     <MESSAGE value="Completion is now ordered by previous selections of the completion" />
     <MESSAGE value="Windows dll updated. Duplicate line updated. AutoIndent added" />
     <MESSAGE value="workspace.xml updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="workspace.xml updated" />
+    <MESSAGE value="bugfix for highlighting line error and implemented progressbar" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfix for highlighting line error and implemented progressbar" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -793,7 +791,7 @@
         <state line="81" column="74" selection-start="2836" selection-end="2836" vertical-scroll-proportion="0.0" vertical-offset="1377" max-vertical-offset="1785">
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <element signature="e#226#230#0" expanded="true" />
+            <element signature="e#225#229#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -872,10 +870,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/src/util/codeOptimization.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="74" selection-start="2836" selection-end="2836" vertical-scroll-proportion="0.0" vertical-offset="1133" max-vertical-offset="1785">
+        <state line="83" column="74" selection-start="2975" selection-end="2975" vertical-scroll-proportion="0.0" vertical-offset="1190" max-vertical-offset="1819">
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <element signature="e#226#230#0" expanded="true" />
+            <element signature="e#225#229#0" expanded="true" />
           </folding>
         </state>
       </provider>
