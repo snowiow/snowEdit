@@ -207,7 +207,7 @@ class CodeEdit(QtGui.QPlainTextEdit):
         Ignore cases of wrong keys and modifiers. Afterwards prepare correct
         completion popup
         """
-        if self.autoIndent:
+        if self.autoIndent and not self._completer.popup().isVisible():
             if event.key() == QtCore.Qt.Key_Return:
                 level = self.getIndentLevel()
                 self.insertPlainText('\n')
