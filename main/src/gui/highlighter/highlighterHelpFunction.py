@@ -3,6 +3,7 @@ from raschHighlighter import RaschHighlighter
 from noneHighlighter import NoneHighlighter
 from cppHighlighter import CppHighlighter
 from csHighlighter import CsHighlighter
+from dHighlighter import DHighlighter
 
 
 def chooseHighlighter(editor, filePath):
@@ -16,5 +17,6 @@ def chooseHighlighter(editor, filePath):
             return CppHighlighter(editor)
         elif fileEnding == 'cs':
             return CsHighlighter(editor)
-        return NoneHighlighter(editor)
+        elif fileEnding == 'd':
+            return DHighlighter(editor)
     return NoneHighlighter(editor)

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/main/src/gui/mainWindow.py" line="157" mnemonic="8" />
+    <bookmark url="file://$PROJECT_DIR$/main/src/gui/mainWindow.py" line="158" mnemonic="8" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9079e3ca-dc2d-4d04-8d42-39a824f94b46" name="Default" comment="bugfix. autocompletion selection on enter">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/main/src/gui/highlighter/csHighlighter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/gui/highlighter/cppHighlighter.py" afterPath="$PROJECT_DIR$/main/src/gui/highlighter/cppHighlighter.py" />
+    <list default="true" id="9079e3ca-dc2d-4d04-8d42-39a824f94b46" name="Default" comment="c# highlighting added">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/main/src/gui/highlighter/dHighlighter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/gui/highlighter/highlighterHelpFunction.py" afterPath="$PROJECT_DIR$/main/src/gui/highlighter/highlighterHelpFunction.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/gui/mainWindow.py" afterPath="$PROJECT_DIR$/main/src/gui/mainWindow.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/src/gui/highlighter/raschHighlighter.py" afterPath="$PROJECT_DIR$/main/src/gui/highlighter/raschHighlighter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="snowEdit.iws" />
@@ -36,14 +34,33 @@
       <file leaf-file-name="mainWindow.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/src/gui/mainWindow.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="569" column="48" selection-start="21488" selection-end="21488" vertical-scroll-proportion="0.6989247" vertical-offset="5761" max-vertical-offset="7412">
+            <state line="228" column="64" selection-start="8184" selection-end="8184" vertical-scroll-proportion="0.33251834" vertical-offset="2142" max-vertical-offset="8449">
               <folding>
                 <element signature="e#24#33#0" expanded="true" />
-                <element signature="e#11565#11712#0" expanded="true" />
-                <element signature="e#11759#11905#0" expanded="true" />
-                <element signature="e#12776#20028#0" expanded="true" />
-                <element signature="e#23692#24139#0" expanded="true" />
-                <element signature="e#24186#24928#0" expanded="true" />
+                <element signature="e#6271#7535#0" expanded="true" />
+                <element signature="e#11611#11758#0" expanded="true" />
+                <element signature="e#11805#11951#0" expanded="true" />
+                <element signature="e#11997#12142#0" expanded="true" />
+                <element signature="e#13013#20415#0" expanded="true" />
+                <element signature="e#20455#23486#0" expanded="true" />
+                <element signature="e#24126#24659#0" expanded="true" />
+                <element signature="e#24706#25448#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dHighlighter.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/src/gui/highlighter/dHighlighter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="52" column="20" selection-start="2676" selection-end="2676" vertical-scroll-proportion="0.0" vertical-offset="453" max-vertical-offset="2159">
+              <folding>
+                <element signature="e#145#600#0" expanded="true" />
+                <element signature="e#2867#3268#0" expanded="true" />
+                <element signature="e#3307#3561#0" expanded="true" />
+                <element signature="e#3599#3830#0" expanded="true" />
+                <element signature="e#3870#4087#0" expanded="true" />
+                <element signature="e#4133#5255#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -52,9 +69,12 @@
       <file leaf-file-name="raschHighlighter.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/src/gui/highlighter/raschHighlighter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="30" selection-start="518" selection-end="518" vertical-scroll-proportion="0.0" vertical-offset="3" max-vertical-offset="1224">
+            <state line="40" column="30" selection-start="1574" selection-end="1574" vertical-scroll-proportion="0.0" vertical-offset="533" max-vertical-offset="1649">
               <folding>
-                <element signature="e#3161#4271#0" expanded="true" />
+                <element signature="e#149#634#0" expanded="true" />
+                <element signature="e#674#1542#0" expanded="true" />
+                <element signature="e#1583#1984#0" expanded="true" />
+                <element signature="e#3160#4282#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -106,14 +126,14 @@
       <file leaf-file-name="csHighlighter.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/src/gui/highlighter/csHighlighter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="50" selection-start="732" selection-end="732" vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="2040">
+            <state line="23" column="50" selection-start="731" selection-end="731" vertical-scroll-proportion="0.0" vertical-offset="382" max-vertical-offset="2023">
               <folding>
-                <element signature="e#147#602#0" expanded="true" />
-                <element signature="e#2384#2785#0" expanded="true" />
-                <element signature="e#2824#3078#0" expanded="true" />
-                <element signature="e#3116#3347#0" expanded="true" />
-                <element signature="e#3387#3604#0" expanded="true" />
-                <element signature="e#3650#4760#0" expanded="true" />
+                <element signature="e#146#601#0" expanded="true" />
+                <element signature="e#2383#2784#0" expanded="true" />
+                <element signature="e#2823#3077#0" expanded="true" />
+                <element signature="e#3115#3346#0" expanded="true" />
+                <element signature="e#3386#3603#0" expanded="true" />
+                <element signature="e#3649#4771#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -122,10 +142,9 @@
       <file leaf-file-name="highlighterHelpFunction.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/src/gui/highlighter/highlighterHelpFunction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="0" selection-start="221" selection-end="221" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
+            <state line="20" column="39" selection-start="776" selection-end="776" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
               <folding>
                 <element signature="e#0#47#0" expanded="true" />
-                <element signature="e#267#740#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -134,19 +153,10 @@
       <file leaf-file-name="cppHighlighter.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/src/gui/highlighter/cppHighlighter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="30" selection-start="516" selection-end="516" vertical-scroll-proportion="0.0" vertical-offset="27" max-vertical-offset="952">
+            <state line="16" column="30" selection-start="0" selection-end="3947" vertical-scroll-proportion="0.0" vertical-offset="10" max-vertical-offset="935">
               <folding>
-                <element signature="e#643#1518#0" expanded="true" />
+                <element signature="e#642#1517#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="seConsole.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/src/gui/seConsole.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="31" selection-start="2185" selection-end="2185" vertical-scroll-proportion="0.0" vertical-offset="986" max-vertical-offset="1309">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -188,10 +198,11 @@
         <option value="$PROJECT_DIR$/main/src/gui/seConsole.py" />
         <option value="$PROJECT_DIR$/main/src/util/codeOptimization.py" />
         <option value="$PROJECT_DIR$/main/src/gui/codeEdit.py" />
-        <option value="$PROJECT_DIR$/main/src/gui/highlighter/highlighterHelpFunction.py" />
         <option value="$PROJECT_DIR$/main/src/gui/highlighter/csHighlighter.py" />
         <option value="$PROJECT_DIR$/main/src/gui/highlighter/cppHighlighter.py" />
         <option value="$PROJECT_DIR$/main/src/gui/highlighter/raschHighlighter.py" />
+        <option value="$PROJECT_DIR$/main/src/gui/highlighter/dHighlighter.py" />
+        <option value="$PROJECT_DIR$/main/src/gui/highlighter/highlighterHelpFunction.py" />
         <option value="$PROJECT_DIR$/main/src/gui/mainWindow.py" />
       </list>
     </option>
@@ -704,7 +715,11 @@
       <created>1395269954066</created>
       <updated>1395269954066</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="c# highlighting added">
+      <created>1395701761903</created>
+      <updated>1395701761903</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -731,6 +746,7 @@
     <frame x="0" y="0" width="1366" height="740" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32668713" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -746,7 +762,6 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3266564" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16203703" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24919268" sideWeight="0.78838176" order="2" side_tool="false" content_ui="combo" />
@@ -783,7 +798,8 @@
     <MESSAGE value="workspace.xml updated" />
     <MESSAGE value="bugfix for highlighting line error and implemented progressbar" />
     <MESSAGE value="bugfix. autocompletion selection on enter" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugfix. autocompletion selection on enter" />
+    <MESSAGE value="c# highlighting added" />
+    <option name="LAST_COMMIT_MESSAGE" value="c# highlighting added" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -792,11 +808,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main/src/util/RaschLexer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="815" selection-end="815" vertical-scroll-proportion="0.0" vertical-offset="589" max-vertical-offset="1026" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/src/gui/codeEdit.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="473" column="52" selection-start="16784" selection-end="16784" vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="8712" />
@@ -807,11 +818,14 @@
         <state line="203" column="58" selection-start="7279" selection-end="7279" vertical-scroll-proportion="0.0" vertical-offset="3654" max-vertical-offset="11736">
           <folding>
             <element signature="e#24#33#0" expanded="true" />
-            <element signature="e#11565#11712#0" expanded="true" />
-            <element signature="e#11759#11905#0" expanded="true" />
-            <element signature="e#12776#20028#0" expanded="true" />
-            <element signature="e#23692#24139#0" expanded="true" />
-            <element signature="e#24186#24928#0" expanded="true" />
+            <element signature="e#6271#7535#0" expanded="true" />
+            <element signature="e#11611#11758#0" expanded="true" />
+            <element signature="e#11805#11951#0" expanded="true" />
+            <element signature="e#11997#12142#0" expanded="true" />
+            <element signature="e#13013#20415#0" expanded="true" />
+            <element signature="e#20455#23486#0" expanded="true" />
+            <element signature="e#24126#24659#0" expanded="true" />
+            <element signature="e#24706#25448#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -866,11 +880,14 @@
         <state line="203" column="58" selection-start="7279" selection-end="7279" vertical-scroll-proportion="0.0" vertical-offset="3654" max-vertical-offset="11736">
           <folding>
             <element signature="e#24#33#0" expanded="true" />
-            <element signature="e#11565#11712#0" expanded="true" />
-            <element signature="e#11759#11905#0" expanded="true" />
-            <element signature="e#12776#20028#0" expanded="true" />
-            <element signature="e#23692#24139#0" expanded="true" />
-            <element signature="e#24186#24928#0" expanded="true" />
+            <element signature="e#6271#7535#0" expanded="true" />
+            <element signature="e#11611#11758#0" expanded="true" />
+            <element signature="e#11805#11951#0" expanded="true" />
+            <element signature="e#11997#12142#0" expanded="true" />
+            <element signature="e#13013#20415#0" expanded="true" />
+            <element signature="e#20455#23486#0" expanded="true" />
+            <element signature="e#24126#24659#0" expanded="true" />
+            <element signature="e#24706#25448#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -925,11 +942,14 @@
         <state line="242" column="36" selection-start="8615" selection-end="8615" vertical-scroll-proportion="0.0" vertical-offset="4114" max-vertical-offset="11067">
           <folding>
             <element signature="e#24#33#0" expanded="true" />
-            <element signature="e#11565#11712#0" expanded="true" />
-            <element signature="e#11759#11905#0" expanded="true" />
-            <element signature="e#12776#20028#0" expanded="true" />
-            <element signature="e#23692#24139#0" expanded="true" />
-            <element signature="e#24186#24928#0" expanded="true" />
+            <element signature="e#6271#7535#0" expanded="true" />
+            <element signature="e#11611#11758#0" expanded="true" />
+            <element signature="e#11805#11951#0" expanded="true" />
+            <element signature="e#11997#12142#0" expanded="true" />
+            <element signature="e#13013#20415#0" expanded="true" />
+            <element signature="e#20455#23486#0" expanded="true" />
+            <element signature="e#24126#24659#0" expanded="true" />
+            <element signature="e#24706#25448#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1072,58 +1092,77 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/gui/highlighter/highlighterHelpFunction.py">
+    <entry file="file://$PROJECT_DIR$/main/src/gui/highlighter/csHighlighter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="221" selection-end="221" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
+        <state line="23" column="50" selection-start="731" selection-end="731" vertical-scroll-proportion="0.0" vertical-offset="382" max-vertical-offset="2023">
           <folding>
-            <element signature="e#0#47#0" expanded="true" />
-            <element signature="e#267#740#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/gui/highlighter/raschHighlighter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="30" selection-start="518" selection-end="518" vertical-scroll-proportion="0.0" vertical-offset="3" max-vertical-offset="1224">
-          <folding>
-            <element signature="e#3161#4271#0" expanded="true" />
+            <element signature="e#146#601#0" expanded="true" />
+            <element signature="e#2383#2784#0" expanded="true" />
+            <element signature="e#2823#3077#0" expanded="true" />
+            <element signature="e#3115#3346#0" expanded="true" />
+            <element signature="e#3386#3603#0" expanded="true" />
+            <element signature="e#3649#4771#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/src/gui/highlighter/cppHighlighter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="30" selection-start="516" selection-end="516" vertical-scroll-proportion="0.0" vertical-offset="27" max-vertical-offset="952">
+        <state line="16" column="30" selection-start="0" selection-end="3947" vertical-scroll-proportion="0.0" vertical-offset="10" max-vertical-offset="935">
           <folding>
-            <element signature="e#643#1518#0" expanded="true" />
+            <element signature="e#642#1517#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/src/gui/highlighter/csHighlighter.py">
+    <entry file="file://$PROJECT_DIR$/main/src/gui/highlighter/raschHighlighter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="50" selection-start="732" selection-end="732" vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="2040">
+        <state line="40" column="30" selection-start="1574" selection-end="1574" vertical-scroll-proportion="0.0" vertical-offset="533" max-vertical-offset="1649">
           <folding>
-            <element signature="e#147#602#0" expanded="true" />
-            <element signature="e#2384#2785#0" expanded="true" />
-            <element signature="e#2824#3078#0" expanded="true" />
-            <element signature="e#3116#3347#0" expanded="true" />
-            <element signature="e#3387#3604#0" expanded="true" />
-            <element signature="e#3650#4760#0" expanded="true" />
+            <element signature="e#149#634#0" expanded="true" />
+            <element signature="e#674#1542#0" expanded="true" />
+            <element signature="e#1583#1984#0" expanded="true" />
+            <element signature="e#3160#4282#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/src/gui/highlighter/dHighlighter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="20" selection-start="2676" selection-end="2676" vertical-scroll-proportion="0.0" vertical-offset="453" max-vertical-offset="2159">
+          <folding>
+            <element signature="e#145#600#0" expanded="true" />
+            <element signature="e#2867#3268#0" expanded="true" />
+            <element signature="e#3307#3561#0" expanded="true" />
+            <element signature="e#3599#3830#0" expanded="true" />
+            <element signature="e#3870#4087#0" expanded="true" />
+            <element signature="e#4133#5255#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/src/gui/highlighter/highlighterHelpFunction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="39" selection-start="776" selection-end="776" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/src/gui/mainWindow.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="569" column="48" selection-start="21488" selection-end="21488" vertical-scroll-proportion="0.6989247" vertical-offset="5761" max-vertical-offset="7412">
+        <state line="228" column="64" selection-start="8184" selection-end="8184" vertical-scroll-proportion="0.33251834" vertical-offset="2142" max-vertical-offset="8449">
           <folding>
             <element signature="e#24#33#0" expanded="true" />
-            <element signature="e#11565#11712#0" expanded="true" />
-            <element signature="e#11759#11905#0" expanded="true" />
-            <element signature="e#12776#20028#0" expanded="true" />
-            <element signature="e#23692#24139#0" expanded="true" />
-            <element signature="e#24186#24928#0" expanded="true" />
+            <element signature="e#6271#7535#0" expanded="true" />
+            <element signature="e#11611#11758#0" expanded="true" />
+            <element signature="e#11805#11951#0" expanded="true" />
+            <element signature="e#11997#12142#0" expanded="true" />
+            <element signature="e#13013#20415#0" expanded="true" />
+            <element signature="e#20455#23486#0" expanded="true" />
+            <element signature="e#24126#24659#0" expanded="true" />
+            <element signature="e#24706#25448#0" expanded="true" />
           </folding>
         </state>
       </provider>

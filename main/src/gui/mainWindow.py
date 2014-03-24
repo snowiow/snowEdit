@@ -12,6 +12,7 @@ from highlighter.pythonHighlighter import PythonHighlighter
 from highlighter.raschHighlighter import RaschHighlighter
 from highlighter.cppHighlighter import CppHighlighter
 from highlighter.csHighlighter import CsHighlighter
+from highlighter.dHighlighter import DHighlighter
 from highlighter.highlighterHelpFunction import chooseHighlighter
 from seConsole import SeConsole
 from codeArea import CodeArea
@@ -186,8 +187,8 @@ class MainWindow(QtGui.QMainWindow):
         compileArgs.append(currentFile)
 
         outputFile = currentFile.rsplit('.', 1)[0]
-        if self.langCB.currentText() == 'java':
-            outputFile += '.java'
+        if self.langCB.currentText() == 'cs':
+            outputFile += '.cs'
         elif self.langCB.currentText() == 'd':
             outputFile += '.d'
         else:
@@ -326,6 +327,11 @@ class MainWindow(QtGui.QMainWindow):
         currentEditor = self.codeAreas[self.tabWidget.currentIndex()].codeEdit
         currentEditor.highlighter = CsHighlighter(currentEditor.document())
 
+    @QtCore.Slot()
+    def d(self):
+        currentEditor = self.codeAreas[self.tabWidget.currentIndex()].codeEdit
+        currentEditor.highlighter = DHighlighter(currentEditor.document())
+
     # Misc slots
     @QtCore.Slot()
     def deleteFromCodeEdits(self, index):
@@ -441,6 +447,9 @@ class MainWindow(QtGui.QMainWindow):
         self.csAction = QtGui.QAction('C#', highlightActionGroup)
         self.csAction.setCheckable(True)
 
+        self.dAction = QtGui.QAction('D', highlightActionGroup)
+        self.dAction.setCheckable(True)
+
         # run actions and widgets
         self.runAction = QtGui.QAction(
             QtGui.QIcon(':icons/run.png'), 'Run', self)
@@ -448,8 +457,9 @@ class MainWindow(QtGui.QMainWindow):
         self.compilerOptionsAction = QtGui.QAction('Configure Compiler', self)
         self.langCB = QtGui.QComboBox(self)
         self.langCB.addItem('cpp')
+        self.langCB.addItem('cs')
         self.langCB.addItem('d')
-        self.langCB.addItem('java')
+
 
         #Optimization Actions
         self.optimizeAction = QtGui.QAction(QtGui.QIcon(':icons/drill.png'),
@@ -521,9 +531,10 @@ class MainWindow(QtGui.QMainWindow):
         highlightMenu = menuBar.addMenu('Highlighting')
         highlightMenu.addAction(self.noneAction)
         highlightMenu.addAction(self.cppAction)
+        highlightMenu.addAction(self.csAction)
+        highlightMenu.addAction(self.dAction)
         highlightMenu.addAction(self.pythonAction)
         highlightMenu.addAction(self.raschAction)
-        highlightMenu.addAction(self.csAction)
 
         # Creating run menu
         runMenu = menuBar.addMenu('Run')
@@ -568,6 +579,7 @@ class MainWindow(QtGui.QMainWindow):
         self.raschAction.triggered.connect(self.rasch)
         self.cppAction.triggered.connect(self.cpp)
         self.csAction.triggered.connect(self.cs)
+        self.dAction.triggered.connect(self.d)
 
         # Run menu actions
         self.runAction.triggered.connect(self.onRunClicked)
@@ -635,6 +647,8 @@ class MainWindow(QtGui.QMainWindow):
             self.cppAction.setChecked(True)
         elif editor.filePath.endswith('.cs'):
             self.csAction.setChecked(True)
+        elif editor.filePath.endswith('d'):
+            self.dAction.setChecked(True)
         else:
             self.noneAction.setChecked(True)
 
