@@ -1,9 +1,9 @@
 #-*- coding: utf-8 -*-
 
-from PySide import QtCore, QtGui
+from PySide import QtGui, QtCore
 
 
-class RaschHighlighter(QtGui.QSyntaxHighlighter):
+class CsHighlighter(QtGui.QSyntaxHighlighter):
     def __init__(self, parent):
         QtGui.QSyntaxHighlighter.__init__(self, parent)
 
@@ -16,7 +16,6 @@ class RaschHighlighter(QtGui.QSyntaxHighlighter):
         self.createKeywords()
         self.createOperators()
         self.createStrings()
-        self.createPrefixes()
         self.createArrows()
         self.createComments()
 
@@ -25,15 +24,27 @@ class RaschHighlighter(QtGui.QSyntaxHighlighter):
         keywordFormat.setForeground(QtGui.QColor(64, 155, 11))
 
         keywords = [
-            '\\balias\\b', '\\bas\\b', '\\bconst\\b', '\\bdelete\\b',
-            '\\bdo\\b', '\\belse\\b', '\\benum\\b', '\\bfalse\\b',
-            '\\bfor\\b', '\\bfunction\\b', '\\bif\\b', '\\bimport\\b',
-            '\\bin\\b', '\\bis\\b', '\\bnew\\b', '\\bnull\\b',
-            '\\bpackage\\b', '\\bprivate\\b', '\\bprotected\\b',
-            '\\bpublic\\b', '\\bref\\b', '\\breturn\\b', '\\bshared\\b',
-            '\\bstatic\\b', '\\btemplate\\b', '\\btype\\b', '\\bthis\\b',
-            '\\bthrow\\b', '\\btrue\\b', '\\btry\\b', '\\bunion\\b',
-            '\\bunique\\b', '\\bwhile\\b', '\\bwith\\b']
+            '\\babstract\\b', '\\bas\\b', '\\bbase\\b', '\\bbool\\b',
+            '\\bbreak\\b', '\\bbyte\\b', '\\bcase\\b', '\\bcatch\\b',
+            '\\bchar\\b', '\\bchecked\\b', '\\bclass\\b', '\\bconst\\b',
+            '\\bcontinue\\b', '\\bdecimal\\b', '\\bdefault\\b',
+            '\\bdelegate\\b', '\\bif\\b', '\\bimplicit\\b', '\\bin\\b',
+            '\\bdo\\b', '\\bdouble\\b', '\\bint\\b', '\\binterface\\b',
+            '\\belse\\b', '\\benum\\b', '\\bevent\\b', '\\bexplicit\\b',
+            '\\bextern\\b', '\\bfalse\\b', '\\btrue\\b', '\\binternal\\b',
+            '\\bfinally\\b', '\\bfixed\\b', '\\bfloat\\b', '\\bfor\\b',
+            '\\bforeach\\b', '\\bgoto\\b', '\\bis\\b', '\\block\\b',
+            '\\blong\\b', '\\bnamepsace\\b', '\\bnew\\b', '\\bnull\\b',
+            '\\bobject\\b', '\\boperator\\b', '\\bout\\b', '\\boverride\\b',
+            '\\bparams\\b', '\\bprivate\\b', '\\bprotected\\b', '\\bpublic\\b',
+            '\\breadonly\\b', '\\bref\\b', '\\breturn\\b', '\\bsbyte\\b',
+            '\\bsealed\\b', '\\bshort\\b', '\\bsizeof\\b', '\\bstackalloc\\b',
+            '\\bstatic\\b', '\\bstring\\b', '\\bstruct\\b', '\\bswitch\\b',
+            '\\bthis\\b', '\\bthrow\\b', '\\btry\\b', '\\btypeof\\b',
+            '\\buint\\b', '\\bulong\\b', '\\bunchecked\\b', '\\bunsafe\\b',
+            '\\bushort\\b', '\\busing\\b', '\\bvirtual\\b', '\\bvoid\\b',
+            '\\bvolatile\\b', '\\bwhile\\b'
+        ]
 
         self.highlightingRules = [(QtCore.QRegExp(pattern), keywordFormat)
                                   for pattern in keywords]
@@ -56,27 +67,18 @@ class RaschHighlighter(QtGui.QSyntaxHighlighter):
         self.highlightingRules.append((QtCore.QRegExp('\".*\"'), stringFormat))
         self.highlightingRules.append((QtCore.QRegExp('\'.*\''), stringFormat))
 
-    def createComments(self):
-        singleLineCommentFormat = QtGui.QTextCharFormat()
-        singleLineCommentFormat.setForeground(QtCore.Qt.gray)
-        self.highlightingRules.append(
-            (QtCore.QRegExp('//[^\n]*'), singleLineCommentFormat))
-
-    def createPrefixes(self):
-        prefixFormat = QtGui.QTextCharFormat()
-        prefixFormat.setForeground(QtCore.Qt.darkBlue)
-
-        prefixes = ['\\$[_a-zA-Z0-9]+', '@[_a-zA-Z0-9]+']
-
-        self.highlightingRules.extend(
-            [(QtCore.QRegExp(pattern), prefixFormat) for pattern in prefixes])
-
     def createArrows(self):
         arrowFormat = QtGui.QTextCharFormat()
         arrowFormat.setForeground(QtCore.Qt.red)
         arrows = ['<-', '->']
         self.highlightingRules.extend(
             [(QtCore.QRegExp(pattern), arrowFormat) for pattern in arrows])
+
+    def createComments(self):
+        singleLineCommentFormat = QtGui.QTextCharFormat()
+        singleLineCommentFormat.setForeground(QtCore.Qt.gray)
+        self.highlightingRules.append(
+            (QtCore.QRegExp('//[^\n]*'), singleLineCommentFormat))
 
     def highlightBlock(self, text):
         for pattern, format in self.highlightingRules:

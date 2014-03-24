@@ -4,7 +4,6 @@ from PySide import QtGui, QtCore
 
 
 class CppHighlighter(QtGui.QSyntaxHighlighter):
-
     def __init__(self, parent):
         QtGui.QSyntaxHighlighter.__init__(self, parent)
 
@@ -16,7 +15,6 @@ class CppHighlighter(QtGui.QSyntaxHighlighter):
 
         self.createKeywords()
         self.createOperators()
-        self.createNumbers()
         self.createStrings()
         self.createArrows()
         self.createComments()
@@ -51,11 +49,6 @@ class CppHighlighter(QtGui.QSyntaxHighlighter):
         self.highlightingRules.extend(
             [(QtCore.QRegExp(pattern), operatorFormat) for
              pattern in operators])
-
-    def createNumbers(self):
-        numberFormat = QtGui.QTextCharFormat()
-        numberFormat.setForeground(QtCore.Qt.red)
-        self.highlightingRules.append((QtCore.QRegExp('\\d+'), numberFormat))
 
     def createStrings(self):
         stringFormat = QtGui.QTextCharFormat()
@@ -101,7 +94,7 @@ class CppHighlighter(QtGui.QSyntaxHighlighter):
                 commentLength = len(text) - startIndex
             else:
                 commentLength = endIndex - startIndex + \
-                    self._commentEndExpression.matchedLength()
+                                self._commentEndExpression.matchedLength()
 
             self.setFormat(
                 startIndex, commentLength, self._multiLineCommentFormat)

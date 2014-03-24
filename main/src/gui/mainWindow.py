@@ -11,6 +11,7 @@ from highlighter.noneHighlighter import NoneHighlighter
 from highlighter.pythonHighlighter import PythonHighlighter
 from highlighter.raschHighlighter import RaschHighlighter
 from highlighter.cppHighlighter import CppHighlighter
+from highlighter.csHighlighter import CsHighlighter
 from highlighter.highlighterHelpFunction import chooseHighlighter
 from seConsole import SeConsole
 from codeArea import CodeArea
@@ -320,6 +321,11 @@ class MainWindow(QtGui.QMainWindow):
         currentEditor = self.codeAreas[self.tabWidget.currentIndex()].codeEdit
         currentEditor.highlighter = CppHighlighter(currentEditor.document())
 
+    @QtCore.Slot()
+    def cs(self):
+        currentEditor = self.codeAreas[self.tabWidget.currentIndex()].codeEdit
+        currentEditor.highlighter = CsHighlighter(currentEditor.document())
+
     # Misc slots
     @QtCore.Slot()
     def deleteFromCodeEdits(self, index):
@@ -342,7 +348,6 @@ class MainWindow(QtGui.QMainWindow):
         self.tabWidget = SeTabWidget()
         self.tabWidget.setTabsClosable(True)
         self.seConsole = SeConsole()
-
 
     def createMenu(self):
 
@@ -433,6 +438,9 @@ class MainWindow(QtGui.QMainWindow):
         self.cppAction = QtGui.QAction('C++', highlightActionGroup)
         self.cppAction.setCheckable(True)
 
+        self.csAction = QtGui.QAction('C#', highlightActionGroup)
+        self.csAction.setCheckable(True)
+
         # run actions and widgets
         self.runAction = QtGui.QAction(
             QtGui.QIcon(':icons/run.png'), 'Run', self)
@@ -515,6 +523,7 @@ class MainWindow(QtGui.QMainWindow):
         highlightMenu.addAction(self.cppAction)
         highlightMenu.addAction(self.pythonAction)
         highlightMenu.addAction(self.raschAction)
+        highlightMenu.addAction(self.csAction)
 
         # Creating run menu
         runMenu = menuBar.addMenu('Run')
@@ -558,6 +567,7 @@ class MainWindow(QtGui.QMainWindow):
         self.noneAction.triggered.connect(self.none)
         self.raschAction.triggered.connect(self.rasch)
         self.cppAction.triggered.connect(self.cpp)
+        self.csAction.triggered.connect(self.cs)
 
         # Run menu actions
         self.runAction.triggered.connect(self.onRunClicked)
@@ -623,6 +633,8 @@ class MainWindow(QtGui.QMainWindow):
             self.raschAction.setChecked(True)
         elif editor.filePath.endswith('.cpp') or editor.filePath.endswith('.h'):
             self.cppAction.setChecked(True)
+        elif editor.filePath.endswith('.cs'):
+            self.csAction.setChecked(True)
         else:
             self.noneAction.setChecked(True)
 
