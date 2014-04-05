@@ -43,7 +43,7 @@ class MainWindow(QtGui.QMainWindow):
 
     @QtCore.Slot()
     def onNewFileClicked(self):
-        
+
         self.codeAreas.append(CodeArea())
         self.tabWidget.addTab(
             self.codeAreas[self.tabWidget.count()], 'new file')
@@ -98,7 +98,7 @@ class MainWindow(QtGui.QMainWindow):
                                                          'Rush Files (*.rs)')
         if saveLocation[0] != '':
             try:
-                currentEditor = self.codeAreas[self.tabWidget.currentIndex()]\
+                currentEditor = self.codeAreas[self.tabWidget.currentIndex()] \
                     .codeEdit
                 f = open(saveLocation[0], 'w')
                 f.write(currentEditor.toPlainText())
@@ -157,16 +157,16 @@ class MainWindow(QtGui.QMainWindow):
         self.codeAreas[self.tabWidget.currentIndex()].codeEdit.commentLine()
 
     @QtCore.Slot()
-    def onFindClicked (self):
+    def onFindClicked(self):
         self.codeAreas[self.tabWidget.currentIndex()].seFind.show()
         self.codeAreas[self.tabWidget.currentIndex()].seFind._searchLE \
             .setText('')
-        self.codeAreas[self.tabWidget.currentIndex()].seFind._searchLE\
+        self.codeAreas[self.tabWidget.currentIndex()].seFind._searchLE \
             .setFocus()
 
     def onGotoClicked(self):
         self.codeAreas[self.tabWidget.currentIndex()].seFind.show()
-        self.codeAreas[self.tabWidget.currentIndex()].seFind._searchLE\
+        self.codeAreas[self.tabWidget.currentIndex()].seFind._searchLE \
             .setText('@')
         self.codeAreas[self.tabWidget.currentIndex()].seFind._searchLE \
             .setFocus()
@@ -182,7 +182,7 @@ class MainWindow(QtGui.QMainWindow):
 
         compileArgs.append('-lang=' + self.langCB.currentText())
 
-        currentFile = self.codeAreas[self.tabWidget.currentIndex()]\
+        currentFile = self.codeAreas[self.tabWidget.currentIndex()] \
             .codeEdit.filePath
         compileArgs.append(currentFile)
 
@@ -226,8 +226,8 @@ class MainWindow(QtGui.QMainWindow):
         opt = Optimizer()
         result = opt.optimize(self.codeAreas[self.tabWidget.currentIndex()].
                               codeEdit.toPlainText(),
-                              self.langCB.currentText() == 'java', noteFlag,
-                              self.seConsole.optProgress)
+                              noteFlag, self.seConsole.optProgress)
+
         self.seConsole.writeToOptimization(result)
         self.seConsole.tabWidget.setCurrentIndex(1)
 

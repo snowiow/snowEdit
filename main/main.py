@@ -17,7 +17,6 @@ from PySide import QtGui
 from src.gui.mainWindow import MainWindow
 from src.util.iniManager import IniManager
 
-
 # Initialising config-data
 iniManager = IniManager.getInstance()
 iniManager.checkExistingIniFile()

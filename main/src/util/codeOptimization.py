@@ -4,15 +4,13 @@ import copy
 
 import RaschLexer
 
-wordDelimiterList = ['.', ',', '[', '(', ' ', '\n', ';', ':', '{', '>', '<',
-                     ')', '}', ']']
-
 
 class Optimizer():
     def __init__(self):
-        pass
+        self.wordDelimiterList = ['.', ',', '[', '(', ' ', '\n', ';', ':', '{',
+                                  ')', '}', ']']
 
-    def optimize(self, text, isJava, noteFlag, progressBar):
+    def optimize(self, text, noteFlag, progressBar):
         variables = self.getVariableUsageMap(text)
 
         line = 1
@@ -72,19 +70,17 @@ class Optimizer():
                                                ' compiletime instead of at ' \
                                                'runtime.\n\n'.format(line)
 
-            if text[i] == '=' or text[i] == '(' or text[i] == '[' \
-                    or text[i] == ':':
+            if text[i] == '(' or text[i] == '[' or text[i] == ':':
                 i += 1
                 self.lookForVariablesUsed(text, i, variables)
 
-            if text[i] == '-' and text[i + 1] == '>':
-                i += 2
-                self.lookForVariablesUsed(text, i, variables)
-                if isJava:
-                    suggestions += 'Pointer at line {} isn\'t allowed, ' \
-                                   'if you want to compile to java code.\n\n' \
-                        .format(line)
+            if (text[i] == '<' or text[i] == '>'):
+                i += 1
+                self.lookForVariablesBothSides(text, i, variables)
 
+            if (text[i] == '=' or text[i] == '!') and (text[i + 1] == '='):
+                i += 2
+                self.lookForVariablesBothSides(text, i, variables)
             i += 1
 
         for var in variables:
@@ -92,7 +88,6 @@ class Optimizer():
                 suggestions += var + ' is an unused variable at line {}.\n\n' \
                     .format(variables[var]) \
                     .format(line)
-        print suggestions
         return suggestions
 
     def getVariableUsageMap(self, text):
@@ -101,7 +96,8 @@ class Optimizer():
         for line in range(len(textArray)):
             items = RaschLexer.getVariables(textArray[line])
             for item in items:
-                results.update({item: line + 1})
+                if item not in results:
+                    results.update({item: line + 1})
         return results
 
     def lookForVariablesUsed(self, text, i, variables):
@@ -112,16 +108,37 @@ class Optimizer():
         while j < len(text):
             if text[j] == '$' or text[j] == '@':
                 startChar = j
-            if text[j] in wordDelimiterList:
+            if text[j] in self.wordDelimiterList:
                 endChar = j
                 if endChar > startChar and startChar >= 0 and endChar >= 0:
-                    results.append(text[startChar:endChar])
+                    var = text[startChar:endChar]
+                    if var in variables:
+                        variables[var] = -1
                     startChar = -1
                     endChar = -1
             if text[j] == '\n' or text[j] == ';':
                 break
             j += 1
-        for var in results:
-            if var in variables:
-                variables[var] = -1
 
+    def lookForVariablesBothSides(self, text, i, variables):
+        self.lookForVariablesUsed(text, i, variables)
+
+        j = copy.copy(i)
+        results = []
+        startChar = -1
+        endChar = -1
+        while j > 0:
+            if text[j].isalnum() and endChar == -1:
+                endChar = j + 1
+            if text[j] == '@' or text[j] == '$':
+                startChar = j
+                if endChar > startChar and startChar >= 0 and endChar >= 0:
+                    var = text[startChar:endChar]
+                    if var in variables:
+                        variables[var] = -1
+                    break
+
+            if text[j] == '\n' or text[j] == ';':
+                break
+
+            j -= 1
