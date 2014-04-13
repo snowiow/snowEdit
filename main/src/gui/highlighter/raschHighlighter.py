@@ -80,7 +80,7 @@ class RaschHighlighter(QtGui.QSyntaxHighlighter):
 
     def highlightBlock(self, text):
         for pattern, format in self.highlightingRules:
-            expression = QtCore.QRegExp(pattern)
+            expression = pattern
             index = expression.indexIn(text)
 
             while index >= 0:
